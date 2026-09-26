@@ -251,10 +251,10 @@ body {
 
   z-index: 10;
 
-  width: clamp(150px, 16vw, 250px);
+  width: clamp(150px, 12vw, 250px);
 
-  right: 10vw;
-  top: 13%;
+  right: 5vw;
+  top: 7%;
 
   display: block;
 
@@ -330,7 +330,7 @@ body {
 h1 {
   position: absolute;
 
-  left: 7vw;
+  left: 5vw;
   top: 54%;
 
   transform:
@@ -346,13 +346,13 @@ h1 {
     "Archivo Narrow",
     sans-serif;
 
-  font-size: clamp(115px, 19vw, 330px);
+  font-size: clamp(115px, 15vw, 330px);
 
   font-weight: 500;
 
   line-height: .68;
 
-  letter-spacing: -.085em;
+  letter-spacing: -.095em;
 
   white-space: nowrap;
 
@@ -363,10 +363,10 @@ h1 {
 h1 span {
   position: relative;
 
-  top: -.5em;
-  left: .02em;
+  top: -.2em;
+  left: .04em;
 
-  font-size: .095em;
+  font-size: .090em;
 
   letter-spacing: 0;
 }
