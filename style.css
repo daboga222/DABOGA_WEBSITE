@@ -251,20 +251,16 @@ body {
 
   z-index: 10;
 
-  width: clamp(150px, 18vw, 285px);
+  width: clamp(150px, 16vw, 250px);
 
-  aspect-ratio: 1;
-
-  left: 53%;
-  top: 20%;
+  right: 10vw;
+  top: 13%;
 
   display: block;
 
   overflow: hidden;
 
-  transform:
-    translateX(-50%)
-    rotate(-4deg);
+  transform: none;
 
   filter:
     grayscale(1)
@@ -316,10 +312,7 @@ body {
 
 
 .image-link:hover {
-  transform:
-    translateX(-50%)
-    rotate(1deg)
-    scale(1.035);
+  transform: scale(1.035);
 
   filter:
     grayscale(1)
@@ -337,8 +330,8 @@ body {
 h1 {
   position: absolute;
 
-  left: 4vw;
-  top: 62%;
+  left: 7vw;
+  top: 54%;
 
   transform:
     translateY(-50%)
@@ -353,7 +346,7 @@ h1 {
     "Archivo Narrow",
     sans-serif;
 
-  font-size: clamp(150px, 25vw, 430px);
+  font-size: clamp(115px, 19vw, 330px);
 
   font-weight: 500;
 
@@ -475,17 +468,17 @@ h1 span {
   .image-link {
     width: 34vw;
 
-    left: 55%;
-    top: 20%;
+    right: 8vw;
+    top: 17%;
   }
 
 
   h1 {
     left: 6vw;
 
-    top: 62%;
+    top: 57%;
 
-    font-size: 28vw;
+    font-size: 24vw;
 
     transform:
       translateY(-50%)
@@ -532,15 +525,15 @@ h1 span {
   .image-link {
     width: 38vw;
 
-    top: 20%;
-    left: 57%;
+    top: 18%;
+    right: 7vw;
   }
 
 
   h1 {
-    font-size: 31vw;
+    font-size: 27vw;
 
-    top: 62%;
+    top: 59%;
   }
 
 
@@ -549,6 +542,8 @@ h1 span {
   }
 
 }
+
+
 /* PRESAVE PAGE */
 
 .presave-page {
