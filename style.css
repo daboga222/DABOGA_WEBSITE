@@ -251,16 +251,16 @@ body {
 
   z-index: 10;
 
-  width: clamp(150px, 16vw, 250px);
+  width: clamp(300px, 32vw, 500px);
 
-  right: 10vw;
-  top: 13%;
+  left: 80%;
+  top: 35%;
 
   display: block;
 
   overflow: hidden;
 
-  transform: none;
+  transform: translate(-50%, -50%);
 
   filter:
     grayscale(1)
@@ -312,7 +312,9 @@ body {
 
 
 .image-link:hover {
-  transform: scale(1.035);
+  transform:
+    translate(-50%, -50%)
+    scale(1.035);
 
   filter:
     grayscale(1)
@@ -466,10 +468,10 @@ h1 span {
 
 
   .image-link {
-    width: 34vw;
+    width: 64vw;
 
-    right: 8vw;
-    top: 17%;
+    left: 80%;
+    top: 35%;
   }
 
 
@@ -523,10 +525,10 @@ h1 span {
 
 
   .image-link {
-    width: 38vw;
+    width: 76vw;
 
-    top: 18%;
-    right: 7vw;
+    left: 80%;
+    top: 35%;
   }
 
 
@@ -664,3 +666,4 @@ h1 span {
 
   line-height: 1.2;
 }
+
