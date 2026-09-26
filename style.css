@@ -251,7 +251,7 @@ body {
 
   z-index: 10;
 
-  width: clamp(300px, 32vw, 500px);
+  width: clamp(300px, 24vw, 500px);
 
   left: 80%;
   top: 35%;
