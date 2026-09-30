@@ -23,15 +23,21 @@
   --white: #f1f1ee;
   --white-soft: #deded9;
 
+  /*
+    Pixel unit.
+    The entire visual language is built around this scale.
+  */
+
   --pixel: 4px;
 
   --edge: clamp(18px, 2.2vw, 34px);
 
-  --font: "Archivo Narrow",
-          "Arial Narrow",
-          Arial,
-          Helvetica,
-          sans-serif;
+  --font:
+    "Archivo Narrow",
+    "Arial Narrow",
+    Arial,
+    Helvetica,
+    sans-serif;
 
 }
 
@@ -46,10 +52,13 @@
 
 html,
 body {
+
   width: 100%;
   min-height: 100%;
+
   margin: 0;
   padding: 0;
+
 }
 
 html {
@@ -81,6 +90,7 @@ body {
   position: relative;
 
   width: 100%;
+
   min-height: 100vh;
   min-height: 100dvh;
 
@@ -100,8 +110,7 @@ body {
 /* =========================================================
    05 — MATERIAL SURFACE
    ---------------------------------------------------------
-   One texture system for the entire site.
-   No separate texture for the title.
+   One texture system for the entire interface.
    ========================================================= */
 
 .surface {
@@ -134,8 +143,8 @@ body {
 /* =========================================================
    06 — DIGITAL GRAIN
    ---------------------------------------------------------
-   Very subtle.
-   The pixel is present, but never advertised.
+   Almost imperceptible.
+   Digital rather than photographic.
    ========================================================= */
 
 .grain {
@@ -174,6 +183,7 @@ body {
   z-index: 5;
 
   width: 100%;
+
   min-height: 100vh;
   min-height: 100dvh;
 
@@ -217,7 +227,12 @@ body {
 
   align-items: center;
 
-  gap: clamp(15px, 2.1vw, 34px);
+  gap:
+    clamp(
+      15px,
+      2.1vw,
+      34px
+    );
 
   pointer-events: auto;
 
@@ -236,7 +251,12 @@ body {
 
   font-family: var(--font);
 
-  font-size: clamp(12px, .78vw, 15px);
+  font-size:
+    clamp(
+      12px,
+      .78vw,
+      15px
+    );
 
   font-weight: 500;
 
@@ -250,7 +270,7 @@ body {
 
 
 /* ---------------------------------------------------------
-   Underline
+   Navigation underline
    --------------------------------------------------------- */
 
 .nav a::after {
@@ -282,7 +302,8 @@ body {
 .nav a:hover::after,
 .nav a.active::after {
 
-  transform: scaleX(1);
+  transform:
+    scaleX(1);
 
 }
 
@@ -295,9 +316,17 @@ body {
 
   color: var(--white);
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 
-  font-size: clamp(12px, .75vw, 15px);
+  font-size:
+    clamp(
+      12px,
+      .75vw,
+      15px
+    );
 
   line-height: 1;
 
@@ -341,7 +370,7 @@ body {
 
 
 /* ---------------------------------------------------------
-   Image itself
+   Image
    --------------------------------------------------------- */
 
 .image-link img {
@@ -352,6 +381,11 @@ body {
   height: 100%;
 
   object-fit: cover;
+
+  /*
+    The photograph remains clean.
+    No global grain sits on top of it.
+  */
 
   filter:
     grayscale(100%)
@@ -379,7 +413,9 @@ body {
 
 
 /* =========================================================
-   10 — MAIN WORDMARK
+   10 — DABOGA® WORDMARK
+   ---------------------------------------------------------
+   The word itself is the graphic object.
    ========================================================= */
 
 h1 {
@@ -391,46 +427,54 @@ h1 {
   margin: 0;
   padding: 0;
 
-  left: 5.6vw;
+  left: 5.2vw;
   top: 54%;
 
   color: var(--white);
 
   font-family: var(--font);
 
+  /*
+    Slightly larger than previous version.
+
+    It gains physical presence without becoming
+    a generic oversized artist heading.
+  */
+
   font-size:
     clamp(
-      108px,
-      min(19vw, 27vh),
-      330px
+      118px,
+      min(20.5vw, 29vh),
+      360px
     );
 
   font-weight: 600;
 
-  line-height: .60;
+  line-height: .61;
 
-  letter-spacing: -.105em;
+  /*
+    Slightly more breathing room.
+    Still strongly condensed.
+  */
+
+  letter-spacing: -.095em;
 
   white-space: nowrap;
 
   /*
-    This is the important part.
+    Horizontal compression +
+    vertical extension.
 
-    The word is not enlarged with a visual effect.
-    It is physically compressed and vertically stretched.
+    This changes the typographic silhouette
+    rather than simply making the word bigger.
   */
 
   transform:
     translateY(-50%)
     scaleX(.60)
-    scaleY(1.17);
+    scaleY(1.20);
 
   transform-origin: left center;
-
-  /*
-    Slight optical correction.
-    Keeps the white from becoming too dominant.
-  */
 
   text-rendering: geometricPrecision;
 
@@ -440,10 +484,10 @@ h1 {
 
 
 /* =========================================================
-   11 — WORDMARK PIXEL STRUCTURE
+   11 — PRIMARY PIXEL MATRIX
    ---------------------------------------------------------
-   The pixel is used as a construction principle,
-   not as a glitch effect.
+   Pixel as construction.
+   Not glitch.
    ========================================================= */
 
 h1::before {
@@ -452,39 +496,130 @@ h1::before {
 
   position: absolute;
 
-  inset: 0;
+  inset: -1px;
 
-  z-index: -1;
+  z-index: 2;
 
   pointer-events: none;
 
   /*
-    Extremely restrained pixel interruption.
-    It sits inside the same material language as the page.
+    Small square grid.
+
+    The dark interruptions break the white surface
+    into a subtle digital material.
   */
 
   background-image:
+
     linear-gradient(
       90deg,
-      transparent 0,
-      transparent calc(100% - var(--pixel)),
-      rgba(255,255,255,.035) calc(100% - var(--pixel)),
-      rgba(255,255,255,.035) 100%
+      rgba(8,8,8,0) 0,
+      rgba(8,8,8,0) 2px,
+      rgba(8,8,8,.34) 2px,
+      rgba(8,8,8,.34) 3px
+    ),
+
+    linear-gradient(
+      0deg,
+      rgba(8,8,8,0) 0,
+      rgba(8,8,8,0) 2px,
+      rgba(8,8,8,.30) 2px,
+      rgba(8,8,8,.30) 3px
     );
 
   background-size:
-    calc(var(--pixel) * 7)
-    calc(var(--pixel) * 7);
+    7px 7px,
+    7px 7px;
 
-  mix-blend-mode: soft-light;
+  background-position:
+    0 0,
+    2px 1px;
 
-  opacity: .55;
+  mix-blend-mode: multiply;
+
+  opacity: .72;
 
 }
 
 
 /* =========================================================
-   12 — REGISTERED SYMBOL INSIDE WORDMARK
+   12 — SECONDARY PIXEL BREAKUP
+   ---------------------------------------------------------
+   Irregularity.
+   Keeps the pixel language from looking like
+   a simple Photoshop filter.
+   ========================================================= */
+
+h1::after {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  /*
+    Sparse vertical interruptions.
+    No horizontal RGB glitching.
+  */
+
+  background-image:
+
+    linear-gradient(
+      90deg,
+
+      transparent 0,
+
+      transparent 17%,
+
+      rgba(8,8,8,.28) 17%,
+      rgba(8,8,8,.28) 17.7%,
+
+      transparent 17.7%,
+
+      transparent 39%,
+
+      rgba(8,8,8,.20) 39%,
+      rgba(8,8,8,.20) 39.5%,
+
+      transparent 39.5%,
+
+      transparent 64%,
+
+      rgba(8,8,8,.24) 64%,
+      rgba(8,8,8,.24) 64.6%,
+
+      transparent 64.6%,
+
+      transparent 83%,
+
+      rgba(8,8,8,.18) 83%,
+      rgba(8,8,8,.18) 83.5%,
+
+      transparent 83.5%
+    );
+
+  background-size:
+    100% 11px;
+
+  background-position:
+    0 3px;
+
+  mix-blend-mode: multiply;
+
+  opacity: .68;
+
+}
+
+
+/* =========================================================
+   13 — REGISTERED SYMBOL
+   ---------------------------------------------------------
+   Larger and treated as part of the mark.
    ========================================================= */
 
 h1 span {
@@ -493,30 +628,37 @@ h1 span {
 
   position: relative;
 
-  margin-left: .035em;
+  margin-left: .045em;
 
   font-family:
     Arial,
     Helvetica,
     sans-serif;
 
-  font-size: .18em;
+  /*
+    Bigger ®.
+    It now participates in the composition.
+  */
+
+  font-size: .25em;
 
   font-weight: 400;
+
+  line-height: 1;
 
   letter-spacing: 0;
 
   vertical-align: top;
 
   transform:
-    translateY(-.08em)
-    scaleY(.92);
+    translateY(-.055em)
+    scaleY(.94);
 
 }
 
 
 /* =========================================================
-   13 — BOTTOM INFORMATION
+   14 — BOTTOM INFORMATION
    ========================================================= */
 
 .bottom-info {
@@ -542,7 +684,12 @@ h1 span {
 
   font-family: var(--font);
 
-  font-size: clamp(10px, .68vw, 13px);
+  font-size:
+    clamp(
+      10px,
+      .68vw,
+      13px
+    );
 
   font-weight: 500;
 
@@ -570,10 +717,10 @@ h1 span {
 
 
 /* =========================================================
-   14 — SUBTLE OPTICAL FRAME
+   15 — OPTICAL FRAME
    ---------------------------------------------------------
-   Not a visible border.
-   Just a tiny tonal difference around the composition.
+   Almost invisible.
+   It gives the page a physical perimeter.
    ========================================================= */
 
 .content::before {
@@ -588,35 +735,51 @@ h1 span {
 
   pointer-events: none;
 
-  border: 1px solid rgba(255,255,255,.018);
+  border:
+    1px solid rgba(255,255,255,.018);
 
 }
 
 
 /* =========================================================
-   15 — MATERIAL MOTION
+   16 — MATERIAL MOTION
    ========================================================= */
 
 @keyframes material-drift {
 
   0% {
-    background-position: 0 0;
+
+    background-position:
+      0 0;
+
   }
 
   25% {
-    background-position: 13px -7px;
+
+    background-position:
+      13px -7px;
+
   }
 
   50% {
-    background-position: -9px 11px;
+
+    background-position:
+      -9px 11px;
+
   }
 
   75% {
-    background-position: 7px 5px;
+
+    background-position:
+      7px 5px;
+
   }
 
   100% {
-    background-position: 0 0;
+
+    background-position:
+      0 0;
+
   }
 
 }
@@ -625,34 +788,52 @@ h1 span {
 @keyframes grain-shift {
 
   0% {
-    background-position: 0 0;
+
+    background-position:
+      0 0;
+
   }
 
   20% {
-    background-position: -4px 2px;
+
+    background-position:
+      -4px 2px;
+
   }
 
   40% {
-    background-position: 3px -3px;
+
+    background-position:
+      3px -3px;
+
   }
 
   60% {
-    background-position: 1px 4px;
+
+    background-position:
+      1px 4px;
+
   }
 
   80% {
-    background-position: -3px -1px;
+
+    background-position:
+      -3px -1px;
+
   }
 
   100% {
-    background-position: 0 0;
+
+    background-position:
+      0 0;
+
   }
 
 }
 
 
 /* =========================================================
-   16 — WIDE DESKTOP
+   17 — WIDE DESKTOP
    ========================================================= */
 
 @media (min-width: 1500px) {
@@ -664,8 +845,8 @@ h1 span {
     font-size:
       clamp(
         130px,
-        min(18vw, 26vh),
-        360px
+        min(19vw, 28vh),
+        380px
       );
 
   }
@@ -686,7 +867,7 @@ h1 span {
 
 
 /* =========================================================
-   17 — VERY WIDE / TV
+   18 — VERY WIDE / TV
    ========================================================= */
 
 @media (min-aspect-ratio: 2 / 1) {
@@ -697,8 +878,8 @@ h1 span {
 
     font-size:
       min(
-        18vw,
-        24vh
+        19vw,
+        25vh
       );
 
   }
@@ -720,7 +901,7 @@ h1 span {
 
 
 /* =========================================================
-   18 — SHORT LAPTOPS
+   19 — SHORT LAPTOPS
    ========================================================= */
 
 @media (max-aspect-ratio: 16 / 10) and
@@ -734,14 +915,14 @@ h1 span {
 
     font-size:
       min(
-        18vw,
-        23vh
+        19vw,
+        24vh
       );
 
     transform:
       translateY(-50%)
       scaleX(.60)
-      scaleY(1.17);
+      scaleY(1.20);
 
   }
 
@@ -764,7 +945,7 @@ h1 span {
 
 
 /* =========================================================
-   19 — TABLET
+   20 — TABLET
    ========================================================= */
 
 @media (max-width: 1100px) and
@@ -799,17 +980,17 @@ h1 span {
 
     font-size:
       clamp(
-        100px,
-        min(20vw, 22vh),
-        205px
+        105px,
+        min(21vw, 23vh),
+        215px
       );
-
-    scale: none;
 
     transform:
       translateY(-50%)
       scaleX(.61)
-      scaleY(1.17);
+      scaleY(1.20);
+
+    letter-spacing: -.095em;
 
   }
 
@@ -832,7 +1013,7 @@ h1 span {
 
 
 /* =========================================================
-   20 — MOBILE
+   21 — MOBILE
    ========================================================= */
 
 @media (max-width: 700px) {
@@ -894,10 +1075,9 @@ h1 span {
   }
 
 
-  /*
-    On mobile the photograph becomes more important
-    compositionally instead of shrinking into a desktop layout.
-  */
+  /* -------------------------------------------------------
+     Photograph
+     ------------------------------------------------------- */
 
   .image-link {
 
@@ -914,6 +1094,10 @@ h1 span {
   }
 
 
+  /* -------------------------------------------------------
+     Wordmark
+     ------------------------------------------------------- */
+
   h1 {
 
     left: 5vw;
@@ -922,29 +1106,33 @@ h1 span {
 
     font-size:
       clamp(
-        72px,
-        22vw,
-        145px
+        78px,
+        23vw,
+        150px
       );
 
-    line-height: .60;
+    line-height: .61;
 
-    letter-spacing: -.11em;
+    letter-spacing: -.10em;
 
     transform:
       translateY(-50%)
-      scaleX(.60)
-      scaleY(1.18);
+      scaleX(.59)
+      scaleY(1.20);
 
   }
 
 
   h1 span {
 
-    font-size: .18em;
+    font-size: .25em;
 
   }
 
+
+  /* -------------------------------------------------------
+     Bottom information
+     ------------------------------------------------------- */
 
   .bottom-info {
 
@@ -961,7 +1149,7 @@ h1 span {
 
 
 /* =========================================================
-   21 — SMALL MOBILE
+   22 — SMALL MOBILE
    ========================================================= */
 
 @media (max-width: 420px) {
@@ -999,15 +1187,17 @@ h1 span {
 
     font-size:
       clamp(
-        65px,
-        21vw,
-        105px
+        70px,
+        22vw,
+        112px
       );
+
+    letter-spacing: -.10em;
 
     transform:
       translateY(-50%)
       scaleX(.59)
-      scaleY(1.19);
+      scaleY(1.20);
 
   }
 
@@ -1022,7 +1212,7 @@ h1 span {
 
 
 /* =========================================================
-   22 — VERY SMALL SCREENS
+   23 — VERY SMALL SCREENS
    ========================================================= */
 
 @media (max-width: 340px) {
@@ -1063,7 +1253,7 @@ h1 span {
 
     top: 58%;
 
-    font-size: 63px;
+    font-size: 66px;
 
   }
 
@@ -1071,7 +1261,7 @@ h1 span {
 
 
 /* =========================================================
-   23 — SHORT MOBILE
+   24 — SHORT MOBILE
    ========================================================= */
 
 @media (max-width: 700px) and
@@ -1096,9 +1286,9 @@ h1 span {
 
     font-size:
       clamp(
-        62px,
-        20vw,
-        100px
+        64px,
+        21vw,
+        104px
       );
 
   }
@@ -1107,7 +1297,7 @@ h1 span {
 
 
 /* =========================================================
-   24 — TALL MOBILE
+   25 — TALL MOBILE
    ========================================================= */
 
 @media (max-width: 700px) and
@@ -1130,7 +1320,7 @@ h1 span {
 
 
 /* =========================================================
-   25 — PRESAVE PAGE
+   26 — PRESAVE PAGE
    ========================================================= */
 
 .presave-page {
@@ -1157,7 +1347,7 @@ h1 span {
 
 
 /* =========================================================
-   26 — PRESAVE
+   27 — PRESAVE
    ========================================================= */
 
 .presave {
@@ -1165,6 +1355,7 @@ h1 span {
   position: relative;
 
   width: 100%;
+
   min-height: 100vh;
   min-height: 100dvh;
 
@@ -1179,9 +1370,9 @@ h1 span {
 
 
 /* =========================================================
-   27 — PRESAVE TEXTURE
+   28 — PRESAVE MATERIAL
    ---------------------------------------------------------
-   Same visual language as the homepage.
+   Same texture system as homepage.
    ========================================================= */
 
 .presave::before {
@@ -1209,6 +1400,10 @@ h1 span {
 }
 
 
+/* =========================================================
+   29 — PRESAVE DIGITAL GRAIN
+   ========================================================= */
+
 .presave::after {
 
   content: "";
@@ -1235,7 +1430,7 @@ h1 span {
 
 
 /* =========================================================
-   28 — PRESAVE MESSAGE
+   30 — PRESAVE MESSAGE
    ========================================================= */
 
 .presave-message {
@@ -1244,7 +1439,11 @@ h1 span {
 
   z-index: 5;
 
-  width: min(90vw, 850px);
+  width:
+    min(
+      90vw,
+      850px
+    );
 
   color: var(--white);
 
@@ -1271,10 +1470,10 @@ h1 span {
 
 
 /* =========================================================
-   29 — PRESAVE NOISE
+   31 — PRESAVE NOISE
    ---------------------------------------------------------
-   Kept only for HTML compatibility.
-   It does not create a second visual language.
+   Kept for HTML compatibility.
+   No independent visual texture.
    ========================================================= */
 
 .presave-noise {
@@ -1285,7 +1484,7 @@ h1 span {
 
 
 /* =========================================================
-   30 — ACCESSIBILITY / MOTION
+   32 — ACCESSIBILITY
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1294,11 +1493,14 @@ h1 span {
   *::before,
   *::after {
 
-    animation-duration: 0.001ms !important;
+    animation-duration:
+      0.001ms !important;
 
-    animation-iteration-count: 1 !important;
+    animation-iteration-count:
+      1 !important;
 
-    transition-duration: 0.001ms !important;
+    transition-duration:
+      0.001ms !important;
 
   }
 
@@ -1306,7 +1508,7 @@ h1 span {
 
 
 /* =========================================================
-   31 — LARGE DESKTOP OPTICAL CORRECTION
+   33 — LARGE DESKTOP
    ========================================================= */
 
 @media (min-width: 1800px) {
@@ -1339,7 +1541,7 @@ h1 span {
 
 
 /* =========================================================
-   32 — 100dvh SUPPORT
+   34 — DYNAMIC VIEWPORT SUPPORT
    ========================================================= */
 
 @supports (height: 100dvh) {
