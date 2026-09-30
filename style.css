@@ -1,5 +1,6 @@
 /* =========================================================
-   DABOGA — BASE
+   DABOGA
+   FUNDAMENTAL VISUAL SYSTEM
    ========================================================= */
 
 * {
@@ -47,7 +48,7 @@ body {
 
 
 /* =========================================================
-   HOME / BACKGROUND
+   HOME
    ========================================================= */
 
 .home {
@@ -61,15 +62,17 @@ body {
   background:
     radial-gradient(
       ellipse at 50% 48%,
-      rgba(255,255,255,.025) 0%,
-      rgba(255,255,255,.008) 34%,
+      rgba(255,255,255,.018) 0%,
+      rgba(255,255,255,.006) 35%,
       transparent 72%
     ),
     #090909;
 }
 
 
-/* textura material */
+/* =========================================================
+   MATERIAL / BACKGROUND TEXTURE
+   ========================================================= */
 
 .surface {
   position: absolute;
@@ -83,12 +86,12 @@ body {
   background:
     radial-gradient(
       ellipse at 25% 35%,
-      rgba(255,255,255,.018),
+      rgba(255,255,255,.014),
       transparent 42%
     ),
     radial-gradient(
       ellipse at 78% 62%,
-      rgba(255,255,255,.012),
+      rgba(255,255,255,.010),
       transparent 44%
     );
 
@@ -96,7 +99,13 @@ body {
 }
 
 
-/* grano estático */
+/* =========================================================
+   GRAIN
+
+   Presente pero mate.
+   Nada de ruido blanco brillante.
+   Nada de movimiento.
+   ========================================================= */
 
 .grain {
   position: absolute;
@@ -107,10 +116,10 @@ body {
 
   pointer-events: none;
 
-  opacity: .055;
+  opacity: .025;
 
   background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
 
   background-size: 180px 180px;
 }
@@ -141,7 +150,7 @@ body {
     4vw;
 
   border-bottom:
-    1px solid rgba(255,255,255,.10);
+    1px solid rgba(255,255,255,.09);
 }
 
 
@@ -179,7 +188,7 @@ body {
 
   letter-spacing: -.035em;
 
-  opacity: .9;
+  opacity: .88;
 }
 
 
@@ -222,12 +231,12 @@ body {
 
   line-height: 1;
 
-  opacity: .9;
+  opacity: .88;
 }
 
 
 /* =========================================================
-   MAIN CONTENT
+   MAIN COMPOSITION
    ========================================================= */
 
 .content {
@@ -240,6 +249,13 @@ body {
   min-height: 100svh;
 
   display: grid;
+
+  /*
+    FUNDAMENTAL AXIS
+
+    DABOGA                  IMAGE
+       ←────── broken axis ──────→
+  */
 
   grid-template-columns:
     minmax(0, 1.12fr)
@@ -271,6 +287,11 @@ body {
 
   display: block;
 
+  /*
+    Escala base de la pieza.
+    Esta proporción se conserva en móvil.
+  */
+
   width:
     min(
       32vw,
@@ -285,11 +306,13 @@ body {
 
   filter:
     grayscale(1)
-    contrast(1.15);
+    contrast(1.12);
 
   /*
-    PEQUEÑA RUPTURA DEL EJE.
-    ESTO ES PARTE DE LA COMPOSICIÓN DESKTOP.
+    LA RUPTURA DEL EJE.
+
+    La foto no está matemáticamente
+    alineada con DABOGA.
   */
 
   transform:
@@ -308,7 +331,7 @@ body {
 
   filter:
     grayscale(1)
-    contrast(1.18);
+    contrast(1.15);
 }
 
 
@@ -339,7 +362,7 @@ h1 {
 
   display: flex;
 
-  align-items: flex-start;
+  align-items: center;
 
   width: max-content;
   max-width: 100%;
@@ -351,6 +374,12 @@ h1 {
     "Archivo Narrow",
     Arial,
     sans-serif;
+
+  /*
+    Escala fundamental.
+    No se convierte en un elemento diferente
+    en móvil.
+  */
 
   font-size:
     clamp(
@@ -370,8 +399,7 @@ h1 {
   user-select: none;
 
   /*
-    ESTE ES EL EJE HORIZONTAL ORIGINAL.
-    NO TOCAR EN DESKTOP.
+    Compresión horizontal característica.
   */
 
   transform:
@@ -383,7 +411,7 @@ h1 {
     left center;
 
   filter:
-    contrast(1.08);
+    contrast(1.06);
 }
 
 
@@ -397,12 +425,13 @@ h1 {
   color: transparent;
 
   background:
+
     linear-gradient(
       90deg,
       transparent 0,
       transparent 47px,
-      rgba(112,38,35,.16) 47px,
-      rgba(112,38,35,.16) 49px,
+      rgba(105,76,45,.11) 47px,
+      rgba(105,76,45,.11) 49px,
       transparent 49px,
       transparent 76px
     ),
@@ -411,8 +440,8 @@ h1 {
       90deg,
       transparent 0,
       transparent 37px,
-      rgba(126,108,63,.14) 37px,
-      rgba(126,108,63,.14) 39px,
+      rgba(122,112,75,.13) 37px,
+      rgba(122,112,75,.13) 39px,
       transparent 39px,
       transparent 76px
     ),
@@ -421,8 +450,8 @@ h1 {
       90deg,
       transparent 0,
       transparent 37px,
-      rgba(18,18,18,.16) 37px,
-      rgba(18,18,18,.16) 43px,
+      rgba(35,34,30,.13) 37px,
+      rgba(35,34,30,.13) 43px,
       transparent 43px,
       transparent 76px
     ),
@@ -431,8 +460,8 @@ h1 {
       0deg,
       transparent 0,
       transparent 37px,
-      rgba(18,18,18,.16) 37px,
-      rgba(18,18,18,.16) 43px,
+      rgba(35,34,30,.13) 37px,
+      rgba(35,34,30,.13) 43px,
       transparent 43px,
       transparent 76px
     ),
@@ -461,7 +490,8 @@ h1 {
 
 
 /* =========================================================
-   REGISTERED MARK
+   TRADEMARK
+   GRANDE Y PEGADO AL DABOGA
    ========================================================= */
 
 .reg {
@@ -471,9 +501,9 @@ h1 {
 
   flex-shrink: 0;
 
-  margin-left: .10em;
+  margin-left: .045em;
 
-  top: -.56em;
+  top: -.015em;
 
   color: #efefee;
 
@@ -485,13 +515,18 @@ h1 {
     Arial,
     sans-serif;
 
-  font-size: .115em;
+  /*
+    GRANDE.
+    Forma parte visualmente del wordmark.
+  */
 
-  font-weight: 600;
+  font-size: .68em;
 
-  line-height: 1;
+  font-weight: 500;
 
-  letter-spacing: -.04em;
+  line-height: .8;
+
+  letter-spacing: -.06em;
 
   transform: none;
 
@@ -500,7 +535,7 @@ h1 {
 
 
 /* =========================================================
-   BOTTOM INFO
+   BOTTOM INFORMATION
    ========================================================= */
 
 .bottom-info {
@@ -532,7 +567,7 @@ h1 {
 
   color: #efefee;
 
-  opacity: .78;
+  opacity: .72;
 }
 
 
@@ -590,62 +625,65 @@ h1 {
 
 
 /* =========================================================
-   MOBILE
+   MOBILE 9:16
    ========================================================= */
 
 @media (max-width: 700px) {
 
   /*
    =====================================================
-   IMPORTANTE
+   MISMA ESTRUCTURA
 
-   NO hacemos una composición vertical.
+   NO:
 
-   Sigue siendo:
+   FOTO
+   DABOGA
 
-   DABOGA®              FOTO
+   SÍ:
 
-   exactamente igual que PC,
-   solamente más pequeña y con
-   más aire alrededor.
+   DABOGA              FOTO
+
+   exactamente el mismo fundamento
+   de la versión de ordenador.
    =====================================================
   */
 
   .content {
     width: 100%;
 
-    height: 100vh;
+    height: 100svh;
     min-height: 100svh;
 
     display: grid;
 
-    /*
-      DOS COLUMNAS.
-
-      El eje horizontal permanece.
-    */
-
     grid-template-columns:
-      minmax(0, 1.18fr)
-      minmax(0, .82fr);
+      minmax(0, 1.12fr)
+      minmax(0, .88fr);
 
     grid-template-rows:
       minmax(0, 1fr)
       auto;
 
-    column-gap: 3vw;
+    column-gap: 2vw;
 
     row-gap: 0;
 
+    /*
+      Más aire arriba y abajo.
+
+      No altera el diseño.
+      Solo adapta el lienzo 9:16.
+    */
+
     padding:
-      58px
+      72px
       6vw
-      54px;
+      64px;
   }
 
 
   /* =====================================================
-     NAV MOBILE
+     NAV
      ===================================================== */
 
   .nav {
@@ -677,15 +715,12 @@ h1 {
 
 
   /* =====================================================
-     FOTO MOBILE
+     IMAGE
 
-     Sigue a la DERECHA.
+     Misma proporción que desktop.
+     Solo escalada respecto al ancho móvil.
 
-     Sigue rompiendo ligeramente el eje.
-
-     Más pequeña.
-     Más aire.
-     Nunca simétrica.
+     Conserva la ruptura vertical.
      ===================================================== */
 
   .image-link {
@@ -697,24 +732,17 @@ h1 {
 
     width:
       min(
-        31vw,
-        260px
+        32vw,
+        31vh
       );
 
-    max-width: 260px;
+    max-width: 500px;
 
     aspect-ratio: 1 / 1;
 
-    /*
-      El centro de la foto queda unos grados
-      por encima del centro de DABOGA.
-
-      NO es simétrico.
-    */
-
     transform:
       translate(
-        2%,
+        3%,
         -7%
       );
 
@@ -725,7 +753,7 @@ h1 {
   .image-link:hover {
     transform:
       translate(
-        2%,
+        3%,
         -7%
       )
       scale(1.012);
@@ -733,17 +761,12 @@ h1 {
 
 
   /* =====================================================
-     DABOGA MOBILE
+     DABOGA
 
+     SIGUE HORIZONTAL.
      SIGUE A LA IZQUIERDA.
 
-     SIGUE EN HORIZONTAL.
-
-     NO se centra respecto a la foto.
-
-     NO se apila.
-
-     NO se rediseña.
+     NO se centra debajo de la foto.
      ===================================================== */
 
   h1 {
@@ -760,16 +783,12 @@ h1 {
 
     font-size:
       clamp(
-        72px,
-        18vw,
+        64px,
+        20vw,
         150px
       );
 
     line-height: .58;
-
-    /*
-      MISMA DISTORSIÓN DEL DESKTOP.
-    */
 
     transform:
       translateY(2%)
@@ -784,16 +803,20 @@ h1 {
 
 
   /* =====================================================
-     ®
+     TRADEMARK MOBILE
      ===================================================== */
 
   .reg {
-    top: -.56em;
+    margin-left: .045em;
+
+    top: -.015em;
+
+    font-size: .68em;
   }
 
 
   /* =====================================================
-     BOTTOM INFO
+     BOTTOM
      ===================================================== */
 
   .bottom-info {
@@ -839,10 +862,18 @@ h1 {
 
 
 /* =========================================================
-   VERY SMALL MOBILE
+   SMALL MOBILE
    ========================================================= */
 
 @media (max-width: 430px) {
+
+  .content {
+    padding:
+      70px
+      6vw
+      58px;
+  }
+
 
   .nav {
     padding:
@@ -851,44 +882,21 @@ h1 {
   }
 
 
-  .nav-links {
-    gap: 0;
-  }
-
-
   .nav a {
     font-size: 10px;
   }
 
 
-  .content {
-    padding:
-      58px
-      6vw
-      40px;
-  }
-
-
-  /*
-    Seguimos en horizontal.
-
-    Simplemente reducimos ligeramente
-    ambos elementos para que respire
-    en teléfonos pequeños.
-  */
-
   .image-link {
     width:
       min(
-        31vw,
-        225px
+        32vw,
+        29vh
       );
-
-    max-width: 225px;
 
     transform:
       translate(
-        2%,
+        3%,
         -7%
       );
   }
@@ -897,26 +905,30 @@ h1 {
   .image-link:hover {
     transform:
       translate(
-        2%,
+        3%,
         -7%
-      );
+      )
+      scale(1.012);
   }
 
 
   h1 {
     font-size:
       clamp(
-        68px,
-        18vw,
+        64px,
+        20vw,
         120px
       );
-
-    margin: 0;
 
     transform:
       translateY(2%)
       scaleX(.61)
       scaleY(1.18);
+  }
+
+
+  .reg {
+    font-size: .68em;
   }
 
 
@@ -953,7 +965,7 @@ h1 {
   background:
     radial-gradient(
       ellipse at center,
-      rgba(255,255,255,.018),
+      rgba(255,255,255,.012),
       transparent 65%
     ),
     #090909;
@@ -967,10 +979,10 @@ h1 {
 
   pointer-events: none;
 
-  opacity: .055;
+  opacity: .025;
 
   background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
 
   background-size: 180px 180px;
 }
