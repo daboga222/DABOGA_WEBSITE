@@ -1,423 +1,351 @@
+/* =========================================================
+   DABOGA®
+   VISUAL SYSTEM
+   ========================================================= */
+
+
+/* =========================================================
+   01 — FONT
+   ========================================================= */
+
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&display=swap');
 
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* =========================================================
+   02 — ROOT
+   ========================================================= */
+
+:root {
+
+  --black: #080808;
+  --black-deep: #050505;
+
+  --white: #f1f1ee;
+  --white-soft: #deded9;
+
+  --pixel: 4px;
+
+  --edge: clamp(18px, 2.2vw, 34px);
+
+  --font: "Archivo Narrow",
+          "Arial Narrow",
+          Arial,
+          Helvetica,
+          sans-serif;
+
 }
 
+
+/* =========================================================
+   03 — RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
 
 html,
 body {
   width: 100%;
-  height: 100%;
-
-  overflow: hidden;
-
-  background: #050505;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
+html {
+  background: var(--black);
+}
 
 body {
-  font-family:
-    "Arial Narrow",
-    "Archivo Narrow",
-    sans-serif;
 
-  color: #deded9;
+  background: var(--black);
+
+  color: var(--white);
+
+  font-family: var(--font);
+
+  overflow-x: hidden;
 
   -webkit-font-smoothing: antialiased;
-  text-rendering: geometricPrecision;
+  -moz-osx-font-smoothing: grayscale;
+
 }
 
 
 /* =========================================================
-   FULL VIEWPORT
+   04 — SITE
    ========================================================= */
 
 .site {
+
   position: relative;
 
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
 
   overflow: hidden;
 
-  background: #050505;
+  background:
+    linear-gradient(
+      180deg,
+      #090909 0%,
+      #080808 48%,
+      #070707 100%
+    );
+
 }
 
 
 /* =========================================================
-   NAV
-   ========================================================= */
-
-.nav {
-  position: fixed;
-
-  z-index: 30;
-
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 42px;
-
-  padding: 0 16px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  border-bottom: 1px solid rgba(255,255,255,.07);
-
-  color: #b8b8b3;
-
-  font-size: 14px;
-  font-weight: 500;
-
-  letter-spacing: -.025em;
-
-  background: rgba(5,5,5,.16);
-
-  backdrop-filter: blur(2px);
-}
-
-
-.nav-links {
-  display: flex;
-  align-items: center;
-
-  gap: 24px;
-
-  white-space: nowrap;
-}
-
-
-.nav a {
-  position: relative;
-
-  color: inherit;
-
-  text-decoration: none;
-
-  transition:
-    color .2s ease,
-    opacity .2s ease;
-}
-
-
-.nav a::after {
-  content: "";
-
-  position: absolute;
-
-  left: 0;
-  right: 100%;
-
-  bottom: -4px;
-
-  height: 1px;
-
-  background: currentColor;
-
-  transition: right .25s ease;
-}
-
-
-.nav a:hover {
-  color: #fff;
-}
-
-
-.nav a:hover::after,
-.nav a.active::after {
-  right: 0;
-}
-
-
-.nav-mark {
-  flex-shrink: 0;
-
-  color: #62625e;
-
-  font-size: 11px;
-}
-
-
-/* =========================================================
-   MAIN
-   ========================================================= */
-
-.home {
-  position: relative;
-
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-
-  overflow: hidden;
-
-  background: #090909;
-}
-
-
-/* =========================================================
-   DARK PLASTER / CONCRETE
+   05 — MATERIAL SURFACE
+   ---------------------------------------------------------
+   One texture system for the entire site.
+   No separate texture for the title.
    ========================================================= */
 
 .surface {
-  position: absolute;
+
+  position: fixed;
 
   inset: 0;
 
-  background:
-
-    radial-gradient(
-      ellipse at 47% 43%,
-      rgba(110,110,104,.15) 0%,
-      rgba(55,55,52,.075) 34%,
-      transparent 68%
-    ),
-
-    radial-gradient(
-      ellipse at 12% 88%,
-      rgba(255,255,255,.025),
-      transparent 38%
-    ),
-
-    linear-gradient(
-      112deg,
-      #080808 0%,
-      #10100f 28%,
-      #151514 48%,
-      #0a0a0a 100%
-    );
-
-  filter: contrast(1.3);
-}
-
-
-.surface::before {
-  content: "";
-
-  position: absolute;
-
-  inset: -10%;
-
-  opacity: .22;
-
-  background:
-
-    repeating-linear-gradient(
-      117deg,
-      transparent 0,
-      transparent 7px,
-      rgba(255,255,255,.018) 8px,
-      transparent 11px
-    );
-
-  transform: rotate(-2deg);
-}
-
-
-.surface::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-
-    radial-gradient(
-      ellipse at center,
-      transparent 25%,
-      rgba(0,0,0,.8) 100%
-    );
-}
-
-
-/* =========================================================
-   DIGITAL / SIGILIST GRAIN
-   ========================================================= */
-
-.grain {
-  position: absolute;
-
-  z-index: 4;
-
-  inset: -20%;
+  z-index: 0;
 
   pointer-events: none;
 
-  opacity: .28;
+  opacity: .42;
 
   background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.045' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
 
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.085' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
 
-  background-size: 260px 260px;
+  mix-blend-mode: soft-light;
 
-  mix-blend-mode: screen;
+  transform: translate3d(0, 0, 0);
 
   animation:
-    digital-grain .42s steps(5) infinite;
-}
-
-
-@keyframes digital-grain {
-
-  0% {
-    transform:
-      translate3d(0, 0, 0);
-  }
-
-  20% {
-    transform:
-      translate3d(-1.5%, .8%, 0);
-  }
-
-  40% {
-    transform:
-      translate3d(.8%, -1.2%, 0);
-  }
-
-  60% {
-    transform:
-      translate3d(1.2%, .4%, 0);
-  }
-
-  80% {
-    transform:
-      translate3d(-.6%, -1%, 0);
-  }
-
-  100% {
-    transform:
-      translate3d(0, 0, 0);
-  }
+    material-drift 7s steps(18) infinite;
 
 }
 
 
 /* =========================================================
-   SECONDARY DIGITAL GRAIN
-   Affects typography / metadata,
-   but stays underneath the photograph.
+   06 — DIGITAL GRAIN
+   ---------------------------------------------------------
+   Very subtle.
+   The pixel is present, but never advertised.
    ========================================================= */
 
-.content {
-  position: relative;
+.grain {
 
-  z-index: 5;
+  position: fixed;
 
-  width: 100%;
-  height: 100%;
-}
+  inset: 0;
 
-
-.content::after {
-  content: "";
-
-  position: absolute;
-
-  z-index: 7;
-
-  inset: -20%;
+  z-index: 1;
 
   pointer-events: none;
 
   opacity: .16;
 
   background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.11' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.28'/%3E%3C/svg%3E");
 
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='210' height='210' viewBox='0 0 210 210'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.105' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-
-  background-size: 210px 210px;
+  background-size: 96px 96px;
 
   mix-blend-mode: screen;
 
   animation:
-    digital-grain-secondary .55s steps(4) infinite;
-}
-
-
-@keyframes digital-grain-secondary {
-
-  0% {
-    transform:
-      translate3d(0, 0, 0)
-      scale(1);
-  }
-
-  25% {
-    transform:
-      translate3d(-1%, .5%, 0)
-      scale(1.002);
-  }
-
-  50% {
-    transform:
-      translate3d(.7%, -1%, 0)
-      scale(.998);
-  }
-
-  75% {
-    transform:
-      translate3d(1%, .7%, 0)
-      scale(1.001);
-  }
-
-  100% {
-    transform:
-      translate3d(0, 0, 0)
-      scale(1);
-  }
+    grain-shift .8s steps(6) infinite;
 
 }
 
 
 /* =========================================================
-   IMAGE
+   07 — CONTENT
+   ========================================================= */
+
+.content {
+
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  overflow: hidden;
+
+}
+
+
+/* =========================================================
+   08 — NAVIGATION
+   ========================================================= */
+
+.nav {
+
+  position: absolute;
+
+  top: var(--edge);
+  left: var(--edge);
+  right: var(--edge);
+
+  z-index: 30;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  pointer-events: none;
+
+}
+
+
+/* ---------------------------------------------------------
+   Navigation links
+   --------------------------------------------------------- */
+
+.nav-links {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: clamp(15px, 2.1vw, 34px);
+
+  pointer-events: auto;
+
+}
+
+
+.nav a {
+
+  position: relative;
+
+  display: inline-block;
+
+  color: var(--white);
+
+  text-decoration: none;
+
+  font-family: var(--font);
+
+  font-size: clamp(12px, .78vw, 15px);
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: .025em;
+
+  white-space: nowrap;
+
+}
+
+
+/* ---------------------------------------------------------
+   Underline
+   --------------------------------------------------------- */
+
+.nav a::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: -5px;
+
+  height: 1px;
+
+  background: var(--white);
+
+  transform:
+    scaleX(0);
+
+  transform-origin: left center;
+
+  transition:
+    transform .22s ease;
+
+}
+
+
+.nav a:hover::after,
+.nav a.active::after {
+
+  transform: scaleX(1);
+
+}
+
+
+/* ---------------------------------------------------------
+   Registered mark
+   --------------------------------------------------------- */
+
+.nav-mark {
+
+  color: var(--white);
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: clamp(12px, .75vw, 15px);
+
+  line-height: 1;
+
+  pointer-events: none;
+
+}
+
+
+/* =========================================================
+   09 — IMAGE
    ========================================================= */
 
 .image-link {
+
   position: absolute;
 
-  z-index: 12;
-
-  display: block;
-
-  aspect-ratio: 1 / 1;
-
-  width:
-    clamp(
-      270px,
-      min(32vw, 42vh),
-      500px
-    );
+  z-index: 15;
 
   left: 80%;
   top: 35%;
+
+  width:
+    clamp(
+      260px,
+      min(31vw, 41vh),
+      490px
+    );
+
+  aspect-ratio: 1 / 1;
+
+  display: block;
 
   transform:
     translate(-50%, -50%);
 
   overflow: hidden;
 
-  filter:
-    grayscale(1)
-    contrast(1.15);
+  background: #050505;
 
-  transition:
-    transform .45s cubic-bezier(.2,.8,.2,1),
-    filter .3s ease;
 }
 
 
+/* ---------------------------------------------------------
+   Image itself
+   --------------------------------------------------------- */
+
 .image-link img {
+
   display: block;
 
   width: 100%;
@@ -426,377 +354,445 @@ body {
   object-fit: cover;
 
   filter:
-    grayscale(1)
-    contrast(1.08);
+    grayscale(100%)
+    contrast(1.04);
+
+  transform:
+    scale(1.002);
 
   transition:
-    transform .6s cubic-bezier(.2,.8,.2,1);
+    transform .7s cubic-bezier(.2, .7, .2, 1);
+
 }
 
 
-.image-link::after {
+/* ---------------------------------------------------------
+   Image interaction
+   --------------------------------------------------------- */
+
+.image-link:hover img {
+
+  transform:
+    scale(1.018);
+
+}
+
+
+/* =========================================================
+   10 — MAIN WORDMARK
+   ========================================================= */
+
+h1 {
+
+  position: absolute;
+
+  z-index: 10;
+
+  margin: 0;
+  padding: 0;
+
+  left: 5.6vw;
+  top: 54%;
+
+  color: var(--white);
+
+  font-family: var(--font);
+
+  font-size:
+    clamp(
+      108px,
+      min(19vw, 27vh),
+      330px
+    );
+
+  font-weight: 600;
+
+  line-height: .60;
+
+  letter-spacing: -.105em;
+
+  white-space: nowrap;
+
+  /*
+    This is the important part.
+
+    The word is not enlarged with a visual effect.
+    It is physically compressed and vertically stretched.
+  */
+
+  transform:
+    translateY(-50%)
+    scaleX(.60)
+    scaleY(1.17);
+
+  transform-origin: left center;
+
+  /*
+    Slight optical correction.
+    Keeps the white from becoming too dominant.
+  */
+
+  text-rendering: geometricPrecision;
+
+  -webkit-font-smoothing: antialiased;
+
+}
+
+
+/* =========================================================
+   11 — WORDMARK PIXEL STRUCTURE
+   ---------------------------------------------------------
+   The pixel is used as a construction principle,
+   not as a glitch effect.
+   ========================================================= */
+
+h1::before {
+
   content: "";
 
   position: absolute;
 
   inset: 0;
 
+  z-index: -1;
+
   pointer-events: none;
 
-  background:
+  /*
+    Extremely restrained pixel interruption.
+    It sits inside the same material language as the page.
+  */
 
+  background-image:
     linear-gradient(
-      135deg,
-      rgba(255,255,255,.09),
-      transparent 38%,
-      rgba(0,0,0,.15)
+      90deg,
+      transparent 0,
+      transparent calc(100% - var(--pixel)),
+      rgba(255,255,255,.035) calc(100% - var(--pixel)),
+      rgba(255,255,255,.035) 100%
     );
 
-  mix-blend-mode: multiply;
-}
+  background-size:
+    calc(var(--pixel) * 7)
+    calc(var(--pixel) * 7);
 
+  mix-blend-mode: soft-light;
 
-.image-link:hover {
-  transform:
-    translate(-50%, -50%)
-    scale(1.025);
+  opacity: .55;
 
-  filter:
-    grayscale(1)
-    contrast(1.25);
-}
-
-
-.image-link:hover img {
-  transform:
-    scale(1.025);
 }
 
 
 /* =========================================================
-   MAIN DABOGA TEXT
+   12 — REGISTERED SYMBOL INSIDE WORDMARK
    ========================================================= */
-
-h1 {
-  position: absolute;
-
-  z-index: 6;
-
-  left: 6vw;
-  top: 54%;
-
-  transform:
-    translateY(-50%)
-    scaleX(.61)
-    scaleY(1.18);
-
-  transform-origin: left center;
-
-  color: #e3e3de;
-
-  font-family:
-    "Arial Narrow",
-    "Archivo Narrow",
-    sans-serif;
-
-  font-size:
-    clamp(
-      115px,
-      min(20vw, 28vh),
-      345px
-    );
-
-  font-weight: 600;
-
-  line-height: .58;
-
-  letter-spacing: -.105em;
-
-  white-space: nowrap;
-
-  user-select: none;
-
-  text-shadow:
-    1px 0 rgba(255,255,255,.10),
-    -1px 0 rgba(0,0,0,.22),
-    0 0 1px rgba(255,255,255,.18);
-
-  filter:
-    contrast(1.18)
-    saturate(0)
-    blur(.05px);
-}
-
 
 h1 span {
+
+  display: inline-block;
+
   position: relative;
 
-  top: -.53em;
-  left: .025em;
+  margin-left: .035em;
 
-  font-size: .09em;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 
-  font-weight: 600;
+  font-size: .18em;
 
-  letter-spacing: -.02em;
+  font-weight: 400;
 
-  filter:
-    blur(.15px);
-}
+  letter-spacing: 0;
 
-
-/* =========================================================
-   MAIN TEXT DIGITAL SCAN
-   ========================================================= */
-
-h1::before {
-  content: "";
-
-  position: absolute;
-
-  inset: -2px;
-
-  pointer-events: none;
-
-  opacity: .32;
-
-  background:
-
-    repeating-linear-gradient(
-      0deg,
-      transparent 0,
-      transparent 2px,
-      rgba(255,255,255,.10) 3px,
-      transparent 4px
-    );
-
-  mix-blend-mode: screen;
+  vertical-align: top;
 
   transform:
-    translate(-1px, 0);
-
-  animation:
-    title-scan .65s steps(4) infinite;
-}
-
-
-h1::after {
-  content: "";
-
-  position: absolute;
-
-  left: -1%;
-  right: -2%;
-
-  top: 47%;
-
-  height: 2px;
-
-  pointer-events: none;
-
-  background:
-    rgba(255,255,255,.07);
-
-  opacity: .65;
-
-  transform-origin: left center;
-
-  animation:
-    title-signal .8s steps(5) infinite;
-}
-
-
-@keyframes title-scan {
-
-  0% {
-    transform:
-      translate(-1px, 0);
-  }
-
-  20% {
-    transform:
-      translate(1px, -1px);
-  }
-
-  40% {
-    transform:
-      translate(-2px, 1px);
-  }
-
-  60% {
-    transform:
-      translate(1px, 0);
-  }
-
-  80% {
-    transform:
-      translate(-1px, 1px);
-  }
-
-  100% {
-    transform:
-      translate(-1px, 0);
-  }
-
-}
-
-
-@keyframes title-signal {
-
-  0% {
-    transform:
-      translateX(0)
-      scaleX(1);
-
-    opacity: .25;
-  }
-
-  20% {
-    transform:
-      translateX(-1.5%)
-      scaleX(.96);
-
-    opacity: .5;
-  }
-
-  40% {
-    transform:
-      translateX(.8%)
-      scaleX(1.025);
-
-    opacity: .15;
-  }
-
-  60% {
-    transform:
-      translateX(-.5%)
-      scaleX(.985);
-
-    opacity: .4;
-  }
-
-  80% {
-    transform:
-      translateX(1%)
-      scaleX(1.01);
-
-    opacity: .18;
-  }
-
-  100% {
-    transform:
-      translateX(0)
-      scaleX(1);
-
-    opacity: .25;
-  }
+    translateY(-.08em)
+    scaleY(.92);
 
 }
 
 
 /* =========================================================
-   BOTTOM INFORMATION
+   13 — BOTTOM INFORMATION
    ========================================================= */
 
 .bottom-info {
+
   position: absolute;
 
-  z-index: 8;
+  z-index: 25;
 
-  left: 4vw;
-  right: 4vw;
-
-  bottom: 4.5vh;
+  left: var(--edge);
+  right: var(--edge);
+  bottom: var(--edge);
 
   display: grid;
 
   grid-template-columns:
     1fr
-    1fr
+    auto
     1fr;
 
   align-items: end;
 
-  color: #777772;
+  color: var(--white);
 
-  font-size:
-    clamp(10px, .85vw, 15px);
+  font-family: var(--font);
+
+  font-size: clamp(10px, .68vw, 13px);
 
   font-weight: 500;
 
-  letter-spacing: -.035em;
+  line-height: 1;
 
-  text-transform: uppercase;
+  letter-spacing: .025em;
+
+  pointer-events: none;
+
 }
 
 
 .bottom-info span:nth-child(2) {
-  text-align: right;
 
-  padding-right: 3vw;
+  justify-self: center;
+
 }
 
 
 .bottom-info span:nth-child(3) {
-  text-align: right;
+
+  justify-self: end;
+
 }
 
 
 /* =========================================================
-   WIDE SCREENS
+   14 — SUBTLE OPTICAL FRAME
+   ---------------------------------------------------------
+   Not a visible border.
+   Just a tiny tonal difference around the composition.
    ========================================================= */
 
-@media (min-aspect-ratio: 16 / 9) {
+.content::before {
 
-  .image-link {
-    width:
-      clamp(
-        290px,
-        min(30vw, 43vh),
-        510px
-      );
+  content: "";
 
-    left: 79%;
-    top: 36%;
+  position: absolute;
+
+  inset: var(--edge);
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  border: 1px solid rgba(255,255,255,.018);
+
+}
+
+
+/* =========================================================
+   15 — MATERIAL MOTION
+   ========================================================= */
+
+@keyframes material-drift {
+
+  0% {
+    background-position: 0 0;
   }
 
+  25% {
+    background-position: 13px -7px;
+  }
+
+  50% {
+    background-position: -9px 11px;
+  }
+
+  75% {
+    background-position: 7px 5px;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+
+}
+
+
+@keyframes grain-shift {
+
+  0% {
+    background-position: 0 0;
+  }
+
+  20% {
+    background-position: -4px 2px;
+  }
+
+  40% {
+    background-position: 3px -3px;
+  }
+
+  60% {
+    background-position: 1px 4px;
+  }
+
+  80% {
+    background-position: -3px -1px;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+
+}
+
+
+/* =========================================================
+   16 — WIDE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1500px) {
 
   h1 {
-    left: 6vw;
 
-    top: 55%;
+    left: 5vw;
 
     font-size:
       clamp(
-        115px,
-        min(18vw, 28vh),
-        335px
+        130px,
+        min(18vw, 26vh),
+        360px
       );
+
+  }
+
+
+  .image-link {
+
+    width:
+      clamp(
+        300px,
+        min(29vw, 40vh),
+        540px
+      );
+
   }
 
 }
 
 
 /* =========================================================
-   SHORT / COMPACT LAPTOPS
+   17 — VERY WIDE / TV
    ========================================================= */
 
-@media (max-aspect-ratio: 16 / 10) and (min-width: 701px) {
+@media (min-aspect-ratio: 2 / 1) {
 
-  .image-link {
-    width:
-      clamp(
-        270px,
-        min(31vw, 39vh),
-        440px
+  h1 {
+
+    top: 57%;
+
+    font-size:
+      min(
+        18vw,
+        24vh
       );
 
-    left: 79%;
+  }
+
+
+  .image-link {
+
     top: 34%;
+
+    width:
+      min(
+        29vw,
+        43vh
+      );
+
+  }
+
+}
+
+
+/* =========================================================
+   18 — SHORT LAPTOPS
+   ========================================================= */
+
+@media (max-aspect-ratio: 16 / 10) and
+       (min-width: 900px) {
+
+  h1 {
+
+    left: 5vw;
+
+    top: 57%;
+
+    font-size:
+      min(
+        18vw,
+        23vh
+      );
+
+    transform:
+      translateY(-50%)
+      scaleX(.60)
+      scaleY(1.17);
+
+  }
+
+
+  .image-link {
+
+    left: 79%;
+
+    top: 31%;
+
+    width:
+      min(
+        30vw,
+        37vh
+      );
+
+  }
+
+}
+
+
+/* =========================================================
+   19 — TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) and
+       (min-width: 701px) {
+
+  :root {
+
+    --edge: 22px;
+
+  }
+
+
+  .nav-links {
+
+    gap: 18px;
+
+  }
+
+
+  .nav a {
+
+    font-size: 12px;
+
   }
 
 
   h1 {
+
     left: 5vw;
 
     top: 57%;
@@ -804,460 +800,563 @@ h1::after {
     font-size:
       clamp(
         100px,
-        min(17vw, 24vh),
-        285px
+        min(20vw, 22vh),
+        205px
       );
 
-    transform:
-      translateY(-50%)
-      scaleX(.60)
-      scaleY(1.16);
-  }
-
-
-  .bottom-info {
-    bottom: 3.5vh;
-  }
-
-}
-
-
-/* =========================================================
-   TALL SCREENS
-   ========================================================= */
-
-@media (min-aspect-ratio: 10 / 16) and (max-width: 700px) {
-
-  .image-link {
-    width:
-      min(64vw, 46vh);
-
-    left: 78%;
-    top: 34%;
-  }
-
-
-  h1 {
-    left: 6vw;
-
-    top: 59%;
-
-    font-size:
-      min(25vw, 18vh);
+    scale: none;
 
     transform:
       translateY(-50%)
       scaleX(.61)
-      scaleY(1.15);
+      scaleY(1.17);
+
+  }
+
+
+  .image-link {
+
+    left: 78%;
+
+    top: 30%;
+
+    width:
+      min(
+        32vw,
+        38vh
+      );
+
   }
 
 }
 
 
 /* =========================================================
-   TABLET / IPAD
+   20 — MOBILE
    ========================================================= */
 
 @media (max-width: 700px) {
 
-  .nav {
-    height: 38px;
+  :root {
 
-    padding:
-      0 10px;
+    --edge: 17px;
+
+  }
+
+
+  .site {
+
+    min-height: 100svh;
+
+  }
+
+
+  .nav {
+
+    align-items: flex-start;
+
+  }
+
+
+  .nav-links {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 0;
+
+  }
+
+
+  .nav a {
 
     font-size: 11px;
 
-    letter-spacing: -.045em;
-  }
+    letter-spacing: .015em;
 
-
-  .nav-links {
-    width: calc(100% - 18px);
-
-    gap: 0;
-
-    justify-content: space-between;
-  }
-
-
-  .nav-links a {
-    flex-shrink: 0;
   }
 
 
   .nav-mark {
+
     display: none;
+
   }
 
 
-  .image-link {
-    width:
-      min(64vw, 43vh);
+  .content {
 
-    left: 79%;
-    top: 35%;
+    min-height: 100svh;
+
+  }
+
+
+  /*
+    On mobile the photograph becomes more important
+    compositionally instead of shrinking into a desktop layout.
+  */
+
+  .image-link {
+
+    left: 67%;
+
+    top: 30%;
+
+    width:
+      min(
+        58vw,
+        280px
+      );
+
   }
 
 
   h1 {
-    left: 6vw;
 
-    top: 58%;
-
-    font-size:
-      min(24vw, 21vh);
-
-    transform:
-      translateY(-50%)
-      scaleX(.61)
-      scaleY(1.16);
-  }
-
-
-  .bottom-info {
-    left: 6vw;
-    right: 6vw;
-
-    bottom: 5vh;
-
-    font-size: 12px;
-
-    grid-template-columns:
-      auto
-      1fr
-      auto;
-  }
-
-
-  .bottom-info span:nth-child(2) {
-    padding-right: 2vw;
-  }
-
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 430px) {
-
-  .nav {
-    height: 36px;
-
-    padding:
-      0 8px;
-
-    font-size: 9px;
-
-    letter-spacing: -.055em;
-  }
-
-
-  .nav-links {
-    width: 100%;
-
-    gap: 0;
-
-    justify-content: space-between;
-  }
-
-
-  .nav-links a {
-    display: block;
-
-    flex-shrink: 1;
-  }
-
-
-  .nav-mark {
-    display: none;
-  }
-
-
-  .image-link {
-    width:
-      min(76vw, 43vh);
-
-    left: 79%;
-    top: 34%;
-  }
-
-
-  h1 {
-    left: 6vw;
+    left: 5vw;
 
     top: 59%;
 
     font-size:
-      min(27vw, 19vh);
+      clamp(
+        72px,
+        22vw,
+        145px
+      );
+
+    line-height: .60;
+
+    letter-spacing: -.11em;
 
     transform:
       translateY(-50%)
       scaleX(.60)
-      scaleY(1.15);
+      scaleY(1.18);
+
+  }
+
+
+  h1 span {
+
+    font-size: .18em;
+
   }
 
 
   .bottom-info {
-    left: 6vw;
-    right: 6vw;
 
-    bottom: 4.5vh;
+    font-size: 10px;
 
-    font-size: 9px;
+    grid-template-columns:
+      1fr
+      auto
+      1fr;
 
-    letter-spacing: -.045em;
   }
 
 }
 
 
 /* =========================================================
-   VERY SMALL MOBILE
+   21 — SMALL MOBILE
    ========================================================= */
 
-@media (max-width: 360px) {
+@media (max-width: 420px) {
 
-  .nav {
-    font-size: 8px;
+  :root {
 
-    padding:
-      0 6px;
+    --edge: 14px;
+
   }
 
 
-  .nav-links {
-    gap: 4px;
+  .nav a {
 
-    justify-content:
-      space-between;
+    font-size: 10px;
+
   }
 
 
   .image-link {
-    width:
-      min(72vw, 42vh);
 
-    left: 78%;
-    top: 33%;
+    left: 69%;
+
+    top: 29%;
+
+    width: 58vw;
+
   }
 
 
   h1 {
-    left: 5vw;
 
-    top: 60%;
+    left: 4.5vw;
+
+    top: 59%;
 
     font-size:
-      min(26vw, 18vh);
+      clamp(
+        65px,
+        21vw,
+        105px
+      );
 
     transform:
       translateY(-50%)
       scaleX(.59)
-      scaleY(1.15);
+      scaleY(1.19);
+
   }
 
 
   .bottom-info {
-    font-size: 8px;
+
+    font-size: 9px;
+
   }
 
 }
 
 
 /* =========================================================
-   REDUCED MOTION
+   22 — VERY SMALL SCREENS
    ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media (max-width: 340px) {
 
-  .grain,
-  .content::after,
-  h1::before,
-  h1::after {
-    animation: none;
+  .nav-links {
+
+    gap: 8px;
+
+    justify-content: flex-start;
+
   }
 
-  .nav a::after,
-  .image-link,
-  .image-link img {
-    transition: none;
+
+  .nav a {
+
+    font-size: 9px;
+
+  }
+
+
+  .nav a:not(:first-child) {
+
+    margin-left: 7px;
+
+  }
+
+
+  .image-link {
+
+    left: 68%;
+
+    width: 57vw;
+
+  }
+
+
+  h1 {
+
+    top: 58%;
+
+    font-size: 63px;
+
   }
 
 }
 
 
 /* =========================================================
-   PRESAVE PAGE
+   23 — SHORT MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) and
+       (max-height: 680px) {
+
+  .image-link {
+
+    top: 27%;
+
+    width:
+      min(
+        52vw,
+        220px
+      );
+
+  }
+
+
+  h1 {
+
+    top: 58%;
+
+    font-size:
+      clamp(
+        62px,
+        20vw,
+        100px
+      );
+
+  }
+
+}
+
+
+/* =========================================================
+   24 — TALL MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) and
+       (min-height: 800px) {
+
+  .image-link {
+
+    top: 32%;
+
+  }
+
+
+  h1 {
+
+    top: 61%;
+
+  }
+
+}
+
+
+/* =========================================================
+   25 — PRESAVE PAGE
    ========================================================= */
 
 .presave-page {
+
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  margin: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      #090909 0%,
+      #080808 100%
+    );
+
+  color: var(--white);
 
   overflow: hidden;
 
-  background: #080808;
 }
 
 
+/* =========================================================
+   26 — PRESAVE
+   ========================================================= */
+
 .presave {
+
   position: relative;
 
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
 
   overflow: hidden;
 
-  background:
-
-    radial-gradient(
-      ellipse at 50% 50%,
-      #171715 0%,
-      #0b0b0a 48%,
-      #050505 100%
-    );
 }
 
+
+/* =========================================================
+   27 — PRESAVE TEXTURE
+   ---------------------------------------------------------
+   Same visual language as the homepage.
+   ========================================================= */
 
 .presave::before {
-  content: "";
 
-  position: absolute;
-
-  inset: -10%;
-
-  opacity: .2;
-
-  background:
-
-    repeating-linear-gradient(
-      113deg,
-      transparent 0,
-      transparent 7px,
-      rgba(255,255,255,.018) 8px,
-      transparent 11px
-    );
-
-  transform: rotate(-2deg);
-}
-
-
-.presave::after {
   content: "";
 
   position: absolute;
 
   inset: 0;
 
-  background:
+  pointer-events: none;
 
-    radial-gradient(
-      ellipse at center,
-      transparent 25%,
-      rgba(0,0,0,.8) 100%
-    );
+  opacity: .42;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.045' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+
+  background-size: 180px 180px;
+
+  mix-blend-mode: soft-light;
+
+  animation:
+    material-drift 7s steps(18) infinite;
+
 }
 
 
-/* =========================================================
-   PRESAVE DIGITAL GRAIN
-   ========================================================= */
+.presave::after {
 
-.presave-noise {
+  content: "";
+
   position: absolute;
 
-  z-index: 3;
-
-  inset: -20%;
+  inset: 0;
 
   pointer-events: none;
 
-  opacity: .26;
+  opacity: .14;
 
   background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.11' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.28'/%3E%3C/svg%3E");
 
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.085' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-
-  background-size: 260px 260px;
+  background-size: 96px 96px;
 
   mix-blend-mode: screen;
 
   animation:
-    digital-grain .48s steps(5) infinite;
+    grain-shift .8s steps(6) infinite;
+
 }
 
 
 /* =========================================================
-   PRESAVE MESSAGE
+   28 — PRESAVE MESSAGE
    ========================================================= */
 
 .presave-message {
-  position: absolute;
+
+  position: relative;
 
   z-index: 5;
 
-  left: 50%;
-  top: 50%;
+  width: min(90vw, 850px);
 
-  transform:
-    translate(-50%, -50%);
+  color: var(--white);
 
-  width: 90vw;
-
-  text-align: center;
-
-  color: #f1f1ed;
-
-  font-family:
-    "Arial Narrow",
-    "Archivo Narrow",
-    sans-serif;
+  font-family: var(--font);
 
   font-size:
-    clamp(15px, 1.4vw, 21px);
+    clamp(
+      18px,
+      2vw,
+      30px
+    );
 
   font-weight: 500;
 
-  letter-spacing: -.035em;
+  line-height: 1.15;
 
-  line-height: 1.2;
+  letter-spacing: .01em;
 
-  text-shadow:
-    .5px 0 rgba(255,255,255,.08),
-    -.5px 0 rgba(0,0,0,.12);
+  text-align: center;
+
+  text-transform: lowercase;
+
 }
 
 
 /* =========================================================
-   PRESAVE MOBILE
+   29 — PRESAVE NOISE
+   ---------------------------------------------------------
+   Kept only for HTML compatibility.
+   It does not create a second visual language.
    ========================================================= */
 
-@media (max-width: 430px) {
+.presave-noise {
 
-  .presave-message {
-    width: 94vw;
+  display: none;
 
-    font-size: 12px;
+}
 
-    letter-spacing: -.04em;
+
+/* =========================================================
+   30 — ACCESSIBILITY / MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+
+    animation-duration: 0.001ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.001ms !important;
+
   }
 
 }
 
 
 /* =========================================================
-   PRESAVE REDUCED MOTION
+   31 — LARGE DESKTOP OPTICAL CORRECTION
    ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media (min-width: 1800px) {
 
-  .presave-noise {
-    animation: none;
+  .content::before {
+
+    inset: 28px;
+
+  }
+
+
+  .nav {
+
+    top: 28px;
+    left: 28px;
+    right: 28px;
+
+  }
+
+
+  .bottom-info {
+
+    left: 28px;
+    right: 28px;
+    bottom: 28px;
+
+  }
+
+}
+
+
+/* =========================================================
+   32 — 100dvh SUPPORT
+   ========================================================= */
+
+@supports (height: 100dvh) {
+
+  .site,
+  .content {
+
+    min-height: 100dvh;
+
+  }
+
+
+  .presave,
+  .presave-page {
+
+    min-height: 100dvh;
+
   }
 
 }
