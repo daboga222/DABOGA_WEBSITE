@@ -21,11 +21,13 @@ html {
 body {
   background: #090909;
   color: #efefee;
+
   font-family:
     "Arial Narrow",
     "Archivo Narrow",
     Arial,
     sans-serif;
+
   overflow-x: hidden;
 }
 
@@ -36,21 +38,26 @@ body {
 
 .site {
   position: relative;
+
   width: 100%;
   min-height: 100vh;
+
   background: #090909;
 }
 
 
 /* =========================================================
-   BACKGROUND
+   HOME / BACKGROUND
    ========================================================= */
 
 .home {
   position: relative;
+
   width: 100%;
   min-height: 100vh;
+
   overflow: hidden;
+
   background:
     radial-gradient(
       ellipse at 50% 48%,
@@ -62,12 +69,15 @@ body {
 }
 
 
-/* material / plaster */
+/* textura material */
 
 .surface {
   position: absolute;
+
   inset: 0;
+
   z-index: 1;
+
   pointer-events: none;
 
   background:
@@ -86,12 +96,15 @@ body {
 }
 
 
-/* static grain */
+/* grano estático */
 
 .grain {
   position: absolute;
+
   inset: -20%;
+
   z-index: 2;
+
   pointer-events: none;
 
   opacity: .055;
@@ -109,6 +122,7 @@ body {
 
 .nav {
   position: absolute;
+
   top: 0;
   left: 0;
 
@@ -118,6 +132,7 @@ body {
   height: 58px;
 
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
@@ -132,6 +147,7 @@ body {
 
 .nav-links {
   display: flex;
+
   align-items: center;
 
   gap: 32px;
@@ -146,6 +162,7 @@ body {
   display: inline-block;
 
   color: #efefee;
+
   text-decoration: none;
 
   font-family:
@@ -155,6 +172,7 @@ body {
     sans-serif;
 
   font-size: 12px;
+
   font-weight: 500;
 
   line-height: 1;
@@ -199,6 +217,7 @@ body {
     sans-serif;
 
   font-size: 13px;
+
   font-weight: 500;
 
   line-height: 1;
@@ -217,20 +236,10 @@ body {
   z-index: 5;
 
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 100svh;
 
   display: grid;
-
-  /*
-    FUNDAMENTAL GRID
-
-    Desktop:
-    ┌────────────────────┬────────────────────┐
-    │                    │                    │
-    │      DABOGA        │       IMAGE        │
-    │                    │                    │
-    └────────────────────┴────────────────────┘
-  */
 
   grid-template-columns:
     minmax(0, 1.12fr)
@@ -243,9 +252,9 @@ body {
   column-gap: 2vw;
 
   padding:
-    58px
+    42px
     4vw
-    54px;
+    58px;
 }
 
 
@@ -262,18 +271,13 @@ body {
 
   display: block;
 
-  /*
-    La imagen ya no crece hasta dominar la composición.
-    Su tamaño depende de la ventana pero tiene un límite.
-  */
-
   width:
     min(
-      25vw,
-      34vh
+      32vw,
+      42vh
     );
 
-  max-width: 390px;
+  max-width: 500px;
 
   aspect-ratio: 1 / 1;
 
@@ -281,10 +285,15 @@ body {
 
   filter:
     grayscale(1)
-    contrast(1.12);
+    contrast(1.15);
+
+  /*
+    PEQUEÑA RUPTURA DEL EJE.
+    ESTO ES PARTE DE LA COMPOSICIÓN DESKTOP.
+  */
 
   transform:
-    translate(2%, -3%);
+    translate(3%, -4%);
 
   transition:
     transform .45s cubic-bezier(.2,.8,.2,1),
@@ -294,12 +303,12 @@ body {
 
 .image-link:hover {
   transform:
-    translate(2%, -3%)
+    translate(3%, -4%)
     scale(1.012);
 
   filter:
     grayscale(1)
-    contrast(1.16);
+    contrast(1.18);
 }
 
 
@@ -312,12 +321,13 @@ body {
   object-fit: cover;
 
   user-select: none;
+
   -webkit-user-drag: none;
 }
 
 
 /* =========================================================
-   DABOGA WORDMARK
+   DABOGA
    ========================================================= */
 
 h1 {
@@ -328,6 +338,7 @@ h1 {
   justify-self: start;
 
   display: flex;
+
   align-items: flex-start;
 
   width: max-content;
@@ -359,8 +370,8 @@ h1 {
   user-select: none;
 
   /*
-    Esta transformación es estructural:
-    mantiene el aspecto estrecho del logotipo.
+    ESTE ES EL EJE HORIZONTAL ORIGINAL.
+    NO TOCAR EN DESKTOP.
   */
 
   transform:
@@ -377,7 +388,7 @@ h1 {
 
 
 /* =========================================================
-   CHECK / TEXTURE DENTRO DE DABOGA
+   TEXTURA DENTRO DE DABOGA
    ========================================================= */
 
 .wordmark {
@@ -489,7 +500,7 @@ h1 {
 
 
 /* =========================================================
-   BOTTOM INFORMATION
+   BOTTOM INFO
    ========================================================= */
 
 .bottom-info {
@@ -548,21 +559,21 @@ h1 {
 
   .content {
     grid-template-columns:
-      minmax(0, 1fr)
-      minmax(0, .9fr);
+      minmax(0, 1.12fr)
+      minmax(0, .88fr);
 
     padding:
-      58px
+      42px
       5vw
-      54px;
+      58px;
   }
 
 
   .image-link {
     width:
       min(
-        28vw,
-        32vh
+        32vw,
+        42vh
       );
   }
 
@@ -584,6 +595,59 @@ h1 {
 
 @media (max-width: 700px) {
 
+  /*
+   =====================================================
+   IMPORTANTE
+
+   NO hacemos una composición vertical.
+
+   Sigue siendo:
+
+   DABOGA®              FOTO
+
+   exactamente igual que PC,
+   solamente más pequeña y con
+   más aire alrededor.
+   =====================================================
+  */
+
+  .content {
+    width: 100%;
+
+    height: 100vh;
+    min-height: 100svh;
+
+    display: grid;
+
+    /*
+      DOS COLUMNAS.
+
+      El eje horizontal permanece.
+    */
+
+    grid-template-columns:
+      minmax(0, 1.18fr)
+      minmax(0, .82fr);
+
+    grid-template-rows:
+      minmax(0, 1fr)
+      auto;
+
+    column-gap: 3vw;
+
+    row-gap: 0;
+
+    padding:
+      58px
+      6vw
+      54px;
+  }
+
+
+  /* =====================================================
+     NAV MOBILE
+     ===================================================== */
+
   .nav {
     height: 58px;
 
@@ -593,23 +657,17 @@ h1 {
   }
 
 
-  /*
-    IMPORTANTE:
-    no repartimos los enlaces con space-between.
-    Mantienen la misma lógica horizontal del desktop.
-  */
-
   .nav-links {
-    gap: 0;
-
     width: 100%;
+
+    gap: 0;
 
     justify-content: space-between;
   }
 
 
   .nav a {
-    font-size: 12px;
+    font-size: 11px;
   }
 
 
@@ -618,52 +676,20 @@ h1 {
   }
 
 
-  /* ---------------------------------------------
-     MOBILE GRID
+  /* =====================================================
+     FOTO MOBILE
 
-     ┌────────────────────────────┐
-     │                            │
-     │          IMAGE             │
-     │                            │
-     ├────────────────────────────┤
-     │                            │
-     │         DABOGA             │
-     │                            │
-     ├────────────────────────────┤
-     │       METADATA             │
-     └────────────────────────────┘
-  */
+     Sigue a la DERECHA.
 
-  .content {
-    min-height: 100svh;
+     Sigue rompiendo ligeramente el eje.
 
-    grid-template-columns: 1fr;
-
-    grid-template-rows:
-      minmax(0, 1fr)
-      auto
-      auto;
-
-    column-gap: 0;
-    row-gap: 0;
-
-    padding:
-      58px
-      6vw
-      46px;
-  }
-
-
-  /* ---------------------------------------------
-     IMAGE
-
-     Antes estaba ocupando demasiado.
-     Ahora queda como elemento de la misma
-     composición, no como protagonista aislado.
-  */
+     Más pequeña.
+     Más aire.
+     Nunca simétrica.
+     ===================================================== */
 
   .image-link {
-    grid-column: 1;
+    grid-column: 2;
     grid-row: 1;
 
     align-self: center;
@@ -671,73 +697,112 @@ h1 {
 
     width:
       min(
-        46vw,
-        310px
+        31vw,
+        260px
       );
 
-    max-width: 310px;
+    max-width: 260px;
 
-    transform: none;
+    aspect-ratio: 1 / 1;
+
+    /*
+      El centro de la foto queda unos grados
+      por encima del centro de DABOGA.
+
+      NO es simétrico.
+    */
+
+    transform:
+      translate(
+        2%,
+        -7%
+      );
+
+    z-index: 6;
   }
 
 
   .image-link:hover {
-    transform: none;
+    transform:
+      translate(
+        2%,
+        -7%
+      )
+      scale(1.012);
   }
 
 
-  /* ---------------------------------------------
-     DABOGA
-  */
+  /* =====================================================
+     DABOGA MOBILE
+
+     SIGUE A LA IZQUIERDA.
+
+     SIGUE EN HORIZONTAL.
+
+     NO se centra respecto a la foto.
+
+     NO se apila.
+
+     NO se rediseña.
+     ===================================================== */
 
   h1 {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 1;
 
-    align-self: end;
+    align-self: center;
     justify-self: start;
 
     width: max-content;
     max-width: 100%;
 
-    margin-top: 26px;
+    margin: 0;
 
     font-size:
       clamp(
-        88px,
-        22vw,
-        165px
+        72px,
+        18vw,
+        150px
       );
 
     line-height: .58;
 
+    /*
+      MISMA DISTORSIÓN DEL DESKTOP.
+    */
+
     transform:
-      translateY(0)
+      translateY(2%)
       scaleX(.61)
-      scaleY(1);
+      scaleY(1.18);
+
+    transform-origin:
+      left center;
+
+    z-index: 5;
   }
 
 
-  /* ---------------------------------------------
-     REGISTERED
-  */
+  /* =====================================================
+     ®
+     ===================================================== */
 
   .reg {
     top: -.56em;
   }
 
 
-  /* ---------------------------------------------
-     BOTTOM
-  */
+  /* =====================================================
+     BOTTOM INFO
+     ===================================================== */
 
   .bottom-info {
-    grid-column: 1;
-    grid-row: 3;
+    grid-column: 1 / -1;
+    grid-row: 2;
 
     width: 100%;
 
-    margin-top: 30px;
+    margin-top: 0;
 
     display: grid;
 
@@ -745,6 +810,8 @@ h1 {
       auto
       1fr
       auto;
+
+    align-items: end;
 
     font-size:
       clamp(
@@ -802,11 +869,36 @@ h1 {
   }
 
 
+  /*
+    Seguimos en horizontal.
+
+    Simplemente reducimos ligeramente
+    ambos elementos para que respire
+    en teléfonos pequeños.
+  */
+
   .image-link {
     width:
       min(
-        48vw,
-        250px
+        31vw,
+        225px
+      );
+
+    max-width: 225px;
+
+    transform:
+      translate(
+        2%,
+        -7%
+      );
+  }
+
+
+  .image-link:hover {
+    transform:
+      translate(
+        2%,
+        -7%
       );
   }
 
@@ -814,25 +906,28 @@ h1 {
   h1 {
     font-size:
       clamp(
-        78px,
-        22vw,
+        68px,
+        18vw,
         120px
       );
 
-    margin-top: 24px;
+    margin: 0;
+
+    transform:
+      translateY(2%)
+      scaleX(.61)
+      scaleY(1.18);
   }
 
 
   .bottom-info {
-    margin-top: 27px;
-
     font-size: 9px;
   }
 }
 
 
 /* =========================================================
-   PRESAVE PAGE
+   PRESAVE
    ========================================================= */
 
 .presave-page {
@@ -867,6 +962,7 @@ h1 {
 
 .presave-noise {
   position: absolute;
+
   inset: -20%;
 
   pointer-events: none;
