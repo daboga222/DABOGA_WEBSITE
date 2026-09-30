@@ -37,7 +37,7 @@ body {
 
 
 /* =========================================================
-   FULL VIEWPORT
+   SITE
    ========================================================= */
 
 .site {
@@ -74,7 +74,7 @@ body {
   align-items: center;
   justify-content: space-between;
 
-  border-bottom: 1px solid rgba(255,255,255,.07);
+  border-bottom: 1px solid rgba(255,255,255,.055);
 
   color: #b8b8b3;
 
@@ -83,7 +83,7 @@ body {
 
   letter-spacing: -.025em;
 
-  background: rgba(5,5,5,.16);
+  background: rgba(5,5,5,.20);
 
   backdrop-filter: blur(2px);
 }
@@ -107,8 +107,7 @@ body {
   text-decoration: none;
 
   transition:
-    color .2s ease,
-    opacity .2s ease;
+    color .2s ease;
 }
 
 
@@ -151,7 +150,7 @@ body {
 
 
 /* =========================================================
-   MAIN
+   HOME / ROOM
    ========================================================= */
 
 .home {
@@ -168,7 +167,7 @@ body {
 
 
 /* =========================================================
-   DARK ROOM / OLD SCREEN SURFACE
+   STATIC DARK ROOM
    ========================================================= */
 
 .surface {
@@ -179,52 +178,51 @@ body {
   background:
 
     radial-gradient(
-      ellipse at 47% 43%,
-      rgba(110,110,104,.15) 0%,
-      rgba(55,55,52,.075) 34%,
+      ellipse at 48% 44%,
+      rgba(95,95,90,.075) 0%,
+      rgba(45,45,42,.035) 34%,
       transparent 68%
-    ),
-
-    radial-gradient(
-      ellipse at 12% 88%,
-      rgba(255,255,255,.025),
-      transparent 38%
     ),
 
     linear-gradient(
       112deg,
       #080808 0%,
-      #10100f 28%,
-      #151514 48%,
-      #0a0a0a 100%
+      #0d0d0c 32%,
+      #111110 50%,
+      #090909 100%
     );
 
-  filter: contrast(1.3);
+  filter: contrast(1.08);
 }
 
+
+/*
+   Una textura física casi inmóvil.
+   No se desplaza por la pantalla.
+*/
 
 .surface::before {
   content: "";
 
   position: absolute;
 
-  inset: -10%;
+  inset: 0;
 
-  opacity: .22;
+  opacity: .075;
 
-  background:
+  background-image:
 
-    repeating-linear-gradient(
-      117deg,
-      transparent 0,
-      transparent 7px,
-      rgba(255,255,255,.018) 8px,
-      transparent 11px
-    );
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.018' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
-  transform: rotate(-2deg);
+  background-size: 220px 220px;
+
+  mix-blend-mode: soft-light;
 }
 
+
+/*
+   Viñeta.
+*/
 
 .surface::after {
   content: "";
@@ -233,18 +231,20 @@ body {
 
   inset: 0;
 
+  pointer-events: none;
+
   background:
 
     radial-gradient(
       ellipse at center,
-      transparent 25%,
-      rgba(0,0,0,.8) 100%
+      transparent 38%,
+      rgba(0,0,0,.48) 100%
     );
 }
 
 
 /* =========================================================
-   DIGITAL / CRT GRAIN
+   VERY SUBTLE SCREEN GRAIN
    ========================================================= */
 
 .grain {
@@ -252,62 +252,24 @@ body {
 
   z-index: 4;
 
-  inset: -20%;
+  inset: 0;
 
   pointer-events: none;
 
-  opacity: .28;
+  opacity: .055;
 
   background-image:
 
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.085' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.22' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
-  background-size: 260px 260px;
+  background-size: 160px 160px;
 
   mix-blend-mode: screen;
-
-  animation:
-    digital-grain .42s steps(5) infinite;
-}
-
-
-@keyframes digital-grain {
-
-  0% {
-    transform:
-      translate3d(0, 0, 0);
-  }
-
-  20% {
-    transform:
-      translate3d(-1.5%, .8%, 0);
-  }
-
-  40% {
-    transform:
-      translate3d(.8%, -1.2%, 0);
-  }
-
-  60% {
-    transform:
-      translate3d(1.2%, .4%, 0);
-  }
-
-  80% {
-    transform:
-      translate3d(-.6%, -1%, 0);
-  }
-
-  100% {
-    transform:
-      translate3d(0, 0, 0);
-  }
-
 }
 
 
 /* =========================================================
-   SECONDARY DIGITAL GRAIN
+   CONTENT
    ========================================================= */
 
 .content {
@@ -317,67 +279,6 @@ body {
 
   width: 100%;
   height: 100%;
-}
-
-
-.content::after {
-  content: "";
-
-  position: absolute;
-
-  z-index: 7;
-
-  inset: -20%;
-
-  pointer-events: none;
-
-  opacity: .16;
-
-  background-image:
-
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='210' height='210' viewBox='0 0 210 210'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.105' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-
-  background-size: 210px 210px;
-
-  mix-blend-mode: screen;
-
-  animation:
-    digital-grain-secondary .55s steps(4) infinite;
-}
-
-
-@keyframes digital-grain-secondary {
-
-  0% {
-    transform:
-      translate3d(0, 0, 0)
-      scale(1);
-  }
-
-  25% {
-    transform:
-      translate3d(-1%, .5%, 0)
-      scale(1.002);
-  }
-
-  50% {
-    transform:
-      translate3d(.7%, -1%, 0)
-      scale(.998);
-  }
-
-  75% {
-    transform:
-      translate3d(1%, .7%, 0)
-      scale(1.001);
-  }
-
-  100% {
-    transform:
-      translate3d(0, 0, 0)
-      scale(1);
-  }
-
 }
 
 
@@ -430,9 +331,6 @@ body {
   filter:
     grayscale(1)
     contrast(1.08);
-
-  transition:
-    transform .6s cubic-bezier(.2,.8,.2,1);
 }
 
 
@@ -446,12 +344,11 @@ body {
   pointer-events: none;
 
   background:
-
     linear-gradient(
       135deg,
-      rgba(255,255,255,.09),
-      transparent 38%,
-      rgba(0,0,0,.15)
+      rgba(255,255,255,.055),
+      transparent 42%,
+      rgba(0,0,0,.10)
     );
 
   mix-blend-mode: multiply;
@@ -465,18 +362,17 @@ body {
 
   filter:
     grayscale(1)
-    contrast(1.25);
+    contrast(1.22);
 }
 
 
 .image-link:hover img {
-  transform:
-    scale(1.025);
+  transform: scale(1.02);
 }
 
 
 /* =========================================================
-   MAIN DABOGA TEXT
+   DABOGA
    ========================================================= */
 
 h1 {
@@ -495,8 +391,7 @@ h1 {
   transform-origin: left center;
 
   /*
-    Blanco calibrado con el blanco dominante
-    de la fotografía.
+    BLANCO DE LA FOTO
   */
   color: #efefee;
 
@@ -523,121 +418,124 @@ h1 {
   user-select: none;
 
   /*
-    El pixel + check viven DENTRO del propio
-    relleno tipográfico.
-    
-    Esto evita completamente los rectángulos
-    de los pseudo-elementos anteriores.
+    IMPORTANTE:
+    aquí NO hay background.
+    La letra base es blanco sólido.
   */
-  background-color: #efefee;
 
-  background-image:
+  text-shadow:
+    1px 0 rgba(255,255,255,.055),
+    -1px 0 rgba(0,0,0,.16);
 
-    /* MICRO HILO ROJO */
+  filter:
+    contrast(1.08);
+}
+
+
+/* =========================================================
+   CHECK DENTRO DE DABOGA
+   ========================================================= */
+
+/*
+   La capa se genera como TEXTO.
+   Por tanto no puede crear un cuadrado visible.
+*/
+
+h1::before {
+  content: "DABOGA";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  font: inherit;
+
+  line-height: inherit;
+
+  letter-spacing: inherit;
+
+  white-space: nowrap;
+
+  color: transparent;
+
+  /*
+    El check es deliberadamente muy suave.
+  */
+
+  background:
+
+    /* hilo rojo */
     linear-gradient(
       90deg,
       transparent 0,
       transparent 47px,
-      rgba(102,32,30,.18) 47px,
-      rgba(102,32,30,.18) 49px,
+      rgba(112,38,35,.16) 47px,
+      rgba(112,38,35,.16) 49px,
       transparent 49px,
       transparent 76px
     ),
 
-    /* MICRO HILO AMARILLO */
+    /* hilo amarillo */
     linear-gradient(
       90deg,
       transparent 0,
       transparent 37px,
-      rgba(126,108,63,.20) 37px,
-      rgba(126,108,63,.20) 39px,
+      rgba(126,108,63,.15) 37px,
+      rgba(126,108,63,.15) 39px,
       transparent 39px,
       transparent 76px
     ),
 
-    /* CHECK VERTICAL */
+    /* líneas verticales */
     repeating-linear-gradient(
       90deg,
       transparent 0,
-      transparent 36px,
-      rgba(18,18,18,.13) 36px,
-      rgba(18,18,18,.13) 43px,
+      transparent 37px,
+      rgba(18,18,18,.14) 37px,
+      rgba(18,18,18,.14) 43px,
       transparent 43px,
       transparent 76px
     ),
 
-    /* CHECK HORIZONTAL */
+    /* líneas horizontales */
     repeating-linear-gradient(
       0deg,
       transparent 0,
-      transparent 36px,
-      rgba(18,18,18,.13) 36px,
-      rgba(18,18,18,.13) 43px,
+      transparent 37px,
+      rgba(18,18,18,.14) 37px,
+      rgba(18,18,18,.14) 43px,
       transparent 43px,
       transparent 76px
-    ),
-
-    /* PIXEL HORIZONTAL */
-    repeating-linear-gradient(
-      0deg,
-      transparent 0,
-      transparent 5px,
-      rgba(0,0,0,.075) 5px,
-      rgba(0,0,0,.075) 7px,
-      transparent 7px,
-      transparent 11px
-    ),
-
-    /* PIXEL VERTICAL */
-    repeating-linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 7px,
-      rgba(0,0,0,.055) 7px,
-      rgba(0,0,0,.055) 9px,
-      transparent 9px,
-      transparent 15px
     );
 
   background-size:
     76px 76px,
     76px 76px,
     76px 76px,
-    76px 76px,
-    11px 11px,
-    15px 15px;
+    76px 76px;
 
   background-position:
     0 0,
     0 0,
     0 0,
-    0 0,
-    0 0,
     0 0;
 
-  /*
-    La textura se recorta literalmente con
-    la forma de las letras.
-  */
   -webkit-background-clip: text;
   background-clip: text;
 
   -webkit-text-fill-color: transparent;
 
-  text-shadow:
-    1px 0 rgba(255,255,255,.07),
-    -1px 0 rgba(0,0,0,.18),
-    0 0 1px rgba(255,255,255,.13);
-
-  filter:
-    contrast(1.16)
-    saturate(.88)
-    blur(.05px);
+  /*
+    CERO animación.
+  */
+  animation: none;
 }
 
 
 /* =========================================================
-   REGISTERED MARK
+   ®
    ========================================================= */
 
 h1 span {
@@ -652,17 +550,11 @@ h1 span {
 
   letter-spacing: -.02em;
 
-  /*
-    El ® permanece limpio, sin check ni pixel.
-  */
   color: #efefee;
 
   -webkit-text-fill-color: #efefee;
 
-  background: none;
-
-  filter:
-    blur(.15px);
+  filter: none;
 }
 
 
@@ -750,7 +642,7 @@ h1 span {
 
 
 /* =========================================================
-   SHORT / COMPACT LAPTOPS
+   SHORT LAPTOPS
    ========================================================= */
 
 @media (max-aspect-ratio: 16 / 10) and (min-width: 701px) {
@@ -795,7 +687,7 @@ h1 span {
 
 
 /* =========================================================
-   TALL SCREENS
+   TALL MOBILE
    ========================================================= */
 
 @media (min-aspect-ratio: 10 / 16) and (max-width: 700px) {
@@ -827,7 +719,7 @@ h1 span {
 
 
 /* =========================================================
-   TABLET / IPAD
+   TABLET
    ========================================================= */
 
 @media (max-width: 700px) {
@@ -835,8 +727,7 @@ h1 span {
   .nav {
     height: 38px;
 
-    padding:
-      0 10px;
+    padding: 0 10px;
 
     font-size: 11px;
 
@@ -918,8 +809,7 @@ h1 span {
   .nav {
     height: 36px;
 
-    padding:
-      0 8px;
+    padding: 0 8px;
 
     font-size: 9px;
 
@@ -995,16 +885,14 @@ h1 span {
   .nav {
     font-size: 8px;
 
-    padding:
-      0 6px;
+    padding: 0 6px;
   }
 
 
   .nav-links {
     gap: 4px;
 
-    justify-content:
-      space-between;
+    justify-content: space-between;
   }
 
 
@@ -1045,14 +933,8 @@ h1 span {
 
 @media (prefers-reduced-motion: reduce) {
 
-  .grain,
-  .content::after {
-    animation: none;
-  }
-
   .nav a::after,
-  .image-link,
-  .image-link img {
+  .image-link {
     transition: none;
   }
 
@@ -1087,7 +969,7 @@ h1 span {
 
     radial-gradient(
       ellipse at 50% 50%,
-      #171715 0%,
+      #151514 0%,
       #0b0b0a 48%,
       #050505 100%
     );
@@ -1099,21 +981,15 @@ h1 span {
 
   position: absolute;
 
-  inset: -10%;
+  inset: 0;
 
-  opacity: .2;
+  opacity: .07;
 
-  background:
+  background-image:
 
-    repeating-linear-gradient(
-      113deg,
-      transparent 0,
-      transparent 7px,
-      rgba(255,255,255,.018) 8px,
-      transparent 11px
-    );
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.02' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
-  transform: rotate(-2deg);
+  background-size: 180px 180px;
 }
 
 
@@ -1128,14 +1004,14 @@ h1 span {
 
     radial-gradient(
       ellipse at center,
-      transparent 25%,
-      rgba(0,0,0,.8) 100%
+      transparent 38%,
+      rgba(0,0,0,.52) 100%
     );
 }
 
 
 /* =========================================================
-   PRESAVE DIGITAL GRAIN
+   PRESAVE NOISE
    ========================================================= */
 
 .presave-noise {
@@ -1143,22 +1019,17 @@ h1 span {
 
   z-index: 3;
 
-  inset: -20%;
+  inset: 0;
 
   pointer-events: none;
 
-  opacity: .26;
+  opacity: .045;
 
   background-image:
 
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.085' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.22' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
-  background-size: 260px 260px;
-
-  mix-blend-mode: screen;
-
-  animation:
-    digital-grain .48s steps(5) infinite;
+  background-size: 160px 160px;
 }
 
 
@@ -1198,8 +1069,8 @@ h1 span {
   line-height: 1.2;
 
   text-shadow:
-    .5px 0 rgba(255,255,255,.08),
-    -.5px 0 rgba(0,0,0,.12);
+    .5px 0 rgba(255,255,255,.06),
+    -.5px 0 rgba(0,0,0,.10);
 }
 
 
@@ -1215,19 +1086,6 @@ h1 span {
     font-size: 12px;
 
     letter-spacing: -.04em;
-  }
-
-}
-
-
-/* =========================================================
-   PRESAVE REDUCED MOTION
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .presave-noise {
-    animation: none;
   }
 
 }
