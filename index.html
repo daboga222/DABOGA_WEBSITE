@@ -2,15 +2,26 @@
 <html lang="es">
 
 <head>
+
   <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   >
 
+  <meta
+    name="theme-color"
+    content="#090909"
+  >
+
   <title>DABOGA</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
 
 
@@ -18,17 +29,18 @@
 
   <div class="site">
 
-    <!-- =====================================================
-         NAVIGATION
-         ===================================================== -->
 
-    <nav class="nav">
+    <nav
+      class="nav"
+      aria-label="Navegación principal"
+    >
 
       <div class="nav-links">
 
         <a
           href="index.html"
           class="active"
+          aria-current="page"
         >
           HOME
         </a>
@@ -52,69 +64,70 @@
       </div>
 
 
-      <div class="nav-mark">
+      <div
+        class="nav-mark"
+        aria-hidden="true"
+      >
         ®
       </div>
 
     </nav>
 
 
-    <!-- =====================================================
-         HOME
-         ===================================================== -->
-
     <main class="home">
 
-      <div class="surface"></div>
 
-      <div class="grain"></div>
+      <div
+        class="surface"
+        aria-hidden="true"
+      ></div>
+
+
+      <div
+        class="grain"
+        aria-hidden="true"
+      ></div>
 
 
       <div class="content">
 
-
-        <!-- =================================================
-             IMAGE
-             ================================================= -->
 
         <a
           class="image-link"
           href="presave.html"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Presave"
+          aria-label="Abrir presave de 222"
         >
 
           <img
             src="images/222_altcover_1.jpeg"
-            alt=""
+            alt="222 — alt cover"
           >
 
         </a>
 
 
-        <!-- =================================================
-             WORDMARK
-             ================================================= -->
-
-        <h1>
+        <h1 aria-label="DABOGA">
 
           <span class="wordmark">
             DABOGA
           </span>
 
-          <span class="reg">
+          <span
+            class="reg"
+            aria-hidden="true"
+          >
             ®
           </span>
 
         </h1>
 
 
-        <!-- =================================================
-             BOTTOM INFORMATION
-             ================================================= -->
-
-        <div class="bottom-info">
+        <div
+          class="bottom-info"
+          aria-label="Información"
+        >
 
           <span>
             DBG® 2026
