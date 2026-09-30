@@ -240,7 +240,7 @@ body {
 
 
 /* =========================================================
-   GRAIN
+   DIGITAL / SIGILIST GRAIN
    ========================================================= */
 
 .grain {
@@ -248,48 +248,64 @@ body {
 
   z-index: 4;
 
-  inset: -15%;
+  inset: -20%;
 
   pointer-events: none;
 
-  opacity: .22;
+  opacity: .28;
 
   background-image:
 
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.045' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.085' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
-  background-size: 420px 420px;
+  background-size: 260px 260px;
 
-  mix-blend-mode: soft-light;
+  mix-blend-mode: screen;
 
   animation:
-    grain-drift 8s steps(3) infinite;
+    digital-grain .42s steps(5) infinite;
 }
 
 
-@keyframes grain-drift {
+@keyframes digital-grain {
 
   0% {
-    transform: translate3d(0, 0, 0);
+    transform:
+      translate3d(0, 0, 0);
   }
 
-  33% {
-    transform: translate3d(-1.5%, .8%, 0);
+  20% {
+    transform:
+      translate3d(-1.5%, .8%, 0);
   }
 
-  66% {
-    transform: translate3d(.8%, -1.2%, 0);
+  40% {
+    transform:
+      translate3d(.8%, -1.2%, 0);
+  }
+
+  60% {
+    transform:
+      translate3d(1.2%, .4%, 0);
+  }
+
+  80% {
+    transform:
+      translate3d(-.6%, -1%, 0);
   }
 
   100% {
-    transform: translate3d(0, 0, 0);
+    transform:
+      translate3d(0, 0, 0);
   }
 
 }
 
 
 /* =========================================================
-   CONTENT
+   SECONDARY DIGITAL GRAIN
+   Affects typography / metadata,
+   but stays underneath the photograph.
    ========================================================= */
 
 .content {
@@ -302,12 +318,6 @@ body {
 }
 
 
-/* =========================================================
-   SECONDARY GRAIN LAYER
-   Affects typography and metadata,
-   but stays underneath the photograph.
-   ========================================================= */
-
 .content::after {
   content: "";
 
@@ -315,22 +325,57 @@ body {
 
   z-index: 7;
 
-  inset: -15%;
+  inset: -20%;
 
   pointer-events: none;
 
-  opacity: .13;
+  opacity: .16;
 
   background-image:
 
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360' viewBox='0 0 360 360'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.055' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='210' height='210' viewBox='0 0 210 210'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.105' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
-  background-size: 360px 360px;
+  background-size: 210px 210px;
 
-  mix-blend-mode: soft-light;
+  mix-blend-mode: screen;
 
   animation:
-    grain-drift 11s steps(3) infinite;
+    digital-grain-secondary .55s steps(4) infinite;
+}
+
+
+@keyframes digital-grain-secondary {
+
+  0% {
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+  }
+
+  25% {
+    transform:
+      translate3d(-1%, .5%, 0)
+      scale(1.002);
+  }
+
+  50% {
+    transform:
+      translate3d(.7%, -1%, 0)
+      scale(.998);
+  }
+
+  75% {
+    transform:
+      translate3d(1%, .7%, 0)
+      scale(1.001);
+  }
+
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+  }
+
 }
 
 
@@ -429,7 +474,7 @@ body {
 
 
 /* =========================================================
-   TITLE
+   MAIN DABOGA TEXT
    ========================================================= */
 
 h1 {
@@ -437,16 +482,17 @@ h1 {
 
   z-index: 6;
 
-  left: 7vw;
+  left: 6vw;
   top: 54%;
 
   transform:
     translateY(-50%)
-    scaleX(.68);
+    scaleX(.61)
+    scaleY(1.18);
 
   transform-origin: left center;
 
-  color: #e1e1dc;
+  color: #e3e3de;
 
   font-family:
     "Arial Narrow",
@@ -455,47 +501,52 @@ h1 {
 
   font-size:
     clamp(
-      105px,
-      min(19vw, 27vh),
-      330px
+      115px,
+      min(20vw, 28vh),
+      345px
     );
 
-  font-weight: 500;
+  font-weight: 600;
 
-  line-height: .68;
+  line-height: .58;
 
-  letter-spacing: -.085em;
+  letter-spacing: -.105em;
 
   white-space: nowrap;
 
   user-select: none;
 
   text-shadow:
-    .7px 0 rgba(255,255,255,.08),
-    -.7px 0 rgba(0,0,0,.16);
+    1px 0 rgba(255,255,255,.10),
+    -1px 0 rgba(0,0,0,.22),
+    0 0 1px rgba(255,255,255,.18);
 
   filter:
-    contrast(1.05);
+    contrast(1.18)
+    saturate(0)
+    blur(.05px);
 }
 
 
 h1 span {
   position: relative;
 
-  top: -.5em;
-  left: .02em;
+  top: -.53em;
+  left: .025em;
 
-  font-size: .095em;
+  font-size: .09em;
 
-  letter-spacing: 0;
+  font-weight: 600;
+
+  letter-spacing: -.02em;
 
   filter:
-    blur(.1px);
+    blur(.15px);
 }
 
 
 /* =========================================================
-   TITLE ANALOG IMPERFECTION
+   MAIN TEXT DIGITAL SCAN
    ========================================================= */
 
 h1::before {
@@ -503,26 +554,29 @@ h1::before {
 
   position: absolute;
 
-  inset: 0;
+  inset: -2px;
 
   pointer-events: none;
 
-  opacity: .14;
+  opacity: .32;
 
   background:
 
     repeating-linear-gradient(
       0deg,
       transparent 0,
-      transparent 4px,
-      rgba(255,255,255,.08) 5px,
-      transparent 6px
+      transparent 2px,
+      rgba(255,255,255,.10) 3px,
+      transparent 4px
     );
 
-  mix-blend-mode: overlay;
+  mix-blend-mode: screen;
 
   transform:
-    translate(.5px, -.5px);
+    translate(-1px, 0);
+
+  animation:
+    title-scan .65s steps(4) infinite;
 }
 
 
@@ -531,48 +585,102 @@ h1::after {
 
   position: absolute;
 
-  left: 0;
-  right: 0;
+  left: -1%;
+  right: -2%;
 
-  top: 48%;
+  top: 47%;
 
-  height: 1px;
+  height: 2px;
 
   pointer-events: none;
 
-  background: rgba(255,255,255,.055);
+  background:
+    rgba(255,255,255,.07);
 
-  opacity: .5;
+  opacity: .65;
+
+  transform-origin: left center;
 
   animation:
-    signal-line 7s steps(3) infinite;
+    title-signal .8s steps(5) infinite;
 }
 
 
-@keyframes signal-line {
+@keyframes title-scan {
+
+  0% {
+    transform:
+      translate(-1px, 0);
+  }
+
+  20% {
+    transform:
+      translate(1px, -1px);
+  }
+
+  40% {
+    transform:
+      translate(-2px, 1px);
+  }
+
+  60% {
+    transform:
+      translate(1px, 0);
+  }
+
+  80% {
+    transform:
+      translate(-1px, 1px);
+  }
+
+  100% {
+    transform:
+      translate(-1px, 0);
+  }
+
+}
+
+
+@keyframes title-signal {
 
   0% {
     transform:
       translateX(0)
       scaleX(1);
 
-    opacity: .12;
+    opacity: .25;
   }
 
-  30% {
+  20% {
     transform:
-      translateX(-.4%)
-      scaleX(.995);
+      translateX(-1.5%)
+      scaleX(.96);
+
+    opacity: .5;
+  }
+
+  40% {
+    transform:
+      translateX(.8%)
+      scaleX(1.025);
+
+    opacity: .15;
+  }
+
+  60% {
+    transform:
+      translateX(-.5%)
+      scaleX(.985);
+
+    opacity: .4;
+  }
+
+  80% {
+    transform:
+      translateX(1%)
+      scaleX(1.01);
 
     opacity: .18;
-  }
-
-  62% {
-    transform:
-      translateX(.3%)
-      scaleX(1.005);
-
-    opacity: .08;
   }
 
   100% {
@@ -580,7 +688,7 @@ h1::after {
       translateX(0)
       scaleX(1);
 
-    opacity: .12;
+    opacity: .25;
   }
 
 }
@@ -702,7 +810,8 @@ h1::after {
 
     transform:
       translateY(-50%)
-      scaleX(.66);
+      scaleX(.60)
+      scaleY(1.16);
   }
 
 
@@ -735,6 +844,11 @@ h1::after {
 
     font-size:
       min(25vw, 18vh);
+
+    transform:
+      translateY(-50%)
+      scaleX(.61)
+      scaleY(1.15);
   }
 
 }
@@ -796,7 +910,8 @@ h1::after {
 
     transform:
       translateY(-50%)
-      scaleX(.64);
+      scaleX(.61)
+      scaleY(1.16);
   }
 
 
@@ -880,7 +995,8 @@ h1::after {
 
     transform:
       translateY(-50%)
-      scaleX(.63);
+      scaleX(.60)
+      scaleY(1.15);
   }
 
 
@@ -936,6 +1052,11 @@ h1::after {
 
     font-size:
       min(26vw, 18vh);
+
+    transform:
+      translateY(-50%)
+      scaleX(.59)
+      scaleY(1.15);
   }
 
 
@@ -954,6 +1075,7 @@ h1::after {
 
   .grain,
   .content::after,
+  h1::before,
   h1::after {
     animation: none;
   }
@@ -1043,7 +1165,7 @@ h1::after {
 
 
 /* =========================================================
-   PRESAVE GRAIN
+   PRESAVE DIGITAL GRAIN
    ========================================================= */
 
 .presave-noise {
@@ -1051,22 +1173,22 @@ h1::after {
 
   z-index: 3;
 
-  inset: -15%;
+  inset: -20%;
 
   pointer-events: none;
 
-  opacity: .23;
+  opacity: .26;
 
   background-image:
 
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.045' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.085' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
-  background-size: 420px 420px;
+  background-size: 260px 260px;
 
-  mix-blend-mode: soft-light;
+  mix-blend-mode: screen;
 
   animation:
-    grain-drift 9s steps(3) infinite;
+    digital-grain .48s steps(5) infinite;
 }
 
 
