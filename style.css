@@ -7,6 +7,7 @@
 
 * {
   box-sizing: border-box;
+
   margin: 0;
   padding: 0;
 }
@@ -27,11 +28,13 @@ body {
   font-family:
     "Arial Narrow",
     "Archivo Narrow",
+    Arial,
     sans-serif;
 
   color: #deded9;
 
   -webkit-font-smoothing: antialiased;
+
   text-rendering: geometricPrecision;
 }
 
@@ -67,29 +70,36 @@ body {
   width: 100%;
   height: 42px;
 
-  padding: 0 16px;
+  padding:
+    0 16px;
 
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
-  border-bottom: 1px solid rgba(255,255,255,.055);
+  border-bottom:
+    1px solid rgba(255,255,255,.055);
 
   color: #b8b8b3;
 
   font-size: 14px;
+
   font-weight: 500;
 
   letter-spacing: -.025em;
 
-  background: rgba(5,5,5,.25);
+  background:
+    rgba(5,5,5,.25);
 
-  backdrop-filter: blur(2px);
+  backdrop-filter:
+    blur(2px);
 }
 
 
 .nav-links {
   display: flex;
+
   align-items: center;
 
   gap: 24px;
@@ -191,14 +201,14 @@ body {
       #090909 100%
     );
 
-  filter: contrast(1.08);
+  filter:
+    contrast(1.08);
 }
 
 
-/*
-   Textura fija.
-   NO se desplaza.
-*/
+/* =========================================================
+   PHYSICAL TEXTURE
+   ========================================================= */
 
 .surface::before {
   content: "";
@@ -213,15 +223,17 @@ body {
 
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.018' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
-  background-size: 220px 220px;
+  background-size:
+    220px 220px;
 
-  mix-blend-mode: soft-light;
+  mix-blend-mode:
+    soft-light;
 }
 
 
-/*
-   Viñeta.
-*/
+/* =========================================================
+   VIGNETTE
+   ========================================================= */
 
 .surface::after {
   content: "";
@@ -261,35 +273,41 @@ body {
 
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.22' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
-  background-size: 160px 160px;
+  background-size:
+    160px 160px;
 
-  mix-blend-mode: screen;
+  mix-blend-mode:
+    screen;
 }
 
 
 /* =========================================================
-   CONTENT
+   MAIN CONTENT
    ========================================================= */
 
 /*
-   AQUÍ ESTÁ EL CAMBIO IMPORTANTE.
+   DESKTOP
 
-   Desktop:
-   ┌───────────────────┬───────────────────┐
-   │                   │                   │
-   │      DABOGA       │       FOTO        │
-   │                   │                   │
-   └───────────────────┴───────────────────┘
+   ┌──────────────────────────┬─────────────────────┐
+   │                          │                     │
+   │        DABOGA            │        PHOTO        │
+   │                          │                     │
+   └──────────────────────────┴─────────────────────┘
 
-   Mobile:
-   ┌───────────────────────────────┐
-   │             FOTO              │
-   ├───────────────────────────────┤
-   │            DABOGA             │
-   └───────────────────────────────┘
 
-   Ya no usamos coordenadas absolutas
-   para foto y palabra.
+   MOBILE
+
+   ┌─────────────────────────────────────┐
+   │                                     │
+   │               PHOTO                 │
+   │                                     │
+   ├─────────────────────────────────────┤
+   │                                     │
+   │              DABOGA®                │
+   │                                     │
+   ├─────────────────────────────────────┤
+   │              METADATA               │
+   └─────────────────────────────────────┘
 */
 
 .content {
@@ -328,6 +346,7 @@ body {
   grid-row: 1;
 
   align-self: center;
+
   justify-self: center;
 
   display: block;
@@ -392,7 +411,8 @@ body {
       rgba(0,0,0,.10)
     );
 
-  mix-blend-mode: multiply;
+  mix-blend-mode:
+    multiply;
 }
 
 
@@ -414,7 +434,7 @@ body {
 
 
 /* =========================================================
-   DABOGA
+   MAIN WORDMARK
    ========================================================= */
 
 h1 {
@@ -422,12 +442,15 @@ h1 {
   grid-row: 1;
 
   align-self: center;
+
   justify-self: start;
 
   display: flex;
+
   align-items: flex-start;
 
   width: max-content;
+
   max-width: 100%;
 
   color: #efefee;
@@ -435,6 +458,7 @@ h1 {
   font-family:
     "Arial Narrow",
     "Archivo Narrow",
+    Arial,
     sans-serif;
 
   font-size:
@@ -462,113 +486,110 @@ h1 {
   transform-origin:
     left center;
 
-  text-shadow:
-    1px 0 rgba(255,255,255,.055),
-    -1px 0 rgba(0,0,0,.16);
-
   filter:
     contrast(1.08);
 }
 
 
 /* =========================================================
-   WORDMARK
+   DABOGA
    ========================================================= */
 
-.wordmark {
-  position: relative;
-
-  display: inline-block;
-
-  color: #efefee;
-
-  -webkit-text-fill-color: #efefee;
-}
-
-
 /*
-   CHECK SUTIL DENTRO DE LAS LETRAS.
+   IMPORTANTE:
 
-   La capa tiene exactamente el mismo texto
-   y queda recortada por las propias letras.
+   El check está aplicado AL TEXTO REAL.
 
-   No existe ningún rectángulo visible.
+   No existe:
+   - h1::before
+   - h1::after
+   - segundo DABOGA
+   - capa de texto duplicada
+
+   Por eso no puede aparecer otro DABOGA
+   microscópico en otra posición.
 */
 
-.wordmark::after {
-  content: "DABOGA";
-
-  position: absolute;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  font: inherit;
-
-  line-height: inherit;
-
-  letter-spacing: inherit;
-
-  white-space: nowrap;
+.wordmark {
+  display: inline-block;
 
   color: transparent;
 
-  -webkit-text-fill-color: transparent;
-
   background:
 
-    /* hilo rojo */
+    /* -------------------------
+       HILO ROJO
+       ------------------------- */
+
     linear-gradient(
       90deg,
       transparent 0,
       transparent 47px,
-      rgba(112,38,35,.15) 47px,
-      rgba(112,38,35,.15) 49px,
+      rgba(112,38,35,.16) 47px,
+      rgba(112,38,35,.16) 49px,
       transparent 49px,
       transparent 76px
     ),
 
-    /* hilo amarillo */
+    /* -------------------------
+       HILO AMARILLO
+       ------------------------- */
+
     linear-gradient(
       90deg,
       transparent 0,
       transparent 37px,
-      rgba(126,108,63,.13) 37px,
-      rgba(126,108,63,.13) 39px,
+      rgba(126,108,63,.14) 37px,
+      rgba(126,108,63,.14) 39px,
       transparent 39px,
       transparent 76px
     ),
 
-    /* líneas verticales */
+    /* -------------------------
+       VERTICALES
+       ------------------------- */
+
     repeating-linear-gradient(
       90deg,
       transparent 0,
       transparent 37px,
-      rgba(18,18,18,.13) 37px,
-      rgba(18,18,18,.13) 43px,
+      rgba(18,18,18,.16) 37px,
+      rgba(18,18,18,.16) 43px,
       transparent 43px,
       transparent 76px
     ),
 
-    /* líneas horizontales */
+    /* -------------------------
+       HORIZONTALES
+       ------------------------- */
+
     repeating-linear-gradient(
       0deg,
       transparent 0,
       transparent 37px,
-      rgba(18,18,18,.13) 37px,
-      rgba(18,18,18,.13) 43px,
+      rgba(18,18,18,.16) 37px,
+      rgba(18,18,18,.16) 43px,
       transparent 43px,
       transparent 76px
-    );
+    ),
+
+    /* -------------------------
+       BASE BLANCA
+       ------------------------- */
+
+    #efefee;
 
   background-size:
+
     76px 76px,
     76px 76px,
     76px 76px,
-    76px 76px;
+    76px 76px,
+    auto;
 
   background-position:
+
+    0 0,
     0 0,
     0 0,
     0 0,
@@ -577,36 +598,56 @@ h1 {
   -webkit-background-clip: text;
   background-clip: text;
 
-  opacity: .75;
+  -webkit-text-fill-color: transparent;
 }
 
 
 /* =========================================================
-   REGISTER MARK
+   TRADEMARK
    ========================================================= */
 
 .reg {
+  display: inline-block;
+
   position: relative;
 
-  top: -.53em;
-
-  left: .025em;
-
   flex-shrink: 0;
+
+  margin-left:
+    .10em;
+
+  top:
+    -.56em;
 
   color: #efefee;
 
   -webkit-text-fill-color: #efefee;
 
-  font-size: .09em;
+  font-family:
+    "Arial Narrow",
+    "Archivo Narrow",
+    Arial,
+    sans-serif;
+
+  /*
+     Tamaño independiente del wordmark.
+  */
+
+  font-size:
+    .115em;
 
   font-weight: 600;
 
   line-height: 1;
 
-  letter-spacing: -.02em;
+  letter-spacing:
+    -.04em;
 
-  filter: none;
+  transform:
+    none;
+
+  filter:
+    none;
 }
 
 
@@ -616,6 +657,7 @@ h1 {
 
 .bottom-info {
   grid-column: 1 / -1;
+
   grid-row: 2;
 
   display: grid;
@@ -640,16 +682,19 @@ h1 {
 
   font-weight: 500;
 
-  letter-spacing: -.035em;
+  letter-spacing:
+    -.035em;
 
-  text-transform: uppercase;
+  text-transform:
+    uppercase;
 }
 
 
 .bottom-info span:nth-child(2) {
   text-align: right;
 
-  padding-right: 3vw;
+  padding-right:
+    3vw;
 }
 
 
@@ -659,7 +704,7 @@ h1 {
 
 
 /* =========================================================
-   LAPTOP / COMPACT DESKTOP
+   COMPACT DESKTOP / LAPTOP
    ========================================================= */
 
 @media (max-width: 1100px) and (min-width: 701px) {
@@ -669,7 +714,8 @@ h1 {
       minmax(0, 1.05fr)
       minmax(0, .95fr);
 
-    column-gap: 1vw;
+    column-gap:
+      1vw;
 
     padding:
       42px
@@ -711,11 +757,6 @@ h1 {
       scaleY(1.16);
   }
 
-
-  .bottom-info {
-    bottom: 0;
-  }
-
 }
 
 
@@ -725,20 +766,17 @@ h1 {
 
 @media (max-width: 700px) {
 
-  html,
-  body {
-    overflow: hidden;
-  }
-
-
   .nav {
     height: 38px;
 
-    padding: 0 10px;
+    padding:
+      0 10px;
 
-    font-size: 11px;
+    font-size:
+      11px;
 
-    letter-spacing: -.045em;
+    letter-spacing:
+      -.045em;
   }
 
 
@@ -747,7 +785,8 @@ h1 {
 
     gap: 0;
 
-    justify-content: space-between;
+    justify-content:
+      space-between;
   }
 
 
@@ -761,19 +800,20 @@ h1 {
   }
 
 
-  /*
-     UNA SOLA COLUMNA.
-     FOTO ARRIBA.
-     DABOGA DEBAJO.
-  */
+  /* -----------------------------------------
+     MOBILE STRUCTURE
+     ----------------------------------------- */
 
   .content {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
 
     grid-template-rows:
       minmax(0, 1fr)
       auto
       auto;
+
+    column-gap: 0;
 
     row-gap: 0;
 
@@ -784,11 +824,17 @@ h1 {
   }
 
 
+  /* -----------------------------------------
+     PHOTO
+     ----------------------------------------- */
+
   .image-link {
     grid-column: 1;
+
     grid-row: 1;
 
     align-self: center;
+
     justify-self: center;
 
     width:
@@ -797,9 +843,11 @@ h1 {
         34vh
       );
 
-    max-width: 390px;
+    max-width:
+      390px;
 
-    transform: none;
+    transform:
+      none;
   }
 
 
@@ -809,16 +857,24 @@ h1 {
   }
 
 
+  /* -----------------------------------------
+     DABOGA
+     ----------------------------------------- */
+
   h1 {
     grid-column: 1;
+
     grid-row: 2;
 
     align-self: end;
+
     justify-self: start;
 
-    width: max-content;
+    width:
+      max-content;
 
-    max-width: 100%;
+    max-width:
+      100%;
 
     font-size:
       clamp(
@@ -827,22 +883,29 @@ h1 {
         170px
       );
 
-    line-height: .58;
+    line-height:
+      .58;
 
     transform:
-      translateY(3%)
+      translateY(0)
       scaleX(.61)
-      scaleY(1.15);
+      scaleY(1);
   }
 
 
+  /* -----------------------------------------
+     BOTTOM
+     ----------------------------------------- */
+
   .bottom-info {
     grid-column: 1;
+
     grid-row: 3;
 
     width: 100%;
 
-    margin-top: 32px;
+    margin-top:
+      32px;
 
     font-size:
       clamp(
@@ -859,7 +922,8 @@ h1 {
 
 
   .bottom-info span:nth-child(2) {
-    padding-right: 2vw;
+    padding-right:
+      2vw;
   }
 
 }
@@ -872,13 +936,17 @@ h1 {
 @media (max-width: 430px) {
 
   .nav {
-    height: 36px;
+    height:
+      36px;
 
-    padding: 0 8px;
+    padding:
+      0 8px;
 
-    font-size: 9px;
+    font-size:
+      9px;
 
-    letter-spacing: -.055em;
+    letter-spacing:
+      -.055em;
   }
 
 
@@ -890,20 +958,25 @@ h1 {
   }
 
 
-  /*
-     La foto nunca comparte fila con DABOGA.
-  */
+  /* -----------------------------------------
+     PHOTO
+     ----------------------------------------- */
 
   .image-link {
     width:
       min(
         68vw,
-        35vh
+        34vh
       );
 
-    max-width: 300px;
+    max-width:
+      300px;
   }
 
+
+  /* -----------------------------------------
+     WORDMARK
+     ----------------------------------------- */
 
   h1 {
     font-size:
@@ -914,18 +987,41 @@ h1 {
       );
 
     transform:
-      translateY(3%)
+      translateY(0)
       scaleX(.60)
-      scaleY(1.15);
+      scaleY(1);
   }
 
 
+  /* -----------------------------------------
+     TRADEMARK
+     ----------------------------------------- */
+
+  .reg {
+    font-size:
+      .115em;
+
+    top:
+      -.56em;
+
+    margin-left:
+      .10em;
+  }
+
+
+  /* -----------------------------------------
+     INFO
+     ----------------------------------------- */
+
   .bottom-info {
-    margin-top: 28px;
+    margin-top:
+      28px;
 
-    font-size: 9px;
+    font-size:
+      9px;
 
-    letter-spacing: -.045em;
+    letter-spacing:
+      -.045em;
   }
 
 }
@@ -938,9 +1034,11 @@ h1 {
 @media (max-width: 360px) {
 
   .nav {
-    padding: 0 6px;
+    padding:
+      0 6px;
 
-    font-size: 8px;
+    font-size:
+      8px;
   }
 
 
@@ -956,7 +1054,7 @@ h1 {
     width:
       min(
         66vw,
-        33vh
+        32vh
       );
   }
 
@@ -970,16 +1068,30 @@ h1 {
       );
 
     transform:
-      translateY(3%)
+      translateY(0)
       scaleX(.59)
-      scaleY(1.14);
+      scaleY(1);
+  }
+
+
+  .reg {
+    font-size:
+      .115em;
+
+    top:
+      -.56em;
+
+    margin-left:
+      .10em;
   }
 
 
   .bottom-info {
-    margin-top: 24px;
+    margin-top:
+      24px;
 
-    font-size: 8px;
+    font-size:
+      8px;
   }
 
 }
@@ -992,8 +1104,11 @@ h1 {
 @media (max-height: 650px) and (max-width: 700px) {
 
   .content {
-    padding-top: 38px;
-    padding-bottom: 34px;
+    padding-top:
+      38px;
+
+    padding-bottom:
+      34px;
   }
 
 
@@ -1001,7 +1116,7 @@ h1 {
     width:
       min(
         55vw,
-        30vh
+        28vh
       );
   }
 
@@ -1017,7 +1132,8 @@ h1 {
 
 
   .bottom-info {
-    margin-top: 20px;
+    margin-top:
+      20px;
   }
 
 }
@@ -1032,7 +1148,8 @@ h1 {
   .nav a::after,
   .image-link,
   .image-link img {
-    transition: none;
+    transition:
+      none;
   }
 
 }
@@ -1048,7 +1165,8 @@ h1 {
 
   overflow: hidden;
 
-  background: #080808;
+  background:
+    #080808;
 }
 
 
@@ -1072,7 +1190,7 @@ h1 {
 
 
 /* =========================================================
-   PRESAVE STATIC TEXTURE
+   PRESAVE TEXTURE
    ========================================================= */
 
 .presave::before {
@@ -1082,13 +1200,15 @@ h1 {
 
   inset: 0;
 
-  opacity: .055;
+  opacity:
+    .055;
 
   background-image:
 
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.02' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
-  background-size: 180px 180px;
+  background-size:
+    180px 180px;
 }
 
 
@@ -1124,15 +1244,18 @@ h1 {
 
   pointer-events: none;
 
-  opacity: .04;
+  opacity:
+    .04;
 
   background-image:
 
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.22' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
-  background-size: 160px 160px;
+  background-size:
+    160px 160px;
 
-  mix-blend-mode: screen;
+  mix-blend-mode:
+    screen;
 }
 
 
@@ -1151,15 +1274,19 @@ h1 {
   transform:
     translate(-50%, -50%);
 
-  width: 90vw;
+  width:
+    90vw;
 
-  text-align: center;
+  text-align:
+    center;
 
-  color: #efefee;
+  color:
+    #efefee;
 
   font-family:
     "Arial Narrow",
     "Archivo Narrow",
+    Arial,
     sans-serif;
 
   font-size:
@@ -1169,11 +1296,14 @@ h1 {
       21px
     );
 
-  font-weight: 500;
+  font-weight:
+    500;
 
-  letter-spacing: -.035em;
+  letter-spacing:
+    -.035em;
 
-  line-height: 1.2;
+  line-height:
+    1.2;
 
   text-shadow:
     .5px 0 rgba(255,255,255,.06),
@@ -1188,11 +1318,14 @@ h1 {
 @media (max-width: 430px) {
 
   .presave-message {
-    width: 94vw;
+    width:
+      94vw;
 
-    font-size: 12px;
+    font-size:
+      12px;
 
-    letter-spacing: -.04em;
+    letter-spacing:
+      -.04em;
   }
 
 }
