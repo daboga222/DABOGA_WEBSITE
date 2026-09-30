@@ -1,41 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&display=swap');
-
-
 /* =========================================================
-   RESET
+   DABOGA — BASE
    ========================================================= */
 
 * {
-  box-sizing: border-box;
-
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-
 
 html,
 body {
   width: 100%;
-  height: 100%;
-
-  overflow: hidden;
-
-  background: #050505;
+  min-height: 100%;
 }
 
+html {
+  background: #090909;
+}
 
 body {
+  background: #090909;
+  color: #efefee;
   font-family:
     "Arial Narrow",
     "Archivo Narrow",
     Arial,
     sans-serif;
-
-  color: #deded9;
-
-  -webkit-font-smoothing: antialiased;
-
-  text-rendering: geometricPrecision;
+  overflow-x: hidden;
 }
 
 
@@ -45,13 +36,70 @@ body {
 
 .site {
   position: relative;
-
   width: 100%;
-  height: 100dvh;
+  min-height: 100vh;
+  background: #090909;
+}
 
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.home {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
   overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 50% 48%,
+      rgba(255,255,255,.025) 0%,
+      rgba(255,255,255,.008) 34%,
+      transparent 72%
+    ),
+    #090909;
+}
 
-  background: #050505;
+
+/* material / plaster */
+
+.surface {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 25% 35%,
+      rgba(255,255,255,.018),
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 78% 62%,
+      rgba(255,255,255,.012),
+      transparent 44%
+    );
+
+  opacity: .9;
+}
+
+
+/* static grain */
+
+.grain {
+  position: absolute;
+  inset: -20%;
+  z-index: 2;
+  pointer-events: none;
+
+  opacity: .055;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E");
+
+  background-size: 180px 180px;
 }
 
 
@@ -60,63 +108,60 @@ body {
    ========================================================= */
 
 .nav {
-  position: fixed;
-
-  z-index: 30;
-
+  position: absolute;
   top: 0;
   left: 0;
 
-  width: 100%;
-  height: 42px;
+  z-index: 20;
 
-  padding:
-    0 16px;
+  width: 100%;
+  height: 58px;
 
   display: flex;
-
   align-items: center;
   justify-content: space-between;
 
+  padding:
+    0
+    4vw;
+
   border-bottom:
-    1px solid rgba(255,255,255,.055);
-
-  color: #b8b8b3;
-
-  font-size: 14px;
-
-  font-weight: 500;
-
-  letter-spacing: -.025em;
-
-  background:
-    rgba(5,5,5,.25);
-
-  backdrop-filter:
-    blur(2px);
+    1px solid rgba(255,255,255,.10);
 }
 
 
 .nav-links {
   display: flex;
-
   align-items: center;
 
-  gap: 24px;
+  gap: 32px;
 
-  white-space: nowrap;
+  width: max-content;
 }
 
 
 .nav a {
   position: relative;
 
-  color: inherit;
+  display: inline-block;
 
+  color: #efefee;
   text-decoration: none;
 
-  transition:
-    color .2s ease;
+  font-family:
+    "Arial Narrow",
+    "Archivo Narrow",
+    Arial,
+    sans-serif;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: -.035em;
+
+  opacity: .9;
 }
 
 
@@ -126,158 +171,39 @@ body {
   position: absolute;
 
   left: 0;
-  right: 100%;
+  bottom: -7px;
 
-  bottom: -4px;
-
+  width: 0;
   height: 1px;
 
-  background: currentColor;
+  background: #efefee;
 
   transition:
-    right .25s ease;
-}
-
-
-.nav a:hover {
-  color: #fff;
+    width .25s ease;
 }
 
 
 .nav a:hover::after,
 .nav a.active::after {
-  right: 0;
+  width: 100%;
 }
 
 
 .nav-mark {
-  flex-shrink: 0;
+  color: #efefee;
 
-  color: #62625e;
+  font-family:
+    "Arial Narrow",
+    "Archivo Narrow",
+    Arial,
+    sans-serif;
 
-  font-size: 11px;
-}
+  font-size: 13px;
+  font-weight: 500;
 
+  line-height: 1;
 
-/* =========================================================
-   HOME
-   ========================================================= */
-
-.home {
-  position: relative;
-
-  width: 100%;
-  height: 100dvh;
-
-  overflow: hidden;
-
-  background: #090909;
-}
-
-
-/* =========================================================
-   STATIC DARK ROOM
-   ========================================================= */
-
-.surface {
-  position: absolute;
-
-  inset: 0;
-
-  background:
-
-    radial-gradient(
-      ellipse at 48% 43%,
-      rgba(95,95,90,.07) 0%,
-      rgba(45,45,42,.035) 34%,
-      transparent 68%
-    ),
-
-    linear-gradient(
-      112deg,
-      #080808 0%,
-      #0d0d0c 32%,
-      #111110 50%,
-      #090909 100%
-    );
-
-  filter:
-    contrast(1.08);
-}
-
-
-/* =========================================================
-   PHYSICAL TEXTURE
-   ========================================================= */
-
-.surface::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  opacity: .06;
-
-  background-image:
-
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.018' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-
-  background-size:
-    220px 220px;
-
-  mix-blend-mode:
-    soft-light;
-}
-
-
-/* =========================================================
-   VIGNETTE
-   ========================================================= */
-
-.surface::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  background:
-
-    radial-gradient(
-      ellipse at center,
-      transparent 40%,
-      rgba(0,0,0,.48) 100%
-    );
-}
-
-
-/* =========================================================
-   STATIC SCREEN GRAIN
-   ========================================================= */
-
-.grain {
-  position: absolute;
-
-  z-index: 4;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  opacity: .045;
-
-  background-image:
-
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.22' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-
-  background-size:
-    160px 160px;
-
-  mix-blend-mode:
-    screen;
+  opacity: .9;
 }
 
 
@@ -285,40 +211,26 @@ body {
    MAIN CONTENT
    ========================================================= */
 
-/*
-   DESKTOP
-
-   ┌──────────────────────────┬─────────────────────┐
-   │                          │                     │
-   │        DABOGA            │        PHOTO        │
-   │                          │                     │
-   └──────────────────────────┴─────────────────────┘
-
-
-   MOBILE
-
-   ┌─────────────────────────────────────┐
-   │                                     │
-   │               PHOTO                 │
-   │                                     │
-   ├─────────────────────────────────────┤
-   │                                     │
-   │              DABOGA®                │
-   │                                     │
-   ├─────────────────────────────────────┤
-   │              METADATA               │
-   └─────────────────────────────────────┘
-*/
-
 .content {
   position: relative;
 
   z-index: 5;
 
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
 
   display: grid;
+
+  /*
+    FUNDAMENTAL GRID
+
+    Desktop:
+    ┌────────────────────┬────────────────────┐
+    │                    │                    │
+    │      DABOGA        │       IMAGE        │
+    │                    │                    │
+    └────────────────────┴────────────────────┘
+  */
 
   grid-template-columns:
     minmax(0, 1.12fr)
@@ -331,9 +243,9 @@ body {
   column-gap: 2vw;
 
   padding:
-    42px
+    58px
     4vw
-    58px;
+    54px;
 }
 
 
@@ -346,18 +258,22 @@ body {
   grid-row: 1;
 
   align-self: center;
-
   justify-self: center;
 
   display: block;
 
+  /*
+    La imagen ya no crece hasta dominar la composición.
+    Su tamaño depende de la ventana pero tiene un límite.
+  */
+
   width:
     min(
-      32vw,
-      42vh
+      25vw,
+      34vh
     );
 
-  max-width: 500px;
+  max-width: 390px;
 
   aspect-ratio: 1 / 1;
 
@@ -365,14 +281,25 @@ body {
 
   filter:
     grayscale(1)
-    contrast(1.15);
+    contrast(1.12);
 
   transform:
-    translate(3%, -4%);
+    translate(2%, -3%);
 
   transition:
     transform .45s cubic-bezier(.2,.8,.2,1),
     filter .3s ease;
+}
+
+
+.image-link:hover {
+  transform:
+    translate(2%, -3%)
+    scale(1.012);
+
+  filter:
+    grayscale(1)
+    contrast(1.16);
 }
 
 
@@ -384,57 +311,13 @@ body {
 
   object-fit: cover;
 
-  filter:
-    grayscale(1)
-    contrast(1.08);
-
-  transition:
-    transform .6s cubic-bezier(.2,.8,.2,1);
-}
-
-
-.image-link::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.055),
-      transparent 42%,
-      rgba(0,0,0,.10)
-    );
-
-  mix-blend-mode:
-    multiply;
-}
-
-
-.image-link:hover {
-  transform:
-    translate(3%, -4%)
-    scale(1.025);
-
-  filter:
-    grayscale(1)
-    contrast(1.22);
-}
-
-
-.image-link:hover img {
-  transform:
-    scale(1.02);
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 
 /* =========================================================
-   MAIN WORDMARK
+   DABOGA WORDMARK
    ========================================================= */
 
 h1 {
@@ -442,15 +325,12 @@ h1 {
   grid-row: 1;
 
   align-self: center;
-
   justify-self: start;
 
   display: flex;
-
   align-items: flex-start;
 
   width: max-content;
-
   max-width: 100%;
 
   color: #efefee;
@@ -478,6 +358,11 @@ h1 {
 
   user-select: none;
 
+  /*
+    Esta transformación es estructural:
+    mantiene el aspecto estrecho del logotipo.
+  */
+
   transform:
     translateY(2%)
     scaleX(.61)
@@ -492,23 +377,8 @@ h1 {
 
 
 /* =========================================================
-   DABOGA
+   CHECK / TEXTURE DENTRO DE DABOGA
    ========================================================= */
-
-/*
-   IMPORTANTE:
-
-   El check está aplicado AL TEXTO REAL.
-
-   No existe:
-   - h1::before
-   - h1::after
-   - segundo DABOGA
-   - capa de texto duplicada
-
-   Por eso no puede aparecer otro DABOGA
-   microscópico en otra posición.
-*/
 
 .wordmark {
   display: inline-block;
@@ -516,11 +386,6 @@ h1 {
   color: transparent;
 
   background:
-
-    /* -------------------------
-       HILO ROJO
-       ------------------------- */
-
     linear-gradient(
       90deg,
       transparent 0,
@@ -530,10 +395,6 @@ h1 {
       transparent 49px,
       transparent 76px
     ),
-
-    /* -------------------------
-       HILO AMARILLO
-       ------------------------- */
 
     linear-gradient(
       90deg,
@@ -545,10 +406,6 @@ h1 {
       transparent 76px
     ),
 
-    /* -------------------------
-       VERTICALES
-       ------------------------- */
-
     repeating-linear-gradient(
       90deg,
       transparent 0,
@@ -558,10 +415,6 @@ h1 {
       transparent 43px,
       transparent 76px
     ),
-
-    /* -------------------------
-       HORIZONTALES
-       ------------------------- */
 
     repeating-linear-gradient(
       0deg,
@@ -573,14 +426,9 @@ h1 {
       transparent 76px
     ),
 
-    /* -------------------------
-       BASE BLANCA
-       ------------------------- */
-
     #efefee;
 
   background-size:
-
     76px 76px,
     76px 76px,
     76px 76px,
@@ -588,7 +436,6 @@ h1 {
     auto;
 
   background-position:
-
     0 0,
     0 0,
     0 0,
@@ -603,7 +450,7 @@ h1 {
 
 
 /* =========================================================
-   TRADEMARK
+   REGISTERED MARK
    ========================================================= */
 
 .reg {
@@ -613,11 +460,9 @@ h1 {
 
   flex-shrink: 0;
 
-  margin-left:
-    .10em;
+  margin-left: .10em;
 
-  top:
-    -.56em;
+  top: -.56em;
 
   color: #efefee;
 
@@ -629,25 +474,17 @@ h1 {
     Arial,
     sans-serif;
 
-  /*
-     Tamaño independiente del wordmark.
-  */
-
-  font-size:
-    .115em;
+  font-size: .115em;
 
   font-weight: 600;
 
   line-height: 1;
 
-  letter-spacing:
-    -.04em;
+  letter-spacing: -.04em;
 
-  transform:
-    none;
+  transform: none;
 
-  filter:
-    none;
+  filter: none;
 }
 
 
@@ -657,106 +494,49 @@ h1 {
 
 .bottom-info {
   grid-column: 1 / -1;
-
   grid-row: 2;
+
+  width: 100%;
 
   display: grid;
 
   grid-template-columns:
+    auto
     1fr
-    1fr
-    1fr;
+    auto;
 
   align-items: end;
 
-  width: 100%;
+  font-family:
+    "Arial Narrow",
+    "Archivo Narrow",
+    Arial,
+    sans-serif;
 
-  color: #777772;
+  font-size: 11px;
 
-  font-size:
-    clamp(
-      10px,
-      .85vw,
-      15px
-    );
+  line-height: 1;
 
-  font-weight: 500;
+  letter-spacing: -.025em;
 
-  letter-spacing:
-    -.035em;
+  color: #efefee;
 
-  text-transform:
-    uppercase;
+  opacity: .78;
+}
+
+
+.bottom-info span:nth-child(1) {
+  justify-self: start;
 }
 
 
 .bottom-info span:nth-child(2) {
-  text-align: right;
-
-  padding-right:
-    3vw;
+  justify-self: center;
 }
 
 
 .bottom-info span:nth-child(3) {
-  text-align: right;
-}
-
-
-/* =========================================================
-   COMPACT DESKTOP / LAPTOP
-   ========================================================= */
-
-@media (max-width: 1100px) and (min-width: 701px) {
-
-  .content {
-    grid-template-columns:
-      minmax(0, 1.05fr)
-      minmax(0, .95fr);
-
-    column-gap:
-      1vw;
-
-    padding:
-      42px
-      4vw
-      50px;
-  }
-
-
-  .image-link {
-    width:
-      min(
-        32vw,
-        38vh
-      );
-
-    transform:
-      translate(1%, -3%);
-  }
-
-
-  .image-link:hover {
-    transform:
-      translate(1%, -3%)
-      scale(1.025);
-  }
-
-
-  h1 {
-    font-size:
-      clamp(
-        100px,
-        min(18vw, 25vh),
-        285px
-      );
-
-    transform:
-      translateY(2%)
-      scaleX(.60)
-      scaleY(1.16);
-  }
-
+  justify-self: end;
 }
 
 
@@ -764,296 +544,24 @@ h1 {
    TABLET
    ========================================================= */
 
-@media (max-width: 700px) {
-
-  .nav {
-    height: 38px;
-
-    padding:
-      0 10px;
-
-    font-size:
-      11px;
-
-    letter-spacing:
-      -.045em;
-  }
-
-
-  .nav-links {
-    width: 100%;
-
-    gap: 0;
-
-    justify-content:
-      space-between;
-  }
-
-
-  .nav-links a {
-    flex-shrink: 1;
-  }
-
-
-  .nav-mark {
-    display: none;
-  }
-
-
-  /* -----------------------------------------
-     MOBILE STRUCTURE
-     ----------------------------------------- */
+@media (max-width: 900px) and (min-width: 701px) {
 
   .content {
     grid-template-columns:
-      1fr;
-
-    grid-template-rows:
       minmax(0, 1fr)
-      auto
-      auto;
-
-    column-gap: 0;
-
-    row-gap: 0;
+      minmax(0, .9fr);
 
     padding:
-      38px
-      6vw
+      58px
+      5vw
       54px;
   }
 
 
-  /* -----------------------------------------
-     PHOTO
-     ----------------------------------------- */
-
-  .image-link {
-    grid-column: 1;
-
-    grid-row: 1;
-
-    align-self: center;
-
-    justify-self: center;
-
-    width:
-      min(
-        62vw,
-        34vh
-      );
-
-    max-width:
-      390px;
-
-    transform:
-      none;
-  }
-
-
-  .image-link:hover {
-    transform:
-      scale(1.02);
-  }
-
-
-  /* -----------------------------------------
-     DABOGA
-     ----------------------------------------- */
-
-  h1 {
-    grid-column: 1;
-
-    grid-row: 2;
-
-    align-self: end;
-
-    justify-self: start;
-
-    width:
-      max-content;
-
-    max-width:
-      100%;
-
-    font-size:
-      clamp(
-        88px,
-        25vw,
-        170px
-      );
-
-    line-height:
-      .58;
-
-    transform:
-      translateY(0)
-      scaleX(.61)
-      scaleY(1);
-  }
-
-
-  /* -----------------------------------------
-     BOTTOM
-     ----------------------------------------- */
-
-  .bottom-info {
-    grid-column: 1;
-
-    grid-row: 3;
-
-    width: 100%;
-
-    margin-top:
-      32px;
-
-    font-size:
-      clamp(
-        9px,
-        2.6vw,
-        12px
-      );
-
-    grid-template-columns:
-      auto
-      1fr
-      auto;
-  }
-
-
-  .bottom-info span:nth-child(2) {
-    padding-right:
-      2vw;
-  }
-
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 430px) {
-
-  .nav {
-    height:
-      36px;
-
-    padding:
-      0 8px;
-
-    font-size:
-      9px;
-
-    letter-spacing:
-      -.055em;
-  }
-
-
-  .content {
-    padding:
-      36px
-      6vw
-      42px;
-  }
-
-
-  /* -----------------------------------------
-     PHOTO
-     ----------------------------------------- */
-
   .image-link {
     width:
       min(
-        68vw,
-        34vh
-      );
-
-    max-width:
-      300px;
-  }
-
-
-  /* -----------------------------------------
-     WORDMARK
-     ----------------------------------------- */
-
-  h1 {
-    font-size:
-      clamp(
-        82px,
-        25vw,
-        125px
-      );
-
-    transform:
-      translateY(0)
-      scaleX(.60)
-      scaleY(1);
-  }
-
-
-  /* -----------------------------------------
-     TRADEMARK
-     ----------------------------------------- */
-
-  .reg {
-    font-size:
-      .115em;
-
-    top:
-      -.56em;
-
-    margin-left:
-      .10em;
-  }
-
-
-  /* -----------------------------------------
-     INFO
-     ----------------------------------------- */
-
-  .bottom-info {
-    margin-top:
-      28px;
-
-    font-size:
-      9px;
-
-    letter-spacing:
-      -.045em;
-  }
-
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 360px) {
-
-  .nav {
-    padding:
-      0 6px;
-
-    font-size:
-      8px;
-  }
-
-
-  .content {
-    padding:
-      36px
-      5vw
-      38px;
-  }
-
-
-  .image-link {
-    width:
-      min(
-        66vw,
+        28vw,
         32vh
       );
   }
@@ -1062,61 +570,243 @@ h1 {
   h1 {
     font-size:
       clamp(
-        76px,
-        25vw,
-        108px
+        100px,
+        20vw,
+        270px
       );
-
-    transform:
-      translateY(0)
-      scaleX(.59)
-      scaleY(1);
   }
-
-
-  .reg {
-    font-size:
-      .115em;
-
-    top:
-      -.56em;
-
-    margin-left:
-      .10em;
-  }
-
-
-  .bottom-info {
-    margin-top:
-      24px;
-
-    font-size:
-      8px;
-  }
-
 }
 
 
 /* =========================================================
-   VERY SHORT MOBILE
+   MOBILE
    ========================================================= */
 
-@media (max-height: 650px) and (max-width: 700px) {
+@media (max-width: 700px) {
+
+  .nav {
+    height: 58px;
+
+    padding:
+      0
+      18px;
+  }
+
+
+  /*
+    IMPORTANTE:
+    no repartimos los enlaces con space-between.
+    Mantienen la misma lógica horizontal del desktop.
+  */
+
+  .nav-links {
+    gap: 0;
+
+    width: 100%;
+
+    justify-content: space-between;
+  }
+
+
+  .nav a {
+    font-size: 12px;
+  }
+
+
+  .nav-mark {
+    display: none;
+  }
+
+
+  /* ---------------------------------------------
+     MOBILE GRID
+
+     ┌────────────────────────────┐
+     │                            │
+     │          IMAGE             │
+     │                            │
+     ├────────────────────────────┤
+     │                            │
+     │         DABOGA             │
+     │                            │
+     ├────────────────────────────┤
+     │       METADATA             │
+     └────────────────────────────┘
+  */
 
   .content {
-    padding-top:
-      38px;
+    min-height: 100svh;
 
-    padding-bottom:
-      34px;
+    grid-template-columns: 1fr;
+
+    grid-template-rows:
+      minmax(0, 1fr)
+      auto
+      auto;
+
+    column-gap: 0;
+    row-gap: 0;
+
+    padding:
+      58px
+      6vw
+      46px;
+  }
+
+
+  /* ---------------------------------------------
+     IMAGE
+
+     Antes estaba ocupando demasiado.
+     Ahora queda como elemento de la misma
+     composición, no como protagonista aislado.
+  */
+
+  .image-link {
+    grid-column: 1;
+    grid-row: 1;
+
+    align-self: center;
+    justify-self: center;
+
+    width:
+      min(
+        46vw,
+        310px
+      );
+
+    max-width: 310px;
+
+    transform: none;
+  }
+
+
+  .image-link:hover {
+    transform: none;
+  }
+
+
+  /* ---------------------------------------------
+     DABOGA
+  */
+
+  h1 {
+    grid-column: 1;
+    grid-row: 2;
+
+    align-self: end;
+    justify-self: start;
+
+    width: max-content;
+    max-width: 100%;
+
+    margin-top: 26px;
+
+    font-size:
+      clamp(
+        88px,
+        22vw,
+        165px
+      );
+
+    line-height: .58;
+
+    transform:
+      translateY(0)
+      scaleX(.61)
+      scaleY(1);
+  }
+
+
+  /* ---------------------------------------------
+     REGISTERED
+  */
+
+  .reg {
+    top: -.56em;
+  }
+
+
+  /* ---------------------------------------------
+     BOTTOM
+  */
+
+  .bottom-info {
+    grid-column: 1;
+    grid-row: 3;
+
+    width: 100%;
+
+    margin-top: 30px;
+
+    display: grid;
+
+    grid-template-columns:
+      auto
+      1fr
+      auto;
+
+    font-size:
+      clamp(
+        9px,
+        2.6vw,
+        12px
+      );
+  }
+
+
+  .bottom-info span:nth-child(1) {
+    justify-self: start;
+  }
+
+
+  .bottom-info span:nth-child(2) {
+    justify-self: center;
+  }
+
+
+  .bottom-info span:nth-child(3) {
+    justify-self: end;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .nav {
+    padding:
+      0
+      16px;
+  }
+
+
+  .nav-links {
+    gap: 0;
+  }
+
+
+  .nav a {
+    font-size: 10px;
+  }
+
+
+  .content {
+    padding:
+      58px
+      6vw
+      40px;
   }
 
 
   .image-link {
     width:
       min(
-        55vw,
-        28vh
+        48vw,
+        250px
       );
   }
 
@@ -1124,34 +814,20 @@ h1 {
   h1 {
     font-size:
       clamp(
-        72px,
+        78px,
         22vw,
-        105px
+        120px
       );
+
+    margin-top: 24px;
   }
 
 
   .bottom-info {
-    margin-top:
-      20px;
+    margin-top: 27px;
+
+    font-size: 9px;
   }
-
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .nav a::after,
-  .image-link,
-  .image-link img {
-    transition:
-      none;
-  }
-
 }
 
 
@@ -1160,13 +836,11 @@ h1 {
    ========================================================= */
 
 .presave-page {
-  width: 100%;
-  height: 100dvh;
+  min-height: 100vh;
+
+  background: #090909;
 
   overflow: hidden;
-
-  background:
-    #080808;
 }
 
 
@@ -1174,114 +848,46 @@ h1 {
   position: relative;
 
   width: 100%;
-  height: 100dvh;
+  min-height: 100vh;
 
-  overflow: hidden;
+  display: flex;
 
-  background:
-
-    radial-gradient(
-      ellipse at 50% 50%,
-      #151514 0%,
-      #0b0b0a 48%,
-      #050505 100%
-    );
-}
-
-
-/* =========================================================
-   PRESAVE TEXTURE
-   ========================================================= */
-
-.presave::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  opacity:
-    .055;
-
-  background-image:
-
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.02' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-
-  background-size:
-    180px 180px;
-}
-
-
-.presave::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  pointer-events: none;
+  align-items: center;
+  justify-content: center;
 
   background:
-
     radial-gradient(
       ellipse at center,
-      transparent 40%,
-      rgba(0,0,0,.52) 100%
-    );
+      rgba(255,255,255,.018),
+      transparent 65%
+    ),
+    #090909;
 }
 
-
-/* =========================================================
-   PRESAVE NOISE
-   ========================================================= */
 
 .presave-noise {
   position: absolute;
-
-  z-index: 3;
-
-  inset: 0;
+  inset: -20%;
 
   pointer-events: none;
 
-  opacity:
-    .04;
+  opacity: .055;
 
   background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E");
 
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.22' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-
-  background-size:
-    160px 160px;
-
-  mix-blend-mode:
-    screen;
+  background-size: 180px 180px;
 }
 
 
-/* =========================================================
-   PRESAVE MESSAGE
-   ========================================================= */
-
 .presave-message {
-  position: absolute;
+  position: relative;
 
   z-index: 5;
 
-  left: 50%;
-  top: 50%;
+  max-width: 90vw;
 
-  transform:
-    translate(-50%, -50%);
-
-  width:
-    90vw;
-
-  text-align:
-    center;
-
-  color:
-    #efefee;
+  color: #efefee;
 
   font-family:
     "Arial Narrow",
@@ -1291,41 +897,16 @@ h1 {
 
   font-size:
     clamp(
-      15px,
-      1.4vw,
-      21px
+      16px,
+      2vw,
+      28px
     );
 
-  font-weight:
-    500;
+  font-weight: 400;
 
-  letter-spacing:
-    -.035em;
+  line-height: 1.4;
 
-  line-height:
-    1.2;
+  letter-spacing: -.045em;
 
-  text-shadow:
-    .5px 0 rgba(255,255,255,.06),
-    -.5px 0 rgba(0,0,0,.10);
-}
-
-
-/* =========================================================
-   PRESAVE MOBILE
-   ========================================================= */
-
-@media (max-width: 430px) {
-
-  .presave-message {
-    width:
-      94vw;
-
-    font-size:
-      12px;
-
-    letter-spacing:
-      -.04em;
-  }
-
+  text-align: center;
 }
