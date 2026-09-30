@@ -44,7 +44,6 @@ body {
   position: relative;
 
   width: 100%;
-  height: 100vh;
   height: 100dvh;
 
   overflow: hidden;
@@ -83,7 +82,7 @@ body {
 
   letter-spacing: -.025em;
 
-  background: rgba(5,5,5,.20);
+  background: rgba(5,5,5,.25);
 
   backdrop-filter: blur(2px);
 }
@@ -125,7 +124,8 @@ body {
 
   background: currentColor;
 
-  transition: right .25s ease;
+  transition:
+    right .25s ease;
 }
 
 
@@ -150,14 +150,13 @@ body {
 
 
 /* =========================================================
-   HOME / ROOM
+   HOME
    ========================================================= */
 
 .home {
   position: relative;
 
   width: 100%;
-  height: 100vh;
   height: 100dvh;
 
   overflow: hidden;
@@ -178,8 +177,8 @@ body {
   background:
 
     radial-gradient(
-      ellipse at 48% 44%,
-      rgba(95,95,90,.075) 0%,
+      ellipse at 48% 43%,
+      rgba(95,95,90,.07) 0%,
       rgba(45,45,42,.035) 34%,
       transparent 68%
     ),
@@ -197,8 +196,8 @@ body {
 
 
 /*
-   Una textura física casi inmóvil.
-   No se desplaza por la pantalla.
+   Textura fija.
+   NO se desplaza.
 */
 
 .surface::before {
@@ -208,7 +207,7 @@ body {
 
   inset: 0;
 
-  opacity: .075;
+  opacity: .06;
 
   background-image:
 
@@ -237,14 +236,14 @@ body {
 
     radial-gradient(
       ellipse at center,
-      transparent 38%,
+      transparent 40%,
       rgba(0,0,0,.48) 100%
     );
 }
 
 
 /* =========================================================
-   VERY SUBTLE SCREEN GRAIN
+   STATIC SCREEN GRAIN
    ========================================================= */
 
 .grain {
@@ -256,7 +255,7 @@ body {
 
   pointer-events: none;
 
-  opacity: .055;
+  opacity: .045;
 
   background-image:
 
@@ -272,6 +271,27 @@ body {
    CONTENT
    ========================================================= */
 
+/*
+   AQUÍ ESTÁ EL CAMBIO IMPORTANTE.
+
+   Desktop:
+   ┌───────────────────┬───────────────────┐
+   │                   │                   │
+   │      DABOGA       │       FOTO        │
+   │                   │                   │
+   └───────────────────┴───────────────────┘
+
+   Mobile:
+   ┌───────────────────────────────┐
+   │             FOTO              │
+   ├───────────────────────────────┤
+   │            DABOGA             │
+   └───────────────────────────────┘
+
+   Ya no usamos coordenadas absolutas
+   para foto y palabra.
+*/
+
 .content {
   position: relative;
 
@@ -279,6 +299,23 @@ body {
 
   width: 100%;
   height: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.12fr)
+    minmax(0, .88fr);
+
+  grid-template-rows:
+    minmax(0, 1fr)
+    auto;
+
+  column-gap: 2vw;
+
+  padding:
+    42px
+    4vw
+    58px;
 }
 
 
@@ -287,32 +324,32 @@ body {
    ========================================================= */
 
 .image-link {
-  position: absolute;
+  grid-column: 2;
+  grid-row: 1;
 
-  z-index: 12;
+  align-self: center;
+  justify-self: center;
 
   display: block;
 
-  aspect-ratio: 1 / 1;
-
   width:
-    clamp(
-      270px,
-      min(32vw, 42vh),
-      500px
+    min(
+      32vw,
+      42vh
     );
 
-  left: 80%;
-  top: 35%;
+  max-width: 500px;
 
-  transform:
-    translate(-50%, -50%);
+  aspect-ratio: 1 / 1;
 
   overflow: hidden;
 
   filter:
     grayscale(1)
     contrast(1.15);
+
+  transform:
+    translate(3%, -4%);
 
   transition:
     transform .45s cubic-bezier(.2,.8,.2,1),
@@ -331,6 +368,9 @@ body {
   filter:
     grayscale(1)
     contrast(1.08);
+
+  transition:
+    transform .6s cubic-bezier(.2,.8,.2,1);
 }
 
 
@@ -344,6 +384,7 @@ body {
   pointer-events: none;
 
   background:
+
     linear-gradient(
       135deg,
       rgba(255,255,255,.055),
@@ -357,7 +398,7 @@ body {
 
 .image-link:hover {
   transform:
-    translate(-50%, -50%)
+    translate(3%, -4%)
     scale(1.025);
 
   filter:
@@ -367,7 +408,8 @@ body {
 
 
 .image-link:hover img {
-  transform: scale(1.02);
+  transform:
+    scale(1.02);
 }
 
 
@@ -376,23 +418,18 @@ body {
    ========================================================= */
 
 h1 {
-  position: absolute;
+  grid-column: 1;
+  grid-row: 1;
 
-  z-index: 6;
+  align-self: center;
+  justify-self: start;
 
-  left: 6vw;
-  top: 54%;
+  display: flex;
+  align-items: flex-start;
 
-  transform:
-    translateY(-50%)
-    scaleX(.61)
-    scaleY(1.18);
+  width: max-content;
+  max-width: 100%;
 
-  transform-origin: left center;
-
-  /*
-    BLANCO DE LA FOTO
-  */
   color: #efefee;
 
   font-family:
@@ -417,11 +454,13 @@ h1 {
 
   user-select: none;
 
-  /*
-    IMPORTANTE:
-    aquí NO hay background.
-    La letra base es blanco sólido.
-  */
+  transform:
+    translateY(2%)
+    scaleX(.61)
+    scaleY(1.18);
+
+  transform-origin:
+    left center;
 
   text-shadow:
     1px 0 rgba(255,255,255,.055),
@@ -433,15 +472,30 @@ h1 {
 
 
 /* =========================================================
-   CHECK DENTRO DE DABOGA
+   WORDMARK
    ========================================================= */
 
+.wordmark {
+  position: relative;
+
+  display: inline-block;
+
+  color: #efefee;
+
+  -webkit-text-fill-color: #efefee;
+}
+
+
 /*
-   La capa se genera como TEXTO.
-   Por tanto no puede crear un cuadrado visible.
+   CHECK SUTIL DENTRO DE LAS LETRAS.
+
+   La capa tiene exactamente el mismo texto
+   y queda recortada por las propias letras.
+
+   No existe ningún rectángulo visible.
 */
 
-h1::before {
+.wordmark::after {
   content: "DABOGA";
 
   position: absolute;
@@ -460,9 +514,7 @@ h1::before {
 
   color: transparent;
 
-  /*
-    El check es deliberadamente muy suave.
-  */
+  -webkit-text-fill-color: transparent;
 
   background:
 
@@ -471,8 +523,8 @@ h1::before {
       90deg,
       transparent 0,
       transparent 47px,
-      rgba(112,38,35,.16) 47px,
-      rgba(112,38,35,.16) 49px,
+      rgba(112,38,35,.15) 47px,
+      rgba(112,38,35,.15) 49px,
       transparent 49px,
       transparent 76px
     ),
@@ -482,8 +534,8 @@ h1::before {
       90deg,
       transparent 0,
       transparent 37px,
-      rgba(126,108,63,.15) 37px,
-      rgba(126,108,63,.15) 39px,
+      rgba(126,108,63,.13) 37px,
+      rgba(126,108,63,.13) 39px,
       transparent 39px,
       transparent 76px
     ),
@@ -493,8 +545,8 @@ h1::before {
       90deg,
       transparent 0,
       transparent 37px,
-      rgba(18,18,18,.14) 37px,
-      rgba(18,18,18,.14) 43px,
+      rgba(18,18,18,.13) 37px,
+      rgba(18,18,18,.13) 43px,
       transparent 43px,
       transparent 76px
     ),
@@ -504,8 +556,8 @@ h1::before {
       0deg,
       transparent 0,
       transparent 37px,
-      rgba(18,18,18,.14) 37px,
-      rgba(18,18,18,.14) 43px,
+      rgba(18,18,18,.13) 37px,
+      rgba(18,18,18,.13) 43px,
       transparent 43px,
       transparent 76px
     );
@@ -525,34 +577,34 @@ h1::before {
   -webkit-background-clip: text;
   background-clip: text;
 
-  -webkit-text-fill-color: transparent;
-
-  /*
-    CERO animación.
-  */
-  animation: none;
+  opacity: .75;
 }
 
 
 /* =========================================================
-   ®
+   REGISTER MARK
    ========================================================= */
 
-h1 span {
+.reg {
   position: relative;
 
   top: -.53em;
+
   left: .025em;
+
+  flex-shrink: 0;
+
+  color: #efefee;
+
+  -webkit-text-fill-color: #efefee;
 
   font-size: .09em;
 
   font-weight: 600;
 
+  line-height: 1;
+
   letter-spacing: -.02em;
-
-  color: #efefee;
-
-  -webkit-text-fill-color: #efefee;
 
   filter: none;
 }
@@ -563,14 +615,8 @@ h1 span {
    ========================================================= */
 
 .bottom-info {
-  position: absolute;
-
-  z-index: 8;
-
-  left: 4vw;
-  right: 4vw;
-
-  bottom: 4.5vh;
+  grid-column: 1 / -1;
+  grid-row: 2;
 
   display: grid;
 
@@ -581,10 +627,16 @@ h1 span {
 
   align-items: end;
 
+  width: 100%;
+
   color: #777772;
 
   font-size:
-    clamp(10px, .85vw, 15px);
+    clamp(
+      10px,
+      .85vw,
+      15px
+    );
 
   font-weight: 500;
 
@@ -607,112 +659,61 @@ h1 span {
 
 
 /* =========================================================
-   WIDE SCREENS
+   LAPTOP / COMPACT DESKTOP
    ========================================================= */
 
-@media (min-aspect-ratio: 16 / 9) {
+@media (max-width: 1100px) and (min-width: 701px) {
+
+  .content {
+    grid-template-columns:
+      minmax(0, 1.05fr)
+      minmax(0, .95fr);
+
+    column-gap: 1vw;
+
+    padding:
+      42px
+      4vw
+      50px;
+  }
+
 
   .image-link {
     width:
-      clamp(
-        290px,
-        min(30vw, 43vh),
-        510px
+      min(
+        32vw,
+        38vh
       );
 
-    left: 79%;
-    top: 36%;
+    transform:
+      translate(1%, -3%);
+  }
+
+
+  .image-link:hover {
+    transform:
+      translate(1%, -3%)
+      scale(1.025);
   }
 
 
   h1 {
-    left: 6vw;
-
-    top: 55%;
-
-    font-size:
-      clamp(
-        115px,
-        min(18vw, 28vh),
-        335px
-      );
-  }
-
-}
-
-
-/* =========================================================
-   SHORT LAPTOPS
-   ========================================================= */
-
-@media (max-aspect-ratio: 16 / 10) and (min-width: 701px) {
-
-  .image-link {
-    width:
-      clamp(
-        270px,
-        min(31vw, 39vh),
-        440px
-      );
-
-    left: 79%;
-    top: 34%;
-  }
-
-
-  h1 {
-    left: 5vw;
-
-    top: 57%;
-
     font-size:
       clamp(
         100px,
-        min(17vw, 24vh),
+        min(18vw, 25vh),
         285px
       );
 
     transform:
-      translateY(-50%)
+      translateY(2%)
       scaleX(.60)
       scaleY(1.16);
   }
 
 
   .bottom-info {
-    bottom: 3.5vh;
-  }
-
-}
-
-
-/* =========================================================
-   TALL MOBILE
-   ========================================================= */
-
-@media (min-aspect-ratio: 10 / 16) and (max-width: 700px) {
-
-  .image-link {
-    width:
-      min(64vw, 46vh);
-
-    left: 78%;
-    top: 34%;
-  }
-
-
-  h1 {
-    left: 6vw;
-
-    top: 59%;
-
-    font-size:
-      min(25vw, 18vh);
-
-    transform:
-      translateY(-50%)
-      scaleX(.61)
-      scaleY(1.15);
+    bottom: 0;
   }
 
 }
@@ -723,6 +724,12 @@ h1 span {
    ========================================================= */
 
 @media (max-width: 700px) {
+
+  html,
+  body {
+    overflow: hidden;
+  }
+
 
   .nav {
     height: 38px;
@@ -736,7 +743,7 @@ h1 span {
 
 
   .nav-links {
-    width: calc(100% - 18px);
+    width: 100%;
 
     gap: 0;
 
@@ -745,7 +752,7 @@ h1 span {
 
 
   .nav-links a {
-    flex-shrink: 0;
+    flex-shrink: 1;
   }
 
 
@@ -754,37 +761,95 @@ h1 span {
   }
 
 
-  .image-link {
-    width:
-      min(64vw, 43vh);
+  /*
+     UNA SOLA COLUMNA.
+     FOTO ARRIBA.
+     DABOGA DEBAJO.
+  */
 
-    left: 79%;
-    top: 35%;
+  .content {
+    grid-template-columns: 1fr;
+
+    grid-template-rows:
+      minmax(0, 1fr)
+      auto
+      auto;
+
+    row-gap: 0;
+
+    padding:
+      38px
+      6vw
+      54px;
+  }
+
+
+  .image-link {
+    grid-column: 1;
+    grid-row: 1;
+
+    align-self: center;
+    justify-self: center;
+
+    width:
+      min(
+        62vw,
+        34vh
+      );
+
+    max-width: 390px;
+
+    transform: none;
+  }
+
+
+  .image-link:hover {
+    transform:
+      scale(1.02);
   }
 
 
   h1 {
-    left: 6vw;
+    grid-column: 1;
+    grid-row: 2;
 
-    top: 58%;
+    align-self: end;
+    justify-self: start;
+
+    width: max-content;
+
+    max-width: 100%;
 
     font-size:
-      min(24vw, 21vh);
+      clamp(
+        88px,
+        25vw,
+        170px
+      );
+
+    line-height: .58;
 
     transform:
-      translateY(-50%)
+      translateY(3%)
       scaleX(.61)
-      scaleY(1.16);
+      scaleY(1.15);
   }
 
 
   .bottom-info {
-    left: 6vw;
-    right: 6vw;
+    grid-column: 1;
+    grid-row: 3;
 
-    bottom: 5vh;
+    width: 100%;
 
-    font-size: 12px;
+    margin-top: 32px;
+
+    font-size:
+      clamp(
+        9px,
+        2.6vw,
+        12px
+      );
 
     grid-template-columns:
       auto
@@ -817,56 +882,46 @@ h1 span {
   }
 
 
-  .nav-links {
-    width: 100%;
-
-    gap: 0;
-
-    justify-content: space-between;
+  .content {
+    padding:
+      36px
+      6vw
+      42px;
   }
 
 
-  .nav-links a {
-    display: block;
-
-    flex-shrink: 1;
-  }
-
-
-  .nav-mark {
-    display: none;
-  }
-
+  /*
+     La foto nunca comparte fila con DABOGA.
+  */
 
   .image-link {
     width:
-      min(76vw, 43vh);
+      min(
+        68vw,
+        35vh
+      );
 
-    left: 79%;
-    top: 34%;
+    max-width: 300px;
   }
 
 
   h1 {
-    left: 6vw;
-
-    top: 59%;
-
     font-size:
-      min(27vw, 19vh);
+      clamp(
+        82px,
+        25vw,
+        125px
+      );
 
     transform:
-      translateY(-50%)
+      translateY(3%)
       scaleX(.60)
       scaleY(1.15);
   }
 
 
   .bottom-info {
-    left: 6vw;
-    right: 6vw;
-
-    bottom: 4.5vh;
+    margin-top: 28px;
 
     font-size: 9px;
 
@@ -877,51 +932,92 @@ h1 span {
 
 
 /* =========================================================
-   VERY SMALL MOBILE
+   SMALL MOBILE
    ========================================================= */
 
 @media (max-width: 360px) {
 
   .nav {
-    font-size: 8px;
-
     padding: 0 6px;
+
+    font-size: 8px;
   }
 
 
-  .nav-links {
-    gap: 4px;
-
-    justify-content: space-between;
+  .content {
+    padding:
+      36px
+      5vw
+      38px;
   }
 
 
   .image-link {
     width:
-      min(72vw, 42vh);
-
-    left: 78%;
-    top: 33%;
+      min(
+        66vw,
+        33vh
+      );
   }
 
 
   h1 {
-    left: 5vw;
-
-    top: 60%;
-
     font-size:
-      min(26vw, 18vh);
+      clamp(
+        76px,
+        25vw,
+        108px
+      );
 
     transform:
-      translateY(-50%)
+      translateY(3%)
       scaleX(.59)
-      scaleY(1.15);
+      scaleY(1.14);
   }
 
 
   .bottom-info {
+    margin-top: 24px;
+
     font-size: 8px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SHORT MOBILE
+   ========================================================= */
+
+@media (max-height: 650px) and (max-width: 700px) {
+
+  .content {
+    padding-top: 38px;
+    padding-bottom: 34px;
+  }
+
+
+  .image-link {
+    width:
+      min(
+        55vw,
+        30vh
+      );
+  }
+
+
+  h1 {
+    font-size:
+      clamp(
+        72px,
+        22vw,
+        105px
+      );
+  }
+
+
+  .bottom-info {
+    margin-top: 20px;
   }
 
 }
@@ -934,7 +1030,8 @@ h1 span {
 @media (prefers-reduced-motion: reduce) {
 
   .nav a::after,
-  .image-link {
+  .image-link,
+  .image-link img {
     transition: none;
   }
 
@@ -947,7 +1044,6 @@ h1 span {
 
 .presave-page {
   width: 100%;
-  height: 100vh;
   height: 100dvh;
 
   overflow: hidden;
@@ -960,7 +1056,6 @@ h1 span {
   position: relative;
 
   width: 100%;
-  height: 100vh;
   height: 100dvh;
 
   overflow: hidden;
@@ -976,6 +1071,10 @@ h1 span {
 }
 
 
+/* =========================================================
+   PRESAVE STATIC TEXTURE
+   ========================================================= */
+
 .presave::before {
   content: "";
 
@@ -983,7 +1082,7 @@ h1 span {
 
   inset: 0;
 
-  opacity: .07;
+  opacity: .055;
 
   background-image:
 
@@ -1000,11 +1099,13 @@ h1 span {
 
   inset: 0;
 
+  pointer-events: none;
+
   background:
 
     radial-gradient(
       ellipse at center,
-      transparent 38%,
+      transparent 40%,
       rgba(0,0,0,.52) 100%
     );
 }
@@ -1023,13 +1124,15 @@ h1 span {
 
   pointer-events: none;
 
-  opacity: .045;
+  opacity: .04;
 
   background-image:
 
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.22' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
   background-size: 160px 160px;
+
+  mix-blend-mode: screen;
 }
 
 
@@ -1060,7 +1163,11 @@ h1 span {
     sans-serif;
 
   font-size:
-    clamp(15px, 1.4vw, 21px);
+    clamp(
+      15px,
+      1.4vw,
+      21px
+    );
 
   font-weight: 500;
 
