@@ -36,7 +36,9 @@ body {
 }
 
 
-/* NAV */
+/* =========================================================
+   NAV
+   ========================================================= */
 
 .nav {
   position: fixed;
@@ -63,6 +65,10 @@ body {
   font-weight: 500;
 
   letter-spacing: -.025em;
+
+  background: rgba(5,5,5,.12);
+
+  backdrop-filter: blur(1px);
 }
 
 
@@ -71,6 +77,8 @@ body {
   align-items: center;
 
   gap: 24px;
+
+  white-space: nowrap;
 }
 
 
@@ -117,13 +125,17 @@ body {
 
 
 .nav-mark {
+  flex-shrink: 0;
+
   font-size: 11px;
 
   color: #666;
 }
 
 
-/* MAIN */
+/* =========================================================
+   MAIN
+   ========================================================= */
 
 .home {
   position: relative;
@@ -137,7 +149,9 @@ body {
 }
 
 
-/* DARK CONCRETE */
+/* =========================================================
+   DARK CONCRETE / ANALOG SURFACE
+   ========================================================= */
 
 .surface {
   position: absolute;
@@ -171,6 +185,8 @@ body {
 }
 
 
+/* MATERIAL / SCANNED DIRECTION */
+
 .surface::before {
   content: "";
 
@@ -194,6 +210,8 @@ body {
 }
 
 
+/* VIGNETTE */
+
 .surface::after {
   content: "";
 
@@ -211,14 +229,18 @@ body {
 }
 
 
-/* GRAIN */
+/* =========================================================
+   GLOBAL ANALOG GRAIN
+   ========================================================= */
 
 .grain {
   position: absolute;
 
+  z-index: 3;
+
   inset: -50%;
 
-  opacity: .34;
+  opacity: .32;
 
   background-image:
 
@@ -228,11 +250,14 @@ body {
 
   pointer-events: none;
 
-  animation: grain .18s steps(2) infinite;
+  animation:
+    grain .18s steps(2) infinite;
 }
 
 
-/* CONTENT */
+/* =========================================================
+   CONTENT
+   ========================================================= */
 
 .content {
   position: relative;
@@ -244,14 +269,26 @@ body {
 }
 
 
-/* IMAGE */
+/* =========================================================
+   IMAGE
+   ========================================================= */
 
 .image-link {
   position: absolute;
 
   z-index: 10;
 
-  width: clamp(300px, 24vw, 500px);
+  width: clamp(300px, 32vw, 500px);
+
+  /*
+    Coordinate system:
+
+    X = 80%
+    Y = 65%
+
+    CSS top is measured from the top,
+    therefore 65% from bottom = 35% from top.
+  */
 
   left: 80%;
   top: 35%;
@@ -260,7 +297,14 @@ body {
 
   overflow: hidden;
 
-  transform: translate(-50%, -50%);
+  transform:
+    translate(-50%, -50%);
+
+  /*
+    IMPORTANT:
+    The photograph remains clean.
+    No global grain is applied to it.
+  */
 
   filter:
     grayscale(1)
@@ -288,6 +332,8 @@ body {
     transform .6s cubic-bezier(.2,.8,.2,1);
 }
 
+
+/* SUBTLE PRINT / LIGHT IMPERFECTION */
 
 .image-link::after {
   content: "";
@@ -323,14 +369,19 @@ body {
 
 
 .image-link:hover img {
-  transform: scale(1.04);
+  transform:
+    scale(1.04);
 }
 
 
-/* TITLE */
+/* =========================================================
+   TITLE
+   ========================================================= */
 
 h1 {
   position: absolute;
+
+  z-index: 6;
 
   left: 7vw;
   top: 54%;
@@ -348,7 +399,8 @@ h1 {
     "Archivo Narrow",
     sans-serif;
 
-  font-size: clamp(115px, 19vw, 330px);
+  font-size:
+    clamp(115px, 19vw, 330px);
 
   font-weight: 500;
 
@@ -359,8 +411,22 @@ h1 {
   white-space: nowrap;
 
   user-select: none;
+
+  /*
+    The title is intentionally slightly degraded.
+    It is not a clean digital vector anymore.
+  */
+
+  text-shadow:
+    .7px 0 rgba(255,255,255,.08),
+    -.7px 0 rgba(0,0,0,.12);
+
+  filter:
+    contrast(1.05);
 }
 
+
+/* REGISTER MARK */
 
 h1 span {
   position: relative;
@@ -371,13 +437,78 @@ h1 span {
   font-size: .095em;
 
   letter-spacing: 0;
+
+  filter:
+    blur(.1px);
 }
 
 
-/* BOTTOM */
+/* =========================================================
+   ANALOG TITLE TEXTURE
+   ========================================================= */
+
+h1::before {
+  content: attr(data-text);
+
+  position: absolute;
+
+  inset: 0;
+
+  color: transparent;
+
+  pointer-events: none;
+
+  opacity: .22;
+
+  background-image:
+
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  mix-blend-mode: multiply;
+
+  transform:
+    translate(.7px, -.3px);
+}
+
+
+/* =========================================================
+   TITLE SIGNAL DISTORTION
+   ========================================================= */
+
+h1::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  top: 48%;
+
+  height: 1px;
+
+  background: rgba(255,255,255,.06);
+
+  opacity: .55;
+
+  pointer-events: none;
+
+  animation:
+    signal-line 4.5s steps(2) infinite;
+}
+
+
+/* =========================================================
+   BOTTOM INFORMATION
+   ========================================================= */
 
 .bottom-info {
   position: absolute;
+
+  z-index: 8;
 
   left: 4vw;
   right: 4vw;
@@ -417,55 +548,123 @@ h1 span {
 }
 
 
-/* GRAIN ANIMATION */
+/* =========================================================
+   ANALOG MICRO MOVEMENT
+   ========================================================= */
 
 @keyframes grain {
 
   0% {
-    transform: translate(0, 0);
+    transform:
+      translate(0, 0);
   }
 
   25% {
-    transform: translate(-2%, 1%);
+    transform:
+      translate(-2%, 1%);
   }
 
   50% {
-    transform: translate(1%, -2%);
+    transform:
+      translate(1%, -2%);
   }
 
   75% {
-    transform: translate(2%, 2%);
+    transform:
+      translate(2%, 2%);
   }
 
   100% {
-    transform: translate(0, 0);
+    transform:
+      translate(0, 0);
   }
 
 }
 
 
-/* TABLET */
+@keyframes signal-line {
+
+  0% {
+    transform:
+      translateX(0)
+      scaleX(1);
+
+    opacity: .15;
+  }
+
+  18% {
+    transform:
+      translateX(-1%)
+      scaleX(.98);
+
+    opacity: .25;
+  }
+
+  37% {
+    transform:
+      translateX(.5%)
+      scaleX(1.02);
+
+    opacity: .08;
+  }
+
+  61% {
+    transform:
+      translateX(-.3%)
+      scaleX(.99);
+
+    opacity: .18;
+  }
+
+  100% {
+    transform:
+      translateX(0)
+      scaleX(1);
+
+    opacity: .15;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 700px) {
 
   .nav {
     height: 38px;
 
-    padding: 0 11px;
+    padding:
+      0 10px;
 
-    font-size: 12px;
+    font-size: 11px;
+
+    letter-spacing: -.045em;
   }
 
 
   .nav-links {
-    gap: 13px;
+    width: calc(100% - 18px);
+
+    gap: 0;
+
+    justify-content: space-between;
   }
 
 
-  .nav-links a:nth-child(4) {
+  .nav-links a {
+    flex-shrink: 0;
+  }
+
+
+  .nav-mark {
     display: none;
   }
 
+
+  /* IMAGE */
 
   .image-link {
     width: 64vw;
@@ -474,6 +673,8 @@ h1 span {
     top: 35%;
   }
 
+
+  /* TITLE */
 
   h1 {
     left: 6vw;
@@ -487,6 +688,8 @@ h1 span {
       scaleX(.63);
   }
 
+
+  /* BOTTOM */
 
   .bottom-info {
     left: 6vw;
@@ -510,19 +713,46 @@ h1 span {
 }
 
 
-/* MOBILE */
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 430px) {
 
-  .nav-links {
-    gap: 9px;
+  .nav {
+    height: 36px;
+
+    padding:
+      0 8px;
+
+    font-size: 9px;
+
+    letter-spacing: -.055em;
   }
 
 
-  .nav-links a:nth-child(3) {
+  .nav-links {
+    width: 100%;
+
+    gap: 0;
+
+    justify-content: space-between;
+  }
+
+
+  .nav-links a {
+    display: block;
+
+    flex-shrink: 1;
+  }
+
+
+  .nav-mark {
     display: none;
   }
 
+
+  /* IMAGE */
 
   .image-link {
     width: 76vw;
@@ -532,21 +762,82 @@ h1 span {
   }
 
 
+  /* TITLE */
+
   h1 {
-    font-size: 27vw;
+    left: 6vw;
 
     top: 59%;
+
+    font-size: 27vw;
   }
 
 
+  /* BOTTOM */
+
   .bottom-info {
-    font-size: 10px;
+    left: 6vw;
+    right: 6vw;
+
+    bottom: 4.5vh;
+
+    font-size: 9px;
+
+    letter-spacing: -.045em;
   }
 
 }
 
 
-/* PRESAVE PAGE */
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  .nav {
+    font-size: 8px;
+
+    padding:
+      0 6px;
+  }
+
+
+  .nav-links {
+    gap: 5px;
+
+    justify-content:
+      space-between;
+  }
+
+
+  .image-link {
+    width: 72vw;
+
+    left: 79%;
+    top: 34%;
+  }
+
+
+  h1 {
+    left: 5vw;
+
+    top: 60%;
+
+    font-size: 26vw;
+  }
+
+
+  .bottom-info {
+    font-size: 8px;
+  }
+
+}
+
+
+/* =========================================================
+   PRESAVE PAGE
+   ========================================================= */
 
 .presave-page {
   width: 100vw;
@@ -617,6 +908,8 @@ h1 span {
 }
 
 
+/* PRESAVE NOISE */
+
 .presave-noise {
   position: absolute;
 
@@ -632,9 +925,12 @@ h1 span {
 
   pointer-events: none;
 
-  animation: grain .18s steps(2) infinite;
+  animation:
+    grain .18s steps(2) infinite;
 }
 
+
+/* PRESAVE MESSAGE */
 
 .presave-message {
   position: absolute;
@@ -658,12 +954,33 @@ h1 span {
     "Archivo Narrow",
     sans-serif;
 
-  font-size: clamp(15px, 1.4vw, 21px);
+  font-size:
+    clamp(15px, 1.4vw, 21px);
 
   font-weight: 500;
 
   letter-spacing: -.035em;
 
   line-height: 1.2;
+
+  text-shadow:
+    .5px 0 rgba(255,255,255,.08),
+    -.5px 0 rgba(0,0,0,.12);
 }
 
+
+/* =========================================================
+   PRESAVE MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .presave-message {
+    width: 94vw;
+
+    font-size: 12px;
+
+    letter-spacing: -.04em;
+  }
+
+}
