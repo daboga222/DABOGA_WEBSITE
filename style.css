@@ -1,436 +1,116 @@
-/* =========================================================
-   DABOGA — HOME
-   Brutalist / Digital / Textile Archive / Lost CRT Signal
-   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&display=swap');
 
 
 /* =========================================================
-   01 — RESET
+   RESET
    ========================================================= */
 
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
-}
-
-html {
-  width: 100%;
-  min-height: 100%;
-  background: #050505;
-  scroll-behavior: smooth;
-}
-
-body {
-  width: 100%;
-  min-height: 100%;
   margin: 0;
   padding: 0;
+}
+
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
 
   background: #050505;
-  color: #f1f1ee;
+}
 
+
+body {
   font-family:
-    "Archivo Narrow",
     "Arial Narrow",
-    Arial,
-    Helvetica,
+    "Archivo Narrow",
     sans-serif;
 
-  overflow-x: hidden;
+  color: #deded9;
 
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
 
 /* =========================================================
-   02 — VARIABLES
-   ========================================================= */
-
-:root {
-  --black: #080808;
-  --black-deep: #050505;
-
-  --white: #f1f1ee;
-  --white-soft: #deded9;
-
-  --edge: clamp(18px, 2.2vw, 34px);
-
-  --font:
-    "Archivo Narrow",
-    "Arial Narrow",
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  --pixel: 4px;
-
-  /*
-    Textile palette.
-    Deliberately restrained.
-  */
-
-  --check-base: #ded9cd;
-  --check-black: #171615;
-  --check-white: #eeeae1;
-  --check-red: #784a47;
-  --check-yellow: #8b8064;
-}
-
-
-/* =========================================================
-   03 — FONT
-   ========================================================= */
-
-@import url(
-  "https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&display=swap"
-);
-
-
-/* =========================================================
-   04 — MAIN STRUCTURE
+   FULL VIEWPORT
    ========================================================= */
 
 .site {
   position: relative;
 
   width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-
-  background: var(--black-deep);
-}
-
-.home {
-  position: relative;
-
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
 
   overflow: hidden;
 
-  /*
-    Almost black.
-    The depth is created by the signal layers below,
-    not by a visible texture.
-  */
-
-  background:
-    radial-gradient(
-      ellipse at 52% 46%,
-      rgba(255, 255, 255, 0.018) 0%,
-      rgba(255, 255, 255, 0.008) 28%,
-      rgba(0, 0, 0, 0) 68%
-    ),
-    #050505;
+  background: #050505;
 }
 
 
 /* =========================================================
-   05 — LOST CRT / ROOM SIGNAL
-   ========================================================= */
-
-/*
-  This is deliberately NOT a moving concrete texture.
-
-  The idea is:
-  old television,
-  strange room,
-  weak electrical signal,
-  something alive behind the black.
-
-  The texture itself does not visibly travel.
-  The luminance breathes.
-*/
-
-
-/* ---------------------------------------------------------
-   ROOM / SCREEN DEPTH
-   --------------------------------------------------------- */
-
-.surface {
-  position: absolute;
-
-  inset: -8%;
-
-  z-index: 1;
-
-  pointer-events: none;
-
-  opacity: 0.22;
-
-  /*
-    Large, almost unreadable noise field.
-    Its scale prevents the "Pinterest gotelé" effect.
-  */
-
-  background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 900' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='room'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006 .018' numOctaves='2' seed='17' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23room)' opacity='.75'/%3E%3C/svg%3E");
-
-  background-size:
-    1200px 900px;
-
-  mix-blend-mode: soft-light;
-
-  /*
-    Very slow breathing rather than texture movement.
-  */
-
-  animation:
-    roomPulse 13s ease-in-out infinite alternate;
-}
-
-@keyframes roomPulse {
-
-  0% {
-    opacity: 0.17;
-    filter: brightness(0.92);
-  }
-
-  47% {
-    opacity: 0.21;
-    filter: brightness(1);
-  }
-
-  100% {
-    opacity: 0.18;
-    filter: brightness(0.95);
-  }
-}
-
-
-/* ---------------------------------------------------------
-   CRT SIGNAL
-   --------------------------------------------------------- */
-
-.grain {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 2;
-
-  pointer-events: none;
-
-  opacity: 0.115;
-
-  /*
-    Fine electronic noise.
-    Smaller and faster than the room layer.
-  */
-
-  background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 420 420' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='signal'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.32' numOctaves='1' seed='41' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23signal)' opacity='.62'/%3E%3C/svg%3E");
-
-  background-size:
-    420px 420px;
-
-  mix-blend-mode: screen;
-
-  animation:
-    signalFlicker 0.17s steps(2) infinite;
-}
-
-@keyframes signalFlicker {
-
-  0% {
-    opacity: 0.08;
-  }
-
-  19% {
-    opacity: 0.12;
-  }
-
-  43% {
-    opacity: 0.09;
-  }
-
-  67% {
-    opacity: 0.125;
-  }
-
-  82% {
-    opacity: 0.085;
-  }
-
-  100% {
-    opacity: 0.11;
-  }
-}
-
-
-/* ---------------------------------------------------------
-   PHOSPHOR / SCAN STRUCTURE
-   --------------------------------------------------------- */
-
-.home::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 3;
-
-  pointer-events: none;
-
-  opacity: 0.045;
-
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.055) 0,
-      rgba(255, 255, 255, 0.055) 1px,
-      transparent 1px,
-      transparent 4px
-    );
-
-  mix-blend-mode: screen;
-}
-
-
-/* ---------------------------------------------------------
-   OLD SCREEN VIGNETTE
-   --------------------------------------------------------- */
-
-.home::after {
-  content: "";
-
-  position: absolute;
-
-  inset: -10%;
-
-  z-index: 4;
-
-  pointer-events: none;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      transparent 45%,
-      rgba(0, 0, 0, 0.16) 72%,
-      rgba(0, 0, 0, 0.48) 100%
-    );
-
-  opacity: 0.75;
-
-  mix-blend-mode: multiply;
-}
-
-
-/* =========================================================
-   06 — CONTENT
-   ========================================================= */
-
-.content {
-  position: relative;
-
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-
-  z-index: 10;
-}
-
-.content::before {
-  content: "";
-
-  position: absolute;
-
-  inset: var(--edge);
-
-  z-index: 3;
-
-  pointer-events: none;
-
-  border:
-    1px solid
-    rgba(255, 255, 255, 0.025);
-}
-
-
-/* =========================================================
-   07 — NAVIGATION
+   NAV
    ========================================================= */
 
 .nav {
-  position: absolute;
-
-  top: var(--edge);
-  left: var(--edge);
-  right: var(--edge);
+  position: fixed;
 
   z-index: 30;
 
-  display: flex;
+  top: 0;
+  left: 0;
 
-  align-items: flex-start;
+  width: 100%;
+  height: 42px;
+
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
   justify-content: space-between;
 
-  pointer-events: none;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+
+  color: #b8b8b3;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  letter-spacing: -.025em;
+
+  background: rgba(5,5,5,.16);
+
+  backdrop-filter: blur(2px);
 }
+
 
 .nav-links {
   display: flex;
+  align-items: center;
 
-  align-items: flex-start;
+  gap: 24px;
 
-  gap:
-    clamp(
-      15px,
-      2.1vw,
-      34px
-    );
-
-  pointer-events: auto;
+  white-space: nowrap;
 }
+
 
 .nav a {
   position: relative;
 
-  display: inline-block;
+  color: inherit;
 
-  color: var(--white);
-
-  font-family: var(--font);
-
-  font-size:
-    clamp(
-      12px,
-      0.78vw,
-      15px
-    );
-
-  font-weight: 500;
-
-  line-height: 1;
-
-  letter-spacing: 0.015em;
-
-  opacity: 0.9;
+  text-decoration: none;
 
   transition:
-    opacity 180ms ease;
+    color .2s ease,
+    opacity .2s ease;
 }
+
 
 .nav a::after {
   content: "";
@@ -438,1104 +118,1116 @@ select {
   position: absolute;
 
   left: 0;
+  right: 100%;
+
   bottom: -4px;
 
-  width: 100%;
   height: 1px;
 
   background: currentColor;
 
-  transform:
-    scaleX(0);
-
-  transform-origin: left center;
-
-  transition:
-    transform 180ms ease;
+  transition: right .25s ease;
 }
+
 
 .nav a:hover {
-  opacity: 1;
+  color: #fff;
 }
+
 
 .nav a:hover::after,
 .nav a.active::after {
-  transform: scaleX(1);
+  right: 0;
 }
 
+
 .nav-mark {
-  pointer-events: none;
+  flex-shrink: 0;
 
-  color: var(--white);
+  color: #62625e;
 
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  font-size:
-    clamp(
-      14px,
-      0.9vw,
-      18px
-    );
-
-  font-weight: 400;
-
-  line-height: 0.8;
-
-  opacity: 0.9;
+  font-size: 11px;
 }
 
 
 /* =========================================================
-   08 — COVER IMAGE
+   MAIN
+   ========================================================= */
+
+.home {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  overflow: hidden;
+
+  background: #090909;
+}
+
+
+/* =========================================================
+   DARK ROOM / OLD SCREEN SURFACE
+   ========================================================= */
+
+.surface {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+
+    radial-gradient(
+      ellipse at 47% 43%,
+      rgba(110,110,104,.15) 0%,
+      rgba(55,55,52,.075) 34%,
+      transparent 68%
+    ),
+
+    radial-gradient(
+      ellipse at 12% 88%,
+      rgba(255,255,255,.025),
+      transparent 38%
+    ),
+
+    linear-gradient(
+      112deg,
+      #080808 0%,
+      #10100f 28%,
+      #151514 48%,
+      #0a0a0a 100%
+    );
+
+  filter: contrast(1.3);
+}
+
+
+.surface::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -10%;
+
+  opacity: .22;
+
+  background:
+
+    repeating-linear-gradient(
+      117deg,
+      transparent 0,
+      transparent 7px,
+      rgba(255,255,255,.018) 8px,
+      transparent 11px
+    );
+
+  transform: rotate(-2deg);
+}
+
+
+.surface::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+
+    radial-gradient(
+      ellipse at center,
+      transparent 25%,
+      rgba(0,0,0,.8) 100%
+    );
+}
+
+
+/* =========================================================
+   DIGITAL / CRT GRAIN
+   ========================================================= */
+
+.grain {
+  position: absolute;
+
+  z-index: 4;
+
+  inset: -20%;
+
+  pointer-events: none;
+
+  opacity: .28;
+
+  background-image:
+
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.085' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  background-size: 260px 260px;
+
+  mix-blend-mode: screen;
+
+  animation:
+    digital-grain .42s steps(5) infinite;
+}
+
+
+@keyframes digital-grain {
+
+  0% {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+  20% {
+    transform:
+      translate3d(-1.5%, .8%, 0);
+  }
+
+  40% {
+    transform:
+      translate3d(.8%, -1.2%, 0);
+  }
+
+  60% {
+    transform:
+      translate3d(1.2%, .4%, 0);
+  }
+
+  80% {
+    transform:
+      translate3d(-.6%, -1%, 0);
+  }
+
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+}
+
+
+/* =========================================================
+   SECONDARY DIGITAL GRAIN
+   ========================================================= */
+
+.content {
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+.content::after {
+  content: "";
+
+  position: absolute;
+
+  z-index: 7;
+
+  inset: -20%;
+
+  pointer-events: none;
+
+  opacity: .16;
+
+  background-image:
+
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='210' height='210' viewBox='0 0 210 210'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.105' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  background-size: 210px 210px;
+
+  mix-blend-mode: screen;
+
+  animation:
+    digital-grain-secondary .55s steps(4) infinite;
+}
+
+
+@keyframes digital-grain-secondary {
+
+  0% {
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+  }
+
+  25% {
+    transform:
+      translate3d(-1%, .5%, 0)
+      scale(1.002);
+  }
+
+  50% {
+    transform:
+      translate3d(.7%, -1%, 0)
+      scale(.998);
+  }
+
+  75% {
+    transform:
+      translate3d(1%, .7%, 0)
+      scale(1.001);
+  }
+
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   IMAGE
    ========================================================= */
 
 .image-link {
   position: absolute;
 
-  left: 80%;
-  top: 35%;
-
-  width:
-    clamp(
-      260px,
-      min(31vw, 41vh),
-      490px
-    );
-
-  aspect-ratio: 1 / 1;
+  z-index: 12;
 
   display: block;
 
-  z-index: 15;
+  aspect-ratio: 1 / 1;
+
+  width:
+    clamp(
+      270px,
+      min(32vw, 42vh),
+      500px
+    );
+
+  left: 80%;
+  top: 35%;
 
   transform:
     translate(-50%, -50%);
 
   overflow: hidden;
 
-  background: #111;
+  filter:
+    grayscale(1)
+    contrast(1.15);
 
-  cursor: pointer;
+  transition:
+    transform .45s cubic-bezier(.2,.8,.2,1),
+    filter .3s ease;
 }
 
+
 .image-link img {
+  display: block;
+
   width: 100%;
   height: 100%;
 
   object-fit: cover;
 
-  /*
-    The photograph remains clean.
-  */
-
   filter:
-    grayscale(100%)
-    contrast(1.04);
-
-  transform:
-    scale(1.002);
+    grayscale(1)
+    contrast(1.08);
 
   transition:
-    transform 320ms
-    cubic-bezier(.2, .7, .2, 1);
-}
-
-.image-link:hover img {
-  transform:
-    scale(1.018);
+    transform .6s cubic-bezier(.2,.8,.2,1);
 }
 
 
-/*
-  Keep the image physically clean.
-  No global noise sits above it.
-*/
-
-.image-link::before,
 .image-link::after {
-  content: none;
-}
-
-
-/* =========================================================
-   09 — MAIN WORDMARK
-   ========================================================= */
-
-h1 {
-  position: absolute;
-
-  left: 5.2vw;
-  top: 54%;
-
-  z-index: 12;
-
-  margin: 0;
-  padding: 0;
-
-  font-family: var(--font);
-
-  font-size:
-    clamp(
-      118px,
-      min(20.5vw, 29vh),
-      360px
-    );
-
-  font-weight: 600;
-
-  line-height: 0.61;
-
-  letter-spacing: -0.095em;
-
-  /*
-    Transparent text allows the textile check
-    to live directly inside the wordmark.
-  */
-
-  color: transparent;
-
-  /*
-    =====================================================
-    DABOGA TEXTILE CHECK
-    =====================================================
-
-    First layer:
-    subtle yellow thread.
-
-    Second layer:
-    muted red thread.
-
-    Third:
-    vertical dark check structure.
-
-    Fourth:
-    horizontal dark check structure.
-
-    The result should read almost white from distance
-    and reveal itself only on inspection.
-  */
-
-  background-image:
-
-    linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 21px,
-      rgba(139, 128, 100, 0.38) 21px,
-      rgba(139, 128, 100, 0.38) 24px,
-      transparent 24px,
-      transparent 55px,
-      rgba(139, 128, 100, 0.26) 55px,
-      rgba(139, 128, 100, 0.26) 58px,
-      transparent 58px
-    ),
-
-    linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 36px,
-      rgba(120, 74, 71, 0.55) 36px,
-      rgba(120, 74, 71, 0.55) 39px,
-      transparent 39px,
-      transparent 100%
-    ),
-
-    repeating-linear-gradient(
-      90deg,
-      var(--check-base) 0,
-      var(--check-base) 14px,
-      var(--check-black) 14px,
-      var(--check-black) 18px,
-      var(--check-base) 18px,
-      var(--check-base) 38px
-    ),
-
-    repeating-linear-gradient(
-      0deg,
-      transparent 0,
-      transparent 14px,
-      rgba(23, 22, 21, 0.88) 14px,
-      rgba(23, 22, 21, 0.88) 18px,
-      transparent 18px,
-      transparent 38px
-    );
-
-  background-size:
-    76px 76px,
-    76px 76px,
-    76px 76px,
-    76px 76px;
-
-  background-position:
-    1px 0,
-    0 1px,
-    0 0,
-    0 0;
-
-  background-repeat: repeat;
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  transform:
-    translateY(-50%)
-    scaleX(0.60)
-    scaleY(1.20);
-
-  transform-origin: left center;
-}
-
-
-/* =========================================================
-   10 — PIXEL CONSTRUCTION
-   ========================================================= */
-
-h1::before {
   content: "";
 
-  position: absolute;
-
-  inset: -3px -5px;
-
-  z-index: 2;
-
-  pointer-events: none;
-
-  background-image:
-
-    linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 7px,
-      rgba(5, 5, 5, 0.72) 7px,
-      rgba(5, 5, 5, 0.72) 10px,
-      transparent 10px
-    ),
-
-    linear-gradient(
-      0deg,
-      transparent 0,
-      transparent 8px,
-      rgba(5, 5, 5, 0.62) 8px,
-      rgba(5, 5, 5, 0.62) 11px,
-      transparent 11px
-    );
-
-  background-size:
-    23px 23px,
-    23px 23px;
-
-  background-position:
-    0 0,
-    4px 7px;
-
-  background-repeat: repeat;
-
-  mix-blend-mode: multiply;
-
-  opacity: 0.58;
-
-  -webkit-mask-image:
-    linear-gradient(
-      90deg,
-      #000 0%,
-      #000 100%
-    );
-
-  mask-image:
-    linear-gradient(
-      90deg,
-      #000 0%,
-      #000 100%
-    );
-}
-
-
-/* =========================================================
-   11 — SECONDARY PIXEL INTERRUPTIONS
-   ========================================================= */
-
-h1::after {
-  content: "";
-
-  position: absolute;
-
-  inset: -2px -3px;
-
-  z-index: 3;
-
-  pointer-events: none;
-
-  /*
-    Sparse vertical interruptions.
-    No horizontal glitch bands.
-  */
-
-  background-image:
-    linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 19%,
-      rgba(5, 5, 5, 0.38) 19%,
-      rgba(5, 5, 5, 0.38) 19.7%,
-      transparent 19.7%,
-      transparent 44%,
-      rgba(5, 5, 5, 0.48) 44%,
-      rgba(5, 5, 5, 0.48) 44.7%,
-      transparent 44.7%,
-      transparent 71%,
-      rgba(5, 5, 5, 0.34) 71%,
-      rgba(5, 5, 5, 0.34) 71.6%,
-      transparent 71.6%,
-      transparent 100%
-    );
-
-  background-size:
-    100% 11px;
-
-  background-position:
-    0 3px;
-
-  mix-blend-mode: multiply;
-
-  opacity: 0.48;
-}
-
-
-/* =========================================================
-   12 — REGISTERED MARK
-   ========================================================= */
-
-h1 span {
-  position: relative;
-
-  display: inline-block;
-
-  margin-left: 0.025em;
-
-  color: var(--white);
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  font-size: 0.25em;
-
-  font-weight: 400;
-
-  line-height: 1;
-
-  letter-spacing: 0;
-
-  vertical-align: top;
-
-  transform:
-    translateY(-0.055em)
-    scaleY(0.94);
-
-  /*
-    The registered mark remains clean.
-  */
-
-  -webkit-text-fill-color: var(--white);
-}
-
-
-/* =========================================================
-   13 — BOTTOM INFORMATION
-   ========================================================= */
-
-.bottom-info {
-  position: absolute;
-
-  left: var(--edge);
-  right: var(--edge);
-  bottom: var(--edge);
-
-  z-index: 20;
-
-  display: grid;
-
-  grid-template-columns:
-    1fr auto 1fr;
-
-  align-items: end;
-
-  column-gap: 20px;
-
-  color: var(--white-soft);
-
-  font-family: var(--font);
-
-  font-size:
-    clamp(
-      9px,
-      0.62vw,
-      12px
-    );
-
-  font-weight: 400;
-
-  line-height: 1;
-
-  letter-spacing: 0.035em;
-
-  text-transform: uppercase;
-
-  opacity: 0.72;
-}
-
-.bottom-info span:nth-child(1) {
-  justify-self: start;
-}
-
-.bottom-info span:nth-child(2) {
-  justify-self: center;
-}
-
-.bottom-info span:nth-child(3) {
-  justify-self: end;
-}
-
-
-/* =========================================================
-   14 — WIDE DESKTOP
-   ========================================================= */
-
-@media (min-width: 1500px) {
-
-  .image-link {
-    width:
-      clamp(
-        360px,
-        min(29vw, 42vh),
-        560px
-      );
-  }
-
-  h1 {
-    left: 5vw;
-
-    font-size:
-      clamp(
-        170px,
-        min(20vw, 30vh),
-        390px
-      );
-  }
-
-  .nav-links {
-    gap:
-      clamp(
-        22px,
-        2vw,
-        38px
-      );
-  }
-}
-
-
-/* =========================================================
-   15 — VERY WIDE SCREENS
-   ========================================================= */
-
-@media (
-  min-width: 1100px
-) and (
-  min-aspect-ratio: 2 / 1
-) {
-
-  .image-link {
-    top: 34%;
-
-    width:
-      clamp(
-        270px,
-        25vw,
-        470px
-      );
-  }
-
-  h1 {
-    top: 57%;
-
-    font-size:
-      clamp(
-        120px,
-        17vw,
-        330px
-      );
-  }
-}
-
-
-/* =========================================================
-   16 — SHORT LAPTOPS
-   ========================================================= */
-
-@media (
-  min-width: 900px
-) and (
-  max-aspect-ratio: 16 / 10
-) {
-
-  .image-link {
-    left: 79%;
-    top: 33%;
-
-    width:
-      clamp(
-        250px,
-        min(28vw, 37vh),
-        410px
-      );
-  }
-
-  h1 {
-    left: 4.8vw;
-    top: 57%;
-
-    font-size:
-      clamp(
-        105px,
-        min(18vw, 26vh),
-        300px
-      );
-
-    line-height: 0.60;
-  }
-
-  .bottom-info {
-    bottom:
-      max(
-        18px,
-        2vh
-      );
-  }
-}
-
-
-/* =========================================================
-   17 — TABLET / IPAD
-   ========================================================= */
-
-@media (
-  min-width: 701px
-) and (
-  max-width: 1100px
-) {
-
-  .nav-links {
-    gap:
-      clamp(
-        14px,
-        2.5vw,
-        25px
-      );
-  }
-
-  .nav a {
-    font-size:
-      clamp(
-        11px,
-        1.15vw,
-        14px
-      );
-  }
-
-  .image-link {
-    left: 76%;
-    top: 31%;
-
-    width:
-      clamp(
-        220px,
-        30vw,
-        360px
-      );
-  }
-
-  h1 {
-    left: 5vw;
-    top: 57%;
-
-    font-size:
-      clamp(
-        105px,
-        18vw,
-        250px
-      );
-
-    letter-spacing: -0.09em;
-
-    transform:
-      translateY(-50%)
-      scaleX(0.59)
-      scaleY(1.18);
-  }
-
-  .bottom-info {
-    font-size:
-      clamp(
-        8px,
-        0.9vw,
-        11px
-      );
-  }
-}
-
-
-/* =========================================================
-   18 — MOBILE
-   ========================================================= */
-
-@media (max-width: 700px) {
-
-  .nav {
-    top: 18px;
-    left: 18px;
-    right: 18px;
-  }
-
-  .nav-links {
-    width: 100%;
-
-    gap:
-      clamp(
-        11px,
-        3.2vw,
-        19px
-      );
-
-    justify-content: flex-start;
-  }
-
-  .nav a {
-    font-size:
-      clamp(
-        10px,
-        2.6vw,
-        13px
-      );
-
-    letter-spacing: 0;
-  }
-
-  .nav-mark {
-    display: none;
-  }
-
-  .content::before {
-    inset: 18px;
-
-    border-color:
-      rgba(255, 255, 255, 0.02);
-  }
-
-  .image-link {
-    left: 67%;
-    top: 30%;
-
-    width:
-      min(
-        58vw,
-        280px
-      );
-  }
-
-  h1 {
-    left: 5vw;
-    top: 58%;
-
-    font-size:
-      clamp(
-        78px,
-        23vw,
-        150px
-      );
-
-    line-height: 0.60;
-
-    letter-spacing: -0.10em;
-
-    transform:
-      translateY(-50%)
-      scaleX(0.59)
-      scaleY(1.20);
-  }
-
-  h1::before {
-    background-size:
-      19px 19px,
-      19px 19px;
-  }
-
-  h1::after {
-    background-size:
-      100% 9px;
-  }
-
-  .bottom-info {
-    left: 18px;
-    right: 18px;
-    bottom: 18px;
-
-    font-size:
-      clamp(
-        8px,
-        2vw,
-        10px
-      );
-
-    column-gap: 10px;
-  }
-}
-
-
-/* =========================================================
-   19 — SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 420px) {
-
-  .nav-links {
-    gap:
-      clamp(
-        9px,
-        2.8vw,
-        14px
-      );
-  }
-
-  .nav a {
-    font-size:
-      clamp(
-        9px,
-        2.7vw,
-        11px
-      );
-  }
-
-  .image-link {
-    left: 66%;
-    top: 29%;
-
-    width:
-      min(
-        56vw,
-        235px
-      );
-  }
-
-  h1 {
-    left: 4vw;
-    top: 58%;
-
-    font-size:
-      clamp(
-        70px,
-        22vw,
-        120px
-      );
-
-    letter-spacing: -0.095em;
-
-    transform:
-      translateY(-50%)
-      scaleX(0.57)
-      scaleY(1.18);
-  }
-
-  h1 span {
-    font-size: 0.24em;
-  }
-
-  .bottom-info {
-    font-size: 8px;
-  }
-}
-
-
-/* =========================================================
-   20 — VERY SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 340px) {
-
-  .nav {
-    top: 15px;
-    left: 15px;
-    right: 15px;
-  }
-
-  .nav-links {
-    gap: 8px;
-  }
-
-  .nav a {
-    font-size: 9px;
-  }
-
-  .image-link {
-    left: 65%;
-    top: 28%;
-
-    width:
-      min(
-        55vw,
-        200px
-      );
-  }
-
-  h1 {
-    left: 3vw;
-    top: 58%;
-
-    font-size:
-      clamp(
-        62px,
-        21vw,
-        105px
-      );
-
-    transform:
-      translateY(-50%)
-      scaleX(0.55)
-      scaleY(1.17);
-  }
-
-  .bottom-info {
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-
-    font-size: 7px;
-  }
-}
-
-
-/* =========================================================
-   21 — SHORT MOBILE HEIGHT
-   ========================================================= */
-
-@media (
-  max-width: 700px
-) and (
-  max-height: 680px
-) {
-
-  .image-link {
-    top: 27%;
-
-    width:
-      min(
-        52vw,
-        220px
-      );
-  }
-
-  h1 {
-    top: 57%;
-
-    font-size:
-      clamp(
-        68px,
-        20vw,
-        125px
-      );
-  }
-}
-
-
-/* =========================================================
-   22 — TALL MOBILE
-   ========================================================= */
-
-@media (
-  max-width: 700px
-) and (
-  min-height: 800px
-) {
-
-  .image-link {
-    top: 31%;
-
-    width:
-      min(
-        58vw,
-        280px
-      );
-  }
-
-  h1 {
-    top: 59%;
-
-    font-size:
-      clamp(
-        85px,
-        23vw,
-        155px
-      );
-  }
-}
-
-
-/* =========================================================
-   23 — PRESAVE PAGE
-   ========================================================= */
-
-.presave-page {
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-
-  overflow: hidden;
-
-  background:
-    #050505;
-}
-
-.presave {
-  position: relative;
-
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-}
-
-
-/* =========================================================
-   24 — PRESAVE SIGNAL
-   ========================================================= */
-
-.presave::before {
-  content: "";
-
-  position: absolute;
-
-  inset: -8%;
-
-  pointer-events: none;
-
-  opacity: 0.22;
-
-  background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 900' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='room'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006 .018' numOctaves='2' seed='17' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23room)' opacity='.75'/%3E%3C/svg%3E");
-
-  background-size:
-    1200px 900px;
-
-  mix-blend-mode: soft-light;
-
-  animation:
-    roomPulse 13s ease-in-out infinite alternate;
-}
-
-.presave-noise {
   position: absolute;
 
   inset: 0;
 
   pointer-events: none;
 
-  opacity: 0.115;
+  background:
 
-  background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 420 420' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='signal'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.32' numOctaves='1' seed='41' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23signal)' opacity='.62'/%3E%3C/svg%3E");
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.09),
+      transparent 38%,
+      rgba(0,0,0,.15)
+    );
 
-  background-size:
-    420px 420px;
+  mix-blend-mode: multiply;
+}
 
-  mix-blend-mode: screen;
 
-  animation:
-    signalFlicker 0.17s steps(2) infinite;
+.image-link:hover {
+  transform:
+    translate(-50%, -50%)
+    scale(1.025);
+
+  filter:
+    grayscale(1)
+    contrast(1.25);
+}
+
+
+.image-link:hover img {
+  transform:
+    scale(1.025);
 }
 
 
 /* =========================================================
-   25 — PRESAVE MESSAGE
+   MAIN DABOGA TEXT
    ========================================================= */
 
-.presave-message {
-  position: relative;
+h1 {
+  position: absolute;
 
-  z-index: 5;
+  z-index: 6;
 
-  max-width: 90vw;
+  left: 6vw;
+  top: 54%;
 
-  color: var(--white);
+  transform:
+    translateY(-50%)
+    scaleX(.61)
+    scaleY(1.18);
 
-  font-family: var(--font);
+  transform-origin: left center;
+
+  /*
+    Blanco calibrado con el blanco dominante
+    de la fotografía.
+  */
+  color: #efefee;
+
+  font-family:
+    "Arial Narrow",
+    "Archivo Narrow",
+    sans-serif;
 
   font-size:
     clamp(
-      16px,
-      1.45vw,
-      28px
+      115px,
+      min(20vw, 28vh),
+      345px
     );
 
-  font-weight: 400;
+  font-weight: 600;
 
-  line-height: 1.2;
+  line-height: .58;
 
-  letter-spacing: 0.02em;
+  letter-spacing: -.105em;
 
-  text-align: center;
+  white-space: nowrap;
 
-  text-transform: lowercase;
+  user-select: none;
+
+  /*
+    El pixel + check viven DENTRO del propio
+    relleno tipográfico.
+    
+    Esto evita completamente los rectángulos
+    de los pseudo-elementos anteriores.
+  */
+  background-color: #efefee;
+
+  background-image:
+
+    /* MICRO HILO ROJO */
+    linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 47px,
+      rgba(102,32,30,.18) 47px,
+      rgba(102,32,30,.18) 49px,
+      transparent 49px,
+      transparent 76px
+    ),
+
+    /* MICRO HILO AMARILLO */
+    linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 37px,
+      rgba(126,108,63,.20) 37px,
+      rgba(126,108,63,.20) 39px,
+      transparent 39px,
+      transparent 76px
+    ),
+
+    /* CHECK VERTICAL */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 36px,
+      rgba(18,18,18,.13) 36px,
+      rgba(18,18,18,.13) 43px,
+      transparent 43px,
+      transparent 76px
+    ),
+
+    /* CHECK HORIZONTAL */
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 36px,
+      rgba(18,18,18,.13) 36px,
+      rgba(18,18,18,.13) 43px,
+      transparent 43px,
+      transparent 76px
+    ),
+
+    /* PIXEL HORIZONTAL */
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 5px,
+      rgba(0,0,0,.075) 5px,
+      rgba(0,0,0,.075) 7px,
+      transparent 7px,
+      transparent 11px
+    ),
+
+    /* PIXEL VERTICAL */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 7px,
+      rgba(0,0,0,.055) 7px,
+      rgba(0,0,0,.055) 9px,
+      transparent 9px,
+      transparent 15px
+    );
+
+  background-size:
+    76px 76px,
+    76px 76px,
+    76px 76px,
+    76px 76px,
+    11px 11px,
+    15px 15px;
+
+  background-position:
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+
+  /*
+    La textura se recorta literalmente con
+    la forma de las letras.
+  */
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    1px 0 rgba(255,255,255,.07),
+    -1px 0 rgba(0,0,0,.18),
+    0 0 1px rgba(255,255,255,.13);
+
+  filter:
+    contrast(1.16)
+    saturate(.88)
+    blur(.05px);
 }
 
 
 /* =========================================================
-   26 — DYNAMIC VIEWPORT SUPPORT
+   REGISTERED MARK
    ========================================================= */
 
-@supports (height: 100dvh) {
+h1 span {
+  position: relative;
 
-  .site,
-  .home,
-  .content {
-    min-height: 100dvh;
-  }
+  top: -.53em;
+  left: .025em;
 
-  .presave-page,
-  .presave {
-    min-height: 100dvh;
-  }
+  font-size: .09em;
+
+  font-weight: 600;
+
+  letter-spacing: -.02em;
+
+  /*
+    El ® permanece limpio, sin check ni pixel.
+  */
+  color: #efefee;
+
+  -webkit-text-fill-color: #efefee;
+
+  background: none;
+
+  filter:
+    blur(.15px);
 }
 
 
 /* =========================================================
-   27 — REDUCED MOTION
+   BOTTOM INFORMATION
+   ========================================================= */
+
+.bottom-info {
+  position: absolute;
+
+  z-index: 8;
+
+  left: 4vw;
+  right: 4vw;
+
+  bottom: 4.5vh;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr
+    1fr;
+
+  align-items: end;
+
+  color: #777772;
+
+  font-size:
+    clamp(10px, .85vw, 15px);
+
+  font-weight: 500;
+
+  letter-spacing: -.035em;
+
+  text-transform: uppercase;
+}
+
+
+.bottom-info span:nth-child(2) {
+  text-align: right;
+
+  padding-right: 3vw;
+}
+
+
+.bottom-info span:nth-child(3) {
+  text-align: right;
+}
+
+
+/* =========================================================
+   WIDE SCREENS
+   ========================================================= */
+
+@media (min-aspect-ratio: 16 / 9) {
+
+  .image-link {
+    width:
+      clamp(
+        290px,
+        min(30vw, 43vh),
+        510px
+      );
+
+    left: 79%;
+    top: 36%;
+  }
+
+
+  h1 {
+    left: 6vw;
+
+    top: 55%;
+
+    font-size:
+      clamp(
+        115px,
+        min(18vw, 28vh),
+        335px
+      );
+  }
+
+}
+
+
+/* =========================================================
+   SHORT / COMPACT LAPTOPS
+   ========================================================= */
+
+@media (max-aspect-ratio: 16 / 10) and (min-width: 701px) {
+
+  .image-link {
+    width:
+      clamp(
+        270px,
+        min(31vw, 39vh),
+        440px
+      );
+
+    left: 79%;
+    top: 34%;
+  }
+
+
+  h1 {
+    left: 5vw;
+
+    top: 57%;
+
+    font-size:
+      clamp(
+        100px,
+        min(17vw, 24vh),
+        285px
+      );
+
+    transform:
+      translateY(-50%)
+      scaleX(.60)
+      scaleY(1.16);
+  }
+
+
+  .bottom-info {
+    bottom: 3.5vh;
+  }
+
+}
+
+
+/* =========================================================
+   TALL SCREENS
+   ========================================================= */
+
+@media (min-aspect-ratio: 10 / 16) and (max-width: 700px) {
+
+  .image-link {
+    width:
+      min(64vw, 46vh);
+
+    left: 78%;
+    top: 34%;
+  }
+
+
+  h1 {
+    left: 6vw;
+
+    top: 59%;
+
+    font-size:
+      min(25vw, 18vh);
+
+    transform:
+      translateY(-50%)
+      scaleX(.61)
+      scaleY(1.15);
+  }
+
+}
+
+
+/* =========================================================
+   TABLET / IPAD
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .nav {
+    height: 38px;
+
+    padding:
+      0 10px;
+
+    font-size: 11px;
+
+    letter-spacing: -.045em;
+  }
+
+
+  .nav-links {
+    width: calc(100% - 18px);
+
+    gap: 0;
+
+    justify-content: space-between;
+  }
+
+
+  .nav-links a {
+    flex-shrink: 0;
+  }
+
+
+  .nav-mark {
+    display: none;
+  }
+
+
+  .image-link {
+    width:
+      min(64vw, 43vh);
+
+    left: 79%;
+    top: 35%;
+  }
+
+
+  h1 {
+    left: 6vw;
+
+    top: 58%;
+
+    font-size:
+      min(24vw, 21vh);
+
+    transform:
+      translateY(-50%)
+      scaleX(.61)
+      scaleY(1.16);
+  }
+
+
+  .bottom-info {
+    left: 6vw;
+    right: 6vw;
+
+    bottom: 5vh;
+
+    font-size: 12px;
+
+    grid-template-columns:
+      auto
+      1fr
+      auto;
+  }
+
+
+  .bottom-info span:nth-child(2) {
+    padding-right: 2vw;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .nav {
+    height: 36px;
+
+    padding:
+      0 8px;
+
+    font-size: 9px;
+
+    letter-spacing: -.055em;
+  }
+
+
+  .nav-links {
+    width: 100%;
+
+    gap: 0;
+
+    justify-content: space-between;
+  }
+
+
+  .nav-links a {
+    display: block;
+
+    flex-shrink: 1;
+  }
+
+
+  .nav-mark {
+    display: none;
+  }
+
+
+  .image-link {
+    width:
+      min(76vw, 43vh);
+
+    left: 79%;
+    top: 34%;
+  }
+
+
+  h1 {
+    left: 6vw;
+
+    top: 59%;
+
+    font-size:
+      min(27vw, 19vh);
+
+    transform:
+      translateY(-50%)
+      scaleX(.60)
+      scaleY(1.15);
+  }
+
+
+  .bottom-info {
+    left: 6vw;
+    right: 6vw;
+
+    bottom: 4.5vh;
+
+    font-size: 9px;
+
+    letter-spacing: -.045em;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  .nav {
+    font-size: 8px;
+
+    padding:
+      0 6px;
+  }
+
+
+  .nav-links {
+    gap: 4px;
+
+    justify-content:
+      space-between;
+  }
+
+
+  .image-link {
+    width:
+      min(72vw, 42vh);
+
+    left: 78%;
+    top: 33%;
+  }
+
+
+  h1 {
+    left: 5vw;
+
+    top: 60%;
+
+    font-size:
+      min(26vw, 18vh);
+
+    transform:
+      translateY(-50%)
+      scaleX(.59)
+      scaleY(1.15);
+  }
+
+
+  .bottom-info {
+    font-size: 8px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-  html {
-    scroll-behavior: auto;
-  }
-
-  .surface,
   .grain,
-  .presave::before,
-  .presave-noise {
+  .content::after {
     animation: none;
   }
 
   .nav a::after,
+  .image-link,
   .image-link img {
     transition: none;
   }
+
+}
+
+
+/* =========================================================
+   PRESAVE PAGE
+   ========================================================= */
+
+.presave-page {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  overflow: hidden;
+
+  background: #080808;
+}
+
+
+.presave {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  overflow: hidden;
+
+  background:
+
+    radial-gradient(
+      ellipse at 50% 50%,
+      #171715 0%,
+      #0b0b0a 48%,
+      #050505 100%
+    );
+}
+
+
+.presave::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -10%;
+
+  opacity: .2;
+
+  background:
+
+    repeating-linear-gradient(
+      113deg,
+      transparent 0,
+      transparent 7px,
+      rgba(255,255,255,.018) 8px,
+      transparent 11px
+    );
+
+  transform: rotate(-2deg);
+}
+
+
+.presave::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+
+    radial-gradient(
+      ellipse at center,
+      transparent 25%,
+      rgba(0,0,0,.8) 100%
+    );
+}
+
+
+/* =========================================================
+   PRESAVE DIGITAL GRAIN
+   ========================================================= */
+
+.presave-noise {
+  position: absolute;
+
+  z-index: 3;
+
+  inset: -20%;
+
+  pointer-events: none;
+
+  opacity: .26;
+
+  background-image:
+
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.085' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  background-size: 260px 260px;
+
+  mix-blend-mode: screen;
+
+  animation:
+    digital-grain .48s steps(5) infinite;
+}
+
+
+/* =========================================================
+   PRESAVE MESSAGE
+   ========================================================= */
+
+.presave-message {
+  position: absolute;
+
+  z-index: 5;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  width: 90vw;
+
+  text-align: center;
+
+  color: #efefee;
+
+  font-family:
+    "Arial Narrow",
+    "Archivo Narrow",
+    sans-serif;
+
+  font-size:
+    clamp(15px, 1.4vw, 21px);
+
+  font-weight: 500;
+
+  letter-spacing: -.035em;
+
+  line-height: 1.2;
+
+  text-shadow:
+    .5px 0 rgba(255,255,255,.08),
+    -.5px 0 rgba(0,0,0,.12);
+}
+
+
+/* =========================================================
+   PRESAVE MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .presave-message {
+    width: 94vw;
+
+    font-size: 12px;
+
+    letter-spacing: -.04em;
+  }
+
+}
+
+
+/* =========================================================
+   PRESAVE REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .presave-noise {
+    animation: none;
+  }
+
 }
