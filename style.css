@@ -287,11 +287,6 @@ body {
 
   display: block;
 
-  /*
-    Escala base de la pieza.
-    Esta proporción se conserva en móvil.
-  */
-
   width:
     min(
       32vw,
@@ -309,10 +304,7 @@ body {
     contrast(1.12);
 
   /*
-    LA RUPTURA DEL EJE.
-
-    La foto no está matemáticamente
-    alineada con DABOGA.
+    LA RUPTURA DEL EJE
   */
 
   transform:
@@ -375,12 +367,6 @@ h1 {
     Arial,
     sans-serif;
 
-  /*
-    Escala fundamental.
-    No se convierte en un elemento diferente
-    en móvil.
-  */
-
   font-size:
     clamp(
       115px,
@@ -398,10 +384,6 @@ h1 {
 
   user-select: none;
 
-  /*
-    Compresión horizontal característica.
-  */
-
   transform:
     translateY(2%)
     scaleX(.61)
@@ -417,6 +399,12 @@ h1 {
 
 /* =========================================================
    TEXTURA DENTRO DE DABOGA
+
+   IMPORTANTE:
+   NO hay color sólido en el background.
+
+   El patrón se recorta directamente al texto.
+   Esto elimina el rectángulo negro.
    ========================================================= */
 
 .wordmark {
@@ -424,7 +412,21 @@ h1 {
 
   color: transparent;
 
+  -webkit-text-fill-color: transparent;
+
+  /*
+    Base blanca mediante el propio glifo,
+    no mediante un rectángulo.
+  */
+
+  text-shadow:
+    0 0 0 #efefee;
+
   background:
+
+    /*
+      tono cálido / piedra
+    */
 
     linear-gradient(
       90deg,
@@ -436,6 +438,10 @@ h1 {
       transparent 76px
     ),
 
+    /*
+      tono oliva
+    */
+
     linear-gradient(
       90deg,
       transparent 0,
@@ -446,6 +452,10 @@ h1 {
       transparent 76px
     ),
 
+    /*
+      trama vertical
+    */
+
     repeating-linear-gradient(
       90deg,
       transparent 0,
@@ -456,6 +466,10 @@ h1 {
       transparent 76px
     ),
 
+    /*
+      trama horizontal
+    */
+
     repeating-linear-gradient(
       0deg,
       transparent 0,
@@ -464,19 +478,15 @@ h1 {
       rgba(35,34,30,.13) 43px,
       transparent 43px,
       transparent 76px
-    ),
-
-    #efefee;
+    );
 
   background-size:
     76px 76px,
     76px 76px,
     76px 76px,
-    76px 76px,
-    auto;
+    76px 76px;
 
   background-position:
-    0 0,
     0 0,
     0 0,
     0 0,
@@ -485,7 +495,7 @@ h1 {
   -webkit-background-clip: text;
   background-clip: text;
 
-  -webkit-text-fill-color: transparent;
+  overflow: visible;
 }
 
 
@@ -514,11 +524,6 @@ h1 {
     "Archivo Narrow",
     Arial,
     sans-serif;
-
-  /*
-    GRANDE.
-    Forma parte visualmente del wordmark.
-  */
 
   font-size: .68em;
 
@@ -630,24 +635,6 @@ h1 {
 
 @media (max-width: 700px) {
 
-  /*
-   =====================================================
-   MISMA ESTRUCTURA
-
-   NO:
-
-   FOTO
-   DABOGA
-
-   SÍ:
-
-   DABOGA              FOTO
-
-   exactamente el mismo fundamento
-   de la versión de ordenador.
-   =====================================================
-  */
-
   .content {
     width: 100%;
 
@@ -670,9 +657,7 @@ h1 {
 
     /*
       Más aire arriba y abajo.
-
-      No altera el diseño.
-      Solo adapta el lienzo 9:16.
+      La estructura sigue siendo horizontal.
     */
 
     padding:
@@ -716,11 +701,6 @@ h1 {
 
   /* =====================================================
      IMAGE
-
-     Misma proporción que desktop.
-     Solo escalada respecto al ancho móvil.
-
-     Conserva la ruptura vertical.
      ===================================================== */
 
   .image-link {
@@ -762,11 +742,6 @@ h1 {
 
   /* =====================================================
      DABOGA
-
-     SIGUE HORIZONTAL.
-     SIGUE A LA IZQUIERDA.
-
-     NO se centra debajo de la foto.
      ===================================================== */
 
   h1 {
